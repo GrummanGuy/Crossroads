@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CROSSROADS - Field Theory</title>
-    <meta name="description" content="CROSSROADS: Explorations in field theory, quantum mechanics, consciousness studies, and cosmology by Roy Roberts, PhD">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E✨%3C/text%3E%3C/svg%3E">
     <style>
         * {
             margin: 0;
@@ -18,10 +16,8 @@
             background: #0a0a0a;
             color: #e8e8e8;
             overflow-x: hidden;
-            position: relative;
         }
 
-        /* Star field background */
         .stars {
             position: fixed;
             top: 0;
@@ -37,7 +33,6 @@
             background: white;
             border-radius: 50%;
             animation: twinkle 3s infinite ease-in-out;
-            will-change: opacity;
         }
 
         @keyframes twinkle {
@@ -45,7 +40,6 @@
             50% { opacity: 0.8; }
         }
 
-        /* Main container */
         .container {
             position: relative;
             z-index: 10;
@@ -53,18 +47,31 @@
             margin: 0 auto;
             padding: 0 2rem;
             padding-top: 3rem;
+            padding-bottom: 3rem;
         }
 
-        /* Header Section */
         .header-section {
             text-align: center;
             padding: 3rem 0 2rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .header-section::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 -60px 0;
+            background: radial-gradient(1200px 220px at 50% 0%,
+                        rgba(74,158,255,0.12) 0%,
+                        rgba(74,158,255,0.06) 35%,
+                        rgba(10,10,10,0) 70%);
+            pointer-events: none;
+            z-index: -1;
         }
 
         .main-title {
-            font-size: 4rem;
+            font-size: 3.5rem;
             margin-bottom: 0.5rem;
             letter-spacing: 0.1em;
             background: linear-gradient(135deg, #ffffff, #cccccc);
@@ -80,13 +87,12 @@
         }
 
         .main-tagline {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             color: #b8b8b8;
             margin-bottom: 2rem;
             font-style: italic;
         }
 
-        /* Navigation */
         nav {
             position: relative;
             background: transparent;
@@ -104,7 +110,7 @@
 
         .nav-links {
             display: flex;
-            gap: 2rem;
+            gap: 1.2rem;
             list-style: none;
             flex-wrap: wrap;
             justify-content: center;
@@ -115,8 +121,7 @@
             border: none;
             color: #999999;
             text-decoration: none;
-            transition: color 0.3s ease;
-            font-size: 1rem;
+            font-size: 0.9rem;
             font-weight: 400;
             padding: 0.5rem 1rem;
             border-radius: 4px;
@@ -136,7 +141,6 @@
             border: 1px solid rgba(74, 158, 255, 0.3);
         }
 
-        /* Back button styling */
         .back-button {
             display: inline-block;
             color: #4a9eff;
@@ -155,10 +159,8 @@
         .back-button:hover {
             background: rgba(74, 158, 255, 0.2);
             border-color: rgba(74, 158, 255, 0.5);
-            text-decoration: none;
         }
 
-        /* Main content */
         .page {
             display: none;
             min-height: calc(100vh - 100px);
@@ -166,16 +168,21 @@
 
         .page.active {
             display: block;
+            animation: fadeIn 0.5s ease-in-out;
         }
 
-        /* Home page styles */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         .hero {
-            margin-bottom: 4rem;
+            margin-bottom: 2.5rem;
         }
 
         .hero-content {
             max-width: 700px;
-            margin: 0 auto;
+            margin: 0 auto 2rem auto;
             text-align: center;
         }
 
@@ -187,14 +194,38 @@
             text-align: left;
         }
 
+        .illustration-wrap {
+            position: relative;
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto 4rem auto;
+            overflow: hidden;
+        }
+
+        .illustration {
+            width: 100%;
+            height: auto;
+            display: block;
+            opacity: 0.95;
+            mask-image: linear-gradient(to bottom, 
+                rgba(0,0,0,1) 0%, 
+                rgba(0,0,0,1) 60%, 
+                rgba(0,0,0,0.7) 80%, 
+                rgba(0,0,0,0) 100%);
+            -webkit-mask-image: linear-gradient(to bottom, 
+                rgba(0,0,0,1) 0%, 
+                rgba(0,0,0,1) 60%, 
+                rgba(0,0,0,0.7) 80%, 
+                rgba(0,0,0,0) 100%);
+        }
+
         .content-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            margin-bottom: 4rem;
+            gap: 3rem;
+            margin-bottom: 3rem;
         }
 
-        /* Shared card styles */
         .card-base {
             background: rgba(20, 20, 20, 0.7);
             padding: 2rem;
@@ -203,13 +234,9 @@
             backdrop-filter: blur(5px);
         }
 
-        .content-section {
-            padding: 2rem;
-        }
-
         .content-section h2 {
-            font-size: 2rem;
-            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            margin-bottom: 1.2rem;
             color: #ffffff;
         }
 
@@ -217,36 +244,48 @@
             line-height: 1.7;
             color: #d0d0d0;
             margin-bottom: 1rem;
+            font-size: 1rem;
         }
 
         .content-section a {
             color: #4a9eff;
             text-decoration: none;
+            cursor: pointer;
         }
 
         .content-section a:hover {
             text-decoration: underline;
         }
 
-        /* Subpage styles */
         .subpage-header {
             text-align: center;
             margin-bottom: 3rem;
         }
 
         .subpage-header h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 1rem;
             color: #ffffff;
         }
 
         .subpage-content {
             line-height: 1.7;
+            background: rgba(20, 20, 20, 0.7);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
         }
 
         .subpage-content h2 {
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             margin: 2rem 0 1rem 0;
+            color: #ffffff;
+        }
+
+        .subpage-content h3 {
+            font-size: 1.3rem;
+            margin: 1.5rem 0 1rem 0;
             color: #ffffff;
         }
 
@@ -258,40 +297,51 @@
         .subpage-content a {
             color: #4a9eff;
             text-decoration: none;
+            cursor: pointer;
         }
 
         .subpage-content a:hover {
             text-decoration: underline;
         }
 
-        /* Contact page styles */
-        .contact-info {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            margin-top: 2rem;
+        .lang-slide {
+            display: none;
         }
 
-        .contact-card {
+        .lang-slide.active {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .lang-text {
+            font-size: 1.05rem;
+            line-height: 1.7;
             color: #d0d0d0;
+            min-height: 120px;
         }
 
-        .contact-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
+        .process-text {
+            font-weight: 500;
         }
 
-        .contact-card a {
-            color: #4a9eff;
-            text-decoration: none;
+        .slide-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
         }
 
-        .contact-card a:hover {
-            text-decoration: underline;
+        .slide-dot.active {
+            background: #4a9eff;
+            transform: scale(1.3);
         }
 
-        /* Mobile responsiveness */
+        .slide-dot:hover {
+            background: rgba(74, 158, 255, 0.5);
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 0 1rem;
@@ -299,59 +349,48 @@
             }
 
             .main-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
             }
 
             .main-tagline {
-                font-size: 1.2rem;
+                font-size: 1rem;
             }
 
             .nav-links {
-                gap: 1rem;
-                flex-wrap: wrap;
-                justify-content: center;
+                gap: 0.6rem;
             }
 
             .nav-links button {
-                font-size: 0.9rem;
-                padding: 0.3rem 0.7rem;
+                font-size: 0.8rem;
+                padding: 0.4rem 0.7rem;
             }
 
-            .content-grid,
-            .contact-info {
+            .content-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-        }
 
-        /* Smooth transitions */
-        .page {
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            .content-section h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Star field background -->
     <div class="stars" id="stars"></div>
 
     <main class="container">
-        <!-- Header Section -->
         <div class="header-section">
             <h1 class="main-title" onclick="showPage('home')">CROSSROADS</h1>
             <p class="main-tagline">Where ideas meet and new paths begin</p>
             
-            <!-- Navigation -->
             <nav>
                 <div class="nav-container">
                     <ul class="nav-links">
                         <li><button class="nav-btn active" data-page="home">Home</button></li>
                         <li><button class="nav-btn" data-page="field-theory">Field Theory</button></li>
                         <li><button class="nav-btn" data-page="cosmic-divide">Cosmic Divide</button></li>
+                        <li><button class="nav-btn" data-page="language-paradox">Language Paradox</button></li>
                         <li><button class="nav-btn" data-page="ideas">Other Ideas</button></li>
                         <li><button class="nav-btn" data-page="projects">Projects</button></li>
                         <li><button class="nav-btn" data-page="contact">Contact</button></li>
@@ -360,45 +399,116 @@
             </nav>
         </div>
 
-        <!-- Home Page -->
         <div id="home" class="page active">
             <div class="hero">
                 <div class="hero-content">
                     <p>This site is an open invitation to curiosity, exploration, and collaboration. Here, you'll find ideas that reach across physics, cosmology, biology, and beyond—always guided by the belief that our greatest purpose is to learn, and to share what we learn.</p>
-                    <p>I'm excited to connect with fellow explorers, whether you're an independent thinker, researcher, or part of larger organizations like NASA, DARPA, or other experimental venues. If you're interested in sharing ideas, co-authoring work, or building projects together, you've come to the right place.</p>
+                    <p>I'm excited to connect with fellow explorers, whether you're an independent thinker, researcher, or part of larger organizations like NASA, DARPA, or other experimental venues.</p>
+                </div>
+
+                <div class="illustration-wrap">
+                    <img class="illustration" 
+                         src="images/starry-night.png"
+                         alt="Cosmic scholar at work representing field theory and quantum processes"
+                         loading="eager"
+                         onerror="this.style.display='none';">
                 </div>
             </div>
 
             <div class="content-grid">
-                <div class="content-section">
+                <div class="content-section card-base">
+                    <h2>The Language Problem</h2>
+                    <p>Much of what appears mysterious in physics stems from how we describe reality rather than reality itself. Object-language creates puzzles by treating dynamic processes as static things with essential properties.</p>
+                    <p>Explore how shifting to process-language dissolves paradoxes in <a onclick="showPage('language-paradox')">The Language Paradox</a>.</p>
+                </div>
+
+                <div class="content-section card-base">
                     <h2>Field Theory Exploration</h2>
                     <p>Investigating how field theories might bridge quantum mechanics and biological systems. Through mathematical modeling and theoretical development, we explore questions about consciousness, information processing, and fundamental interactions.</p>
-                    <p>Current interests include electromagnetic field effects in neural systems and potential quantum coherence in biological processes.</p>
-                </div>
-
-                <div class="content-section">
-                    <h2>Interdisciplinary Thinking</h2>
-                    <p>At the crossroads of physics, neuroscience, and philosophy, ideas emerge that challenge conventional boundaries. Mathematical frameworks meet experimental questions and philosophical inquiry.</p>
-                    <p>The goal is to maintain scientific rigor while exploring new possibilities and asking fundamental questions about the nature of reality.</p>
                 </div>
             </div>
 
             <div class="content-grid">
-                <div class="content-section">
-                    <h2>Current Questions</h2>
-                    <p>What role do fields play in biological information processing? How might consciousness emerge from physical processes? Can we develop testable predictions from field-based models?</p>
-                    <p>These questions guide ongoing theoretical work and shape the search for experimental approaches to validate or refine ideas.</p>
+                <div class="content-section card-base">
+                    <h2>Interdisciplinary Thinking</h2>
+                    <p>At the crossroads of physics, neuroscience, and philosophy, ideas emerge that challenge conventional boundaries. Mathematical frameworks meet experimental questions and philosophical inquiry.</p>
                 </div>
 
-                <div class="content-section">
-                    <h2>Publications & Papers</h2>
-                    <p>Research papers and theoretical developments are shared openly to advance scientific understanding. Find published work and preprints on <a href="https://figshare.com/authors/Roy_Roberts/19338289" target="_blank">Figshare</a>.</p>
-                    <p>The focus is on making complex concepts accessible while maintaining intellectual honesty about what we know and what remains unknown.</p>
+                <div class="content-section card-base">
+                    <h2>Current Questions</h2>
+                    <p>What role do fields play in biological information processing? How might consciousness emerge from physical processes? Can we develop testable predictions from field-based models?</p>
                 </div>
             </div>
         </div>
 
-        <!-- Field Theory Page -->
+        <div id="language-paradox" class="page">
+            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+            
+            <div class="subpage-header">
+                <h1>The Language Paradox</h1>
+                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">How object-language creates the "problems" it claims to solve</p>
+            </div>
+
+            <div style="max-width: 1100px; margin: 0 auto;">
+                <div class="lang-slide active" data-slide="1">
+                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">Wave-Particle Duality</h2>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #ff6b6b;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b6b;">Object Language</div>
+                            <div class="lang-text" data-content="Light is both a wave and a particle. Sometimes it behaves like a wave, sometimes like a particle. The electron is a particle that also has wave properties."></div>
+                        </div>
+                        
+                        <div class="process-box" style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #4a9eff; position: relative;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a9eff;">Process Language</div>
+                            <div class="lang-text process-text" data-content="Quantum fields produce localized excitations. Under certain measurement conditions, these excitations exhibit interference patterns. Under other conditions, they register as discrete detection events."></div>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(74, 158, 255, 0.15)); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; color: #ffd93d; margin-bottom: 0.5rem; font-weight: bold;">The Irony</div>
+                        <div style="font-size: 1.05rem; line-height: 1.6; color: #ffffff; font-style: italic;">
+                            We spent a century debating "what light really is" because we insisted on treating dynamic field excitations as static objects with essential properties. The "duality" vanishes when we describe what actually happens: fields interact with measurement apparatus in ways that depend on experimental configuration.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lang-slide" data-slide="2">
+                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">Scale-Dependent Field Theory</h2>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #ff6b6b;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b6b;">Object Language</div>
+                            <div class="lang-text" data-content="There are quantum fields at small scales and classical fields at large scales. These are fundamentally different types of things. We need to unify the quantum realm with the classical realm."></div>
+                        </div>
+                        
+                        <div class="process-box" style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #4a9eff;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a9eff;">Process Language</div>
+                            <div class="lang-text process-text" data-content="Field dynamics exhibit scale-dependent coupling strengths. Auxiliary fields Ξ and Ψμ mediate interactions across scales. What appears quantum at one scale emerges as classical behavior at another through renormalization group flow and decoherence processes."></div>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(74, 158, 255, 0.15)); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; color: #ffd93d; margin-bottom: 0.5rem; font-weight: bold;">The Irony</div>
+                        <div style="font-size: 1.05rem; line-height: 1.6; color: #ffffff; font-style: italic;">
+                            The quantum-classical "divide" exists primarily in our language, not in nature. By describing field dynamics as scale-dependent processes rather than separate object-types, we eliminate the need to "bridge" artificially separated domains. The auxiliary fields reveal themselves as mediators not between different kinds of reality, but between different measurement scales of the same ongoing processes.
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                    <button class="back-button" onclick="prevSlide()" id="prevSlideBtn">← Previous</button>
+                    <span style="color: #999999; font-size: 1rem;" id="slideCounter">1 / 2</span>
+                    <button class="back-button" onclick="nextSlide()" id="nextSlideBtn">Next →</button>
+                </div>
+
+                <div style="display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem;">
+                    <div class="slide-dot active" onclick="goToLangSlide(1)"></div>
+                    <div class="slide-dot" onclick="goToLangSlide(2)"></div>
+                </div>
+            </div>
+        </div>
+
         <div id="field-theory" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="subpage-header">
@@ -411,21 +521,31 @@
                 <h2>Key Areas of Interest</h2>
                 <p>Current explorations include non-local correlations, emergent complexity from field interactions, and the role of information as a fundamental quantity alongside energy and momentum.</p>
 
-                <h2>Applications</h2>
-                <p>Applications span from microscopic quantum effects in biological systems to macroscopic emergent phenomena. The goal is to investigate how field-based descriptions might provide unified explanations for seemingly disparate phenomena.</p>
-
-                <h2>Mathematical Foundations</h2>
-                <p>The mathematical work involves extensions to standard field equations, incorporating non-linear dynamics and topological considerations. The approach emphasizes mathematical rigor while remaining open to experimental validation and modification.</p>
-
-                <h2>Published Work</h2>
-                <p>Detailed mathematical frameworks and theoretical developments are available in published papers. Access the complete collection of research papers on <a href="https://figshare.com/authors/Roy_Roberts/19338289" target="_blank">Figshare</a>.</p>
-
                 <h2>Featured Research</h2>
-                <p>For an in-depth exploration of current theoretical work, see: <a href="#" onclick="showPage('cosmic-divide')" style="font-weight: bold;">Bridging the Cosmic Divide: Scale-Dependent Field Theory Approaches to General Relativity and Quantum Mechanics</a></p>
+                <p>For in-depth exploration: <a onclick="showPage('cosmic-divide')">Bridging the Cosmic Divide</a></p>
+                <p style="margin-top: 1rem;">For conceptual foundations: <a onclick="showPage('language-paradox')">The Language Paradox</a></p>
             </div>
         </div>
 
-        <!-- Other Ideas Page -->
+        <div id="cosmic-divide" class="page">
+            <button class="back-button" onclick="showPage('field-theory')">← Back to Field Theory</button>
+            <div class="subpage-header">
+                <h1>Bridging the Cosmic Divide</h1>
+                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Scale-Dependent Field Theory</p>
+                <p style="margin-top: 1rem; font-size: 0.95rem;"><em>New to process-language? Start with <a onclick="showPage('language-paradox')" style="color: #4a9eff; cursor: pointer;">The Language Paradox</a></em></p>
+            </div>
+            <div class="subpage-content">
+                <h2>The Nature of the Problem</h2>
+                <p>General relativity describes gravity as spacetime curvature—a smooth, continuous geometric description. Quantum mechanics reveals discrete energy levels, fundamental uncertainties, and field fluctuations. The tension manifests in concrete mathematical difficulties.</p>
+
+                <h2>Auxiliary Field Mechanisms</h2>
+                <p>The theoretical framework incorporates two auxiliary fields: a scalar field <strong>Ξ</strong> with discrete Z₂ symmetry and a vector field <strong>Ψμ</strong> with hidden U(1) gauge symmetry. These fields emerge from mathematical consistency requirements rather than arbitrary theoretical choices.</p>
+
+                <h2>Scale-Dependent Dynamics</h2>
+                <p>Field dynamics exhibit scale-dependent coupling strengths. What appears "quantum" at one scale emerges as "classical" at another through continuous transformation mediated by auxiliary field interactions. The "mystery" was linguistic, not physical.</p>
+            </div>
+        </div>
+
         <div id="ideas" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="subpage-header">
@@ -433,23 +553,13 @@
             </div>
             <div class="subpage-content">
                 <h2>Consciousness Studies</h2>
-                <p>Beyond field theory, explorations encompass broader questions about the nature of consciousness, including the hard problem of consciousness, the binding problem, and the relationship between subjective experience and physical processes.</p>
+                <p>Explorations encompass broader questions about the nature of consciousness, including the hard problem of consciousness and the relationship between subjective experience and physical processes.</p>
 
                 <h2>Information Theory Applications</h2>
-                <p>Investigating applications of information theory to biological systems, particularly in understanding how complex behaviors and consciousness might emerge from information processing patterns in neural networks and other biological structures.</p>
-
-                <h2>Interdisciplinary Connections</h2>
-                <p>Drawing connections between physics, biology, psychology, and philosophy. Exploring how insights from one domain can inform understanding in others, particularly regarding emergence, complexity, and the nature of scientific explanation.</p>
-
-                <h2>Methodological Questions</h2>
-                <p>Considering new methodological approaches for studying consciousness and complex systems, including novel experimental designs, mathematical tools, and conceptual frameworks that bridge different levels of description.</p>
-
-                <h2>Research Papers</h2>
-                <p>Additional research exploring these interdisciplinary connections and novel approaches is available in the published literature. Browse papers and preprints on <a href="https://figshare.com/authors/Roy_Roberts/19338289" target="_blank">Figshare</a>.</p>
+                <p>Investigating applications of information theory to biological systems, particularly in understanding how complex behaviors and consciousness might emerge from information processing patterns.</p>
             </div>
         </div>
 
-        <!-- Projects Page -->
         <div id="projects" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="subpage-header">
@@ -461,222 +571,171 @@
 
                 <h2>Educational Interests</h2>
                 <p>Developing educational materials and approaches to help others understand interdisciplinary connections between consciousness studies and field theory applications.</p>
-
-                <h2>Technology Questions</h2>
-                <p>Exploring how theoretical insights might lead to new computational tools and experimental techniques for investigating field effects in biological systems and complex networks.</p>
-
-                <h2>Future Directions</h2>
-                <p>Research investigations continue to expand into new domains, including applications to artificial intelligence, quantum biology, and computational approaches to consciousness studies.</p>
-
-                <h2>Research Documentation</h2>
-                <p>Detailed project documentation, methodologies, and results are documented in research papers. Access the complete research portfolio on <a href="https://figshare.com/authors/Roy_Roberts/19338289" target="_blank">Figshare</a>.</p>
             </div>
         </div>
 
-        <!-- Contact Page -->
         <div id="contact" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="subpage-header">
                 <h1>Contact</h1>
             </div>
-            <div class="contact-info">
-                <div class="contact-card">
-                    <h3>Roy Roberts, PhD</h3>
-                    <p>For research inquiries, collaboration opportunities, or general questions:</p>
-                    <p><strong>Email:</strong> <a href="https://mail.google.com/mail/?view=cm&to=roy@fldtheory.org" target="_blank">roy@fldtheory.org</a></p>
-                    <p><strong>ORCID:</strong> <a href="https://orcid.org/0009-0002-5048-9724" target="_blank">https://orcid.org/0009-0002-5048-9724</a></p>
-                    <p><strong>Publications:</strong> <a href="https://figshare.com/authors/Roy_Roberts/19338289" target="_blank">Figshare Research Papers</a></p>
-                </div>
-
-                <div class="contact-card">
-                    <h3>Connect</h3>
-                    <p>Open to connecting with researchers from all disciplines who share curiosity about consciousness, field theory applications, and fundamental questions about reality.</p>
-                    <p>Interested in discussing ideas, potential projects, and research approaches with independent thinkers, researchers, and institutions.</p>
-                </div>
-            </div>
-
-            <div class="subpage-content" style="margin-top: 3rem;">
-                <h2>Research Interests</h2>
-                <p>Open to connecting with researchers from all disciplines who share curiosity about consciousness, field theory applications, and fundamental questions about reality. Interested in discussing ideas, potential projects, and research approaches.</p>
-
-                <h2>Academic Connections</h2>
-                <p>Interested in connecting with institutions and researchers working on related questions. Particularly interested in access to specialized experimental facilities or unique expertise in relevant areas.</p>
-
-                <h2>Student Opportunities</h2>
-                <p>Graduate students and postdoctoral researchers interested in interdisciplinary approaches to consciousness studies are welcome to reach out about research questions and potential mentorship opportunities.</p>
-            </div>
-        </div>
-
-        <!-- Cosmic Divide Essay Page -->
-        <div id="cosmic-divide" class="page">
-            <button class="back-button" onclick="showPage('field-theory')">← Back to Field Theory</button>
-            <div class="subpage-header">
-                <h1>Bridging the Cosmic Divide</h1>
-                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Scale-Dependent Field Theory Approaches to General Relativity and Quantum Mechanics</p>
-            </div>
             <div class="subpage-content">
-                <p>The most profound questions in physics often emerge at the boundaries—those liminal spaces where our most successful theories begin to exhibit apparent contradictions. One of the most fundamental of these boundaries concerns the tension between Einstein's general relativity and quantum mechanics. While both theories have achieved extraordinary experimental success within their respective domains, their mathematical frameworks appear to operate on fundamentally different principles, presenting significant challenges for theoretical unification.</p>
-
-                <h2>The Nature of the Problem</h2>
-                <p>General relativity describes gravity as the curvature of spacetime itself—a smooth, continuous geometric description that accurately describes phenomena at cosmic scales. Quantum mechanics reveals a universe of discrete energy levels, fundamental uncertainties, and field fluctuations that govern microscopic physics. The tension manifests in concrete mathematical difficulties: attempts to quantize gravity directly encounter non-renormalizable infinities that resist the regularization techniques successful in other quantum field theories. Meanwhile, the smooth spacetime of general relativity appears incompatible with the quantum fluctuations that emerge from uncertainty principles applied to gravitational fields.</p>
-
-                <p>This theoretical divide has observable consequences. Recent observations from the James Webb Space Telescope revealing massive galaxies at unexpectedly early cosmic times, persistent discrepancies in Hubble constant measurements, and the enigmatic nature of dark energy suggest potential gaps in our current theoretical framework. Additionally, observations of quantum coherence in biological systems persisting longer than standard decoherence theory predicts indicate that our understanding of quantum-classical transitions may be incomplete.</p>
-
-                <h2>Field Theory as a Unifying Framework</h2>
-                <p>Field theory provides a natural mathematical language for addressing these challenges by treating both gravity and quantum mechanics as manifestations of underlying field dynamics. Rather than viewing particles and forces as fundamental entities, field theory recognizes particles as excitations of fields that permeate spacetime. This perspective offers potential pathways for bridging geometric descriptions of gravity with quantum descriptions of matter and energy.</p>
-
-                <p>Scale-dependent field theory approaches acknowledge that effective physical descriptions may change systematically as we examine phenomena across different length and energy scales. This represents more than mathematical convenience; it reflects the empirical observation that physical laws often exhibit different effective forms at different scales, from quantum mechanics at atomic scales to classical mechanics at macroscopic scales to general relativity at cosmic scales.</p>
-
-                <h2>Auxiliary Field Mechanisms</h2>
-                <p>Theoretical consistency requirements and experimental anomalies suggest that the field content typically considered in standard approaches may be incomplete. Standard treatments focus on directly observable fields—electromagnetic fields, Standard Model matter fields, and gravitational fields. However, mathematical consistency and empirical observations indicate the potential importance of additional auxiliary fields in mediating quantum-classical transitions.</p>
-
-                <p>The theoretical framework under consideration incorporates two auxiliary fields: a scalar field Λ with discrete Z₂ symmetry and a vector field Ψμ with hidden U(1) gauge symmetry. These fields emerge from mathematical consistency requirements rather than arbitrary theoretical choices. The scalar field's discrete symmetry enables phase transitions that could facilitate the emergence of classical behavior from quantum foundations. The vector field's gauge structure provides mechanisms for information transfer across scales while preserving fundamental spacetime symmetries.</p>
-
-                <p>The incorporation of rigorous renormalization group analysis proves essential for this approach. The renormalization group, originally developed for critical phenomena in condensed matter physics, provides systematic methods for understanding how physical parameters evolve across energy scales. Extending these techniques to auxiliary fields yields mathematical relationships governing quantum-to-classical transitions across scale hierarchies.</p>
-
-                <h2>Topological Defect Cosmology</h2>
-                <p>This framework naturally incorporates topological defects—cosmic strings, domain walls, and magnetic monopoles that can form during cosmological phase transitions. These structures provide concrete observational signatures for theoretical verification. Cosmic strings would produce characteristic gravitational wave patterns detectable by current instruments while influencing large-scale structure formation in ways that could address recent observational puzzles.</p>
-
-                <p>The mathematical description of topological defects connects abstract field theory with observable cosmology. When auxiliary fields undergo phase transitions, they can stabilize energy and momentum configurations that persist across cosmological timescales. These defects subsequently influence structure formation, potentially explaining observations of massive galaxies at earlier epochs than standard cosmological models predict.</p>
-
-                <h2>Computational Precision and Experimental Verification</h2>
-                <p>This approach emphasizes computational rigor through multi-loop calculations providing quantitative predictions accurate to three-loop order in renormalization group expansions. Such mathematical precision proves necessary because the proposed effects manifest as corrections to well-established physics rather than dramatic departures from existing theory.</p>
-
-                <p>These calculations yield specific, testable predictions across multiple physical domains. In laboratory quantum systems, the theory predicts measurable modifications to quantum coherence times potentially detectable with cold atom interferometry. In biological systems, it provides mechanisms for extended quantum coherence that could explain observed efficiencies in photosynthetic energy transfer. In cosmology, it offers predictions for gravitational wave signatures, galaxy formation modifications, and cosmic microwave background patterns.</p>
-
-                <h2>Experimental Validation Pathways</h2>
-                <p>The theoretical framework generates predictions amenable to observational and experimental verification through existing and established experimental approaches. Laboratory tests of quantum coherence modifications require precision measurements within current experimental capabilities. Astronomical surveys provide observational constraints on cosmological predictions regarding structure formation and background radiation patterns.</p>
-
-                <p>Laboratory tests include cold atom interferometry measurements with precision requirements of δV/V < 10⁻⁸ to resolve three-loop effects. Current cosmic string constraints from pulsar timing arrays limit Gμ < 10⁻¹¹. Biological quantum coherence experiments can test predicted efficiency enhancements in photosynthetic complexes under controlled laboratory conditions.</p>
-
-                <h2>Theoretical Implications</h2>
-                <p>This approach suggests that apparent tensions between general relativity and quantum mechanics may reflect incomplete understanding rather than fundamental incompatibility. Both theories could represent effective descriptions valid within specific scale regimes, with auxiliary fields providing crucial connections between these regimes. General relativity emerges as the appropriate large-scale description, quantum mechanics governs small-scale phenomena, and auxiliary field dynamics mediates the transitions.</p>
-
-                <p>The framework demonstrates that systematic mathematical tools can address fundamental physics questions while maintaining experimental testability. Scale-dependent field theory provides specific mechanisms for quantum-classical transitions, topological defect formation, and multi-scale physical coherence within a mathematically consistent framework.</p>
-
-                <h2>Research Directions</h2>
-                <p>Several research directions emerge from this framework. Multi-loop calculations require extension to four-loop order for higher precision tests. Topological defect network simulations need incorporation of full auxiliary field dynamics. Experimental protocols require development for laboratory tests of predicted quantum enhancements. Cosmological survey analysis methods must incorporate topological defect predictions.</p>
-
-                <h2>Scientific Assessment</h2>
-                <p>Scale-dependent field theory with auxiliary fields and topological defects represents a systematic approach to fundamental physics unification challenges. The mathematical framework addresses quantum field theory, cosmology, and condensed matter physics through explicit field equations and renormalization group evolution. The approach provides specific experimental predictions across laboratory quantum systems, biological processes, and cosmological observations.</p>
-
-                <p>The theoretical contributions include rigorous multi-loop calculations, comprehensive topological defect analysis, and cross-domain mathematical consistency verification. The experimental accessibility through measurable predictions in multiple physical domains enables systematic framework evaluation. The scope encompasses quantum measurement theory, biological quantum phenomena, cosmological structure formation, and gravitational wave astronomy through consistent auxiliary field mechanisms.</p>
-
-                <p>This theoretical development demonstrates systematic methods for investigating scale-dependent physics through field-theoretic calculations. The framework contributes mathematical tools and experimental protocols for exploring fundamental physics across multiple scales. Such approaches provide essential theoretical infrastructure for investigating relationships between quantum mechanics, general relativity, and observed physical phenomena, regardless of whether specific predictions prove experimentally correct.</p>
-
-                <p>The systematic procedures for incorporating scale dependence, topological effects, and multi-loop precision into unified field theories offer valuable theoretical tools for fundamental physics research. These frameworks enable systematic investigation of quantum-classical transitions, cosmological structure formation, and multi-scale physical coherence through mathematically rigorous and experimentally testable approaches.</p>
-
-                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-                    <p style="font-style: italic; color: #b8b8b8; text-align: center;">
-                        <a href="#" onclick="showPage('field-theory')" style="color: #4a9eff; text-decoration: none;">← Return to Field Theory Overview</a>
-                    </p>
-                </div>
+                <h3>Roy Roberts, PhD</h3>
+                <p><strong>Email:</strong> <a href="mailto:roy@fldtheory.org">roy@fldtheory.org</a></p>
+                <p><strong>ORCID:</strong> <a href="https://orcid.org/0009-0002-5048-9724" target="_blank">0009-0002-5048-9724</a></p>
+                <p><strong>Publications:</strong> <a href="https://figshare.com/authors/Roy_Roberts/19338289" target="_blank">Figshare</a></p>
+                
+                <h2 style="margin-top: 2rem;">Connect</h2>
+                <p>Open to connecting with researchers from all disciplines who share curiosity about consciousness, field theory applications, and fundamental questions about reality.</p>
             </div>
         </div>
     </main>
 
     <script>
-        // Apply shared card styles
-        function applyCardStyles() {
-            const cardElements = document.querySelectorAll('.content-section, .contact-card, .subpage-content');
-            cardElements.forEach(element => {
-                element.classList.add('card-base');
-            });
-        }
-
-        // Generate stars
         function createStars() {
             const starsContainer = document.getElementById('stars');
             const numStars = 150;
-
             for (let i = 0; i < numStars; i++) {
                 const star = document.createElement('div');
                 star.className = 'star';
-                
-                // Random position
                 star.style.left = Math.random() * 100 + '%';
                 star.style.top = Math.random() * 100 + '%';
-                
-                // Random size (small stars)
                 const size = Math.random() * 2 + 0.5;
                 star.style.width = size + 'px';
                 star.style.height = size + 'px';
-                
-                // Random animation delay
                 star.style.animationDelay = Math.random() * 3 + 's';
-                
-                // Random opacity for dimmer effect
                 star.style.opacity = Math.random() * 0.3 + 0.1;
-                
                 starsContainer.appendChild(star);
             }
         }
 
-        // Page navigation with accessibility improvements
         function showPage(pageId) {
-            // Hide all pages
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
+            document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
-                page.setAttribute('aria-hidden', 'true');
             });
+            document.getElementById(pageId).classList.add('active');
             
-            // Show selected page
-            const activePage = document.getElementById(pageId);
-            activePage.classList.add('active');
-            activePage.setAttribute('aria-hidden', 'false');
-            
-            // Update navigation active state
-            const navButtons = document.querySelectorAll('.nav-btn');
-            navButtons.forEach(button => {
+            document.querySelectorAll('.nav-btn').forEach(button => {
                 button.classList.remove('active');
-                button.setAttribute('aria-current', 'false');
             });
-            
             const activeButton = document.querySelector(`[data-page="${pageId}"]`);
             if (activeButton) {
                 activeButton.classList.add('active');
-                activeButton.setAttribute('aria-current', 'page');
             }
             
-            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Initialize everything when page loads
+        let currentLangSlide = 1;
+        const totalLangSlides = 2;
+        let typingActive = false;
+
+        function initLanguageSlides() {
+            startTypingForSlide(1);
+        }
+
+        function startTypingForSlide(slideNum) {
+            const slide = document.querySelector(`.lang-slide[data-slide="${slideNum}"]`);
+            if (!slide) return;
+
+            const textElements = slide.querySelectorAll('.lang-text');
+            textElements.forEach((el, index) => {
+                const content = el.getAttribute('data-content');
+                el.textContent = '';
+                
+                setTimeout(() => {
+                    typeText(el, content, 15, index === 1, el.parentElement);
+                }, index * 1500);
+            });
+        }
+
+        function typeText(element, text, speed, isProcess, processBox) {
+            let i = 0;
+            typingActive = true;
+            
+            if (isProcess) {
+                element.style.color = '#d0d0d0';
+            }
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    
+                    if (isProcess && processBox) {
+                        const progress = (i + 1) / text.length;
+                        const r = Math.floor(180 * progress);
+                        const g = Math.floor(225 * progress);
+                        const b = Math.floor(255 * progress);
+                        const alpha = 0.85 * progress;
+                        
+                        processBox.style.background = `linear-gradient(to bottom, 
+                            rgba(${r}, ${g}, ${b}, ${alpha}) 0%,
+                            rgba(${Math.floor(r * 0.95)}, ${Math.floor(g * 0.95)}, ${Math.floor(b * 0.95)}, ${alpha * 0.9}) 100%)`;
+                        
+                        const textR = Math.floor(208 - (182 * progress));
+                        const textG = Math.floor(208 - (182 * progress));
+                        const textB = Math.floor(208 - (182 * progress));
+                        element.style.color = `rgb(${textR}, ${textG}, ${textB})`;
+                    }
+                    
+                    i++;
+                    setTimeout(type, speed);
+                } else {
+                    typingActive = false;
+                }
+            }
+            
+            type();
+        }
+
+        function nextSlide() {
+            if (typingActive) return;
+            if (currentLangSlide < totalLangSlides) {
+                currentLangSlide++;
+                updateLangSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (typingActive) return;
+            if (currentLangSlide > 1) {
+                currentLangSlide--;
+                updateLangSlide();
+            }
+        }
+
+        function goToLangSlide(num) {
+            if (typingActive) return;
+            currentLangSlide = num;
+            updateLangSlide();
+        }
+
+        function updateLangSlide() {
+            document.querySelectorAll('.lang-slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            document.querySelector(`.lang-slide[data-slide="${currentLangSlide}"]`).classList.add('active');
+            
+            document.querySelectorAll('.slide-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index + 1 === currentLangSlide);
+            });
+            
+            document.getElementById('slideCounter').textContent = `${currentLangSlide} / ${totalLangSlides}`;
+            document.getElementById('prevSlideBtn').disabled = currentLangSlide === 1;
+            document.getElementById('nextSlideBtn').disabled = currentLangSlide === totalLangSlides;
+            
+            startTypingForSlide(currentLangSlide);
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             createStars();
-            applyCardStyles();
-            
-            // Add event listeners to navigation buttons
-            const navButtons = document.querySelectorAll('.nav-btn');
-            navButtons.forEach(button => {
+            document.querySelectorAll('.nav-btn').forEach(button => {
                 button.addEventListener('click', function() {
-                    const pageId = this.getAttribute('data-page');
-                    showPage(pageId);
+                    showPage(this.getAttribute('data-page'));
                 });
             });
             
-            // Add click handler to main title
-            document.querySelector('.main-title').addEventListener('click', function() {
-                showPage('home');
-            });
-            
-            // Initialize pages with proper ARIA attributes
-            const pages = document.querySelectorAll('.page');
-            pages.forEach(page => {
-                if (!page.classList.contains('active')) {
-                    page.setAttribute('aria-hidden', 'true');
-                } else {
-                    page.setAttribute('aria-hidden', 'false');
-                }
-            });
-            
-            // Set initial active nav button
-            const homeButton = document.querySelector('[data-page="home"]');
-            if (homeButton) {
-                homeButton.setAttribute('aria-current', 'page');
-            }
+            initLanguageSlides();
         });
     </script>
 </body>
