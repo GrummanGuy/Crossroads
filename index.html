@@ -383,7 +383,12 @@
         <div class="header-section">
             <h1 class="main-title" onclick="showPage('home')">CROSSROADS</h1>
             <p class="main-tagline">Where ideas meet and new paths begin</p>
-            
+             <!-- Discrete view counter with metrics -->
+            <div style="position: absolute; top: 1rem; right: 2rem; font-size: 0.7rem; color: #666; font-family: monospace; text-align: right; line-height: 1.4;">
+                <div id="totalViews">Total: 0</div>
+                <div id="uniqueVisitors">Unique: 0</div>
+                <div id="currentPage">Page: Home</div>
+            </div>
             <nav>
                 <div class="nav-container">
                     <ul class="nav-links">
@@ -728,6 +733,7 @@
             }
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
+             updatePageDisplay(pageId);
         }
 
         let currentLangSlide = 1;
@@ -823,7 +829,50 @@
             
             type();
         } 
+// View counter and analytics
+        function initViewCounter() {
+            // Total page views
+            let totalViews = localStorage.getItem('totalViews') || 0;
+            totalViews = parseInt(totalViews) + 1;
+            localStorage.setItem('totalViews', totalViews);
+            document.getElementById('totalViews').textContent = `Total: ${totalViews.toLocaleString()}`;
+            
+            // Unique visitors (using session storage)
+            let visitorId = sessionStorage.getItem('visitorId');
+            if (!visitorId) {
+                visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                sessionStorage.setItem('visitorId', visitorId);
+                
+                let uniqueVisitors = localStorage.getItem('uniqueVisitors') || 0;
+                uniqueVisitors = parseInt(uniqueVisitors) + 1;
+                localStorage.setItem('uniqueVisitors', uniqueVisitors);
+            }
+            
+            let uniqueVisitors = localStorage.getItem('uniqueVisitors') || 0;
+            document.getElementById('uniqueVisitors').textContent = `Unique: ${parseInt(uniqueVisitors).toLocaleString()}`;
+        }
+
+        function updatePageDisplay(pageName) {
+            const pageElement = document.getElementById('currentPage');
+            if (pageElement) {
+                const displayName = pageName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                pageElement.textContent = `Page: ${displayName}`;
+            }
+        }
+       
+ document.addEventListener('DOMContentLoaded', function() {
+            createStars();
+            initViewCounter();
+            
+            document.querySelectorAll('.nav-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    showPage(this.getAttribute('data-page'));
+                });
+            });
+        });
+        
     </script>
 </body>
 
 </html>
+
