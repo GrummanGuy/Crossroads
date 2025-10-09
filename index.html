@@ -780,6 +780,50 @@
                 });
             });
         });
+       function typeText(element, text, speed, callback, isProcess, processBox) {
+            let i = 0;
+            element.textContent = '';
+            
+            if (isProcess) {
+                element.style.color = '#d0d0d0';
+            }
+            
+            function type() {
+                if (i < text.length) {
+                    element.textContent += text.charAt(i);
+                    
+                    if (isProcess && processBox) {
+                        const progress = (i + 1) / text.length;
+                        const r = Math.floor(135 * progress);
+                        const g = Math.floor(206 * progress);
+                        const b = Math.floor(250 * progress);
+                        const alpha = 0.6 * progress;
+                        
+                        processBox.style.background = `linear-gradient(to bottom, 
+                            rgba(${r}, ${g}, ${b}, ${alpha}) 0%,
+                            rgba(${Math.floor(r * 0.95)}, ${Math.floor(g * 0.95)}, ${Math.floor(b * 0.95)}, ${alpha * 0.9}) 100%)`;
+                        
+                        const textR = Math.floor(208 - (182 * progress));
+                        const textG = Math.floor(208 - (182 * progress));
+                        const textB = Math.floor(208 - (182 * progress));
+                        element.style.color = `rgb(${textR}, ${textG}, ${textB})`;
+                        
+                        if (progress > 0.7) {
+                            const cloudOpacity = (progress - 0.7) / 0.3;
+                            processBox.style.setProperty('--cloud-opacity', cloudOpacity);
+                        }
+                    }
+                    
+                    i++;
+                    setTimeout(type, speed);
+                } else if (callback) {
+                    callback();
+                }
+            }
+            
+            type();
+        } 
     </script>
 </body>
+
 </html>
