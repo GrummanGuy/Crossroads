@@ -377,14 +377,32 @@
     </style>
 </head>
 <body>
-      <!-- Quick access to the Translator tool -->
-  <div style="margin: 16px; text-align: center; position: relative; z-index: 10;">
-    <a href="translator.html"
-       style="display:inline-block; padding:10px 20px; border:1px solid #444; border-radius:8px;
-              text-decoration:none; background:#222; color:#fff; font-family:Georgia, serif;">
-      ▶ Process Language Translator
-    </a>
-  </div>
+    <!-- Quick access to the Translator tool -->
+<div style="margin: 16px; text-align: center; position: relative; z-index: 10;">
+  <a href="translator.html" class="cosmic-button">▶ Process Language Translator</a>
+</div>
+
+<style>
+  .cosmic-button {
+    display: inline-block;
+    padding: 12px 28px;
+    border-radius: 10px;
+    background: radial-gradient(circle at top left, #0ff 0%, #0088ff 70%);
+    color: white;
+    font-family: 'Georgia', serif;
+    font-size: 1.1em;
+    text-decoration: none;
+    box-shadow: 0 0 12px rgba(0,255,255,0.6);
+    transition: all 0.3s ease-in-out;
+  }
+
+  .cosmic-button:hover {
+    background: radial-gradient(circle at top left, #66ffff 0%, #00ccff 70%);
+    box-shadow: 0 0 25px rgba(0,255,255,0.8);
+    transform: scale(1.05);
+  }
+</style>
+
 
     <div class="stars" id="stars"></div>
 
@@ -884,5 +902,6 @@
 </body>
 
 </html>
+
 
 
