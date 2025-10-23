@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CROSSROADS - Field Theory</title>
+    <title>CROSSROADS - Where Ideas Meet and New Paths Begin</title>
     <style>
         * {
             margin: 0;
@@ -16,6 +16,27 @@
             background: #0a0a0a;
             color: #e8e8e8;
             overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Starry night background image - applies to ALL pages */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('./images/starry-night.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.25;
+            z-index: 0;
+            pointer-events: none;
         }
 
         .stars {
@@ -46,15 +67,17 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
-            padding-top: 3rem;
+            padding-top: 2rem;
             padding-bottom: 3rem;
+            flex: 1;
         }
 
+        /* Header with CROSSROADS title - appears on ALL pages */
         .header-section {
             text-align: center;
-            padding: 3rem 0 2rem 0;
+            padding: 2rem 0 2rem 0;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
             position: relative;
         }
 
@@ -71,7 +94,7 @@
         }
 
         .main-title {
-            font-size: 3.5rem;
+            font-size: 3rem;
             margin-bottom: 0.5rem;
             letter-spacing: 0.1em;
             background: linear-gradient(135deg, #ffffff, #cccccc);
@@ -87,7 +110,7 @@
         }
 
         .main-tagline {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             color: #b8b8b8;
             margin-bottom: 2rem;
             font-style: italic;
@@ -110,7 +133,7 @@
 
         .nav-links {
             display: flex;
-            gap: 1.2rem;
+            gap: 1rem;
             list-style: none;
             flex-wrap: wrap;
             justify-content: center;
@@ -121,9 +144,9 @@
             border: none;
             color: #999999;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: 400;
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.9rem;
             border-radius: 4px;
             transition: all 0.3s ease;
             cursor: pointer;
@@ -163,7 +186,7 @@
 
         .page {
             display: none;
-            min-height: calc(100vh - 100px);
+            min-height: calc(100vh - 300px);
         }
 
         .page.active {
@@ -197,7 +220,7 @@
         .illustration-wrap {
             position: relative;
             width: 100%;
-            max-width: 1100px;
+            max-width: 900px;
             margin: 0 auto 4rem auto;
             overflow: hidden;
         }
@@ -209,20 +232,20 @@
             opacity: 0.95;
             mask-image: linear-gradient(to bottom, 
                 rgba(0,0,0,1) 0%, 
-                rgba(0,0,0,1) 60%, 
-                rgba(0,0,0,0.7) 80%, 
+                rgba(0,0,0,1) 50%, 
+                rgba(0,0,0,0.5) 80%, 
                 rgba(0,0,0,0) 100%);
             -webkit-mask-image: linear-gradient(to bottom, 
                 rgba(0,0,0,1) 0%, 
-                rgba(0,0,0,1) 60%, 
-                rgba(0,0,0,0.7) 80%, 
+                rgba(0,0,0,1) 50%, 
+                rgba(0,0,0,0.5) 80%, 
                 rgba(0,0,0,0) 100%);
         }
 
         .content-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
+            gap: 2.5rem;
             margin-bottom: 3rem;
         }
 
@@ -232,11 +255,17 @@
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .card-base:hover {
+            border-color: rgba(74, 158, 255, 0.3);
+            transform: translateY(-5px);
         }
 
         .content-section h2 {
-            font-size: 1.8rem;
-            margin-bottom: 1.2rem;
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
             color: #ffffff;
         }
 
@@ -247,16 +276,6 @@
             font-size: 1rem;
         }
 
-        .content-section a {
-            color: #4a9eff;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .content-section a:hover {
-            text-decoration: underline;
-        }
-
         .subpage-header {
             text-align: center;
             margin-bottom: 3rem;
@@ -265,72 +284,290 @@
         .subpage-header h1 {
             font-size: 2.5rem;
             margin-bottom: 1rem;
-            color: #ffffff;
+            background: linear-gradient(135deg, #4a9eff, #6ba4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .subpage-content {
-            line-height: 1.7;
-            background: rgba(20, 20, 20, 0.7);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         .subpage-content h2 {
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             margin: 2rem 0 1rem 0;
-            color: #ffffff;
+            color: #4a9eff;
         }
 
         .subpage-content h3 {
             font-size: 1.3rem;
-            margin: 1.5rem 0 1rem 0;
-            color: #ffffff;
+            margin: 1.5rem 0 0.8rem 0;
+            color: #6ba4ff;
         }
 
         .subpage-content p {
-            margin-bottom: 1.5rem;
+            line-height: 1.8;
             color: #d0d0d0;
+            margin-bottom: 1.2rem;
         }
 
         .subpage-content a {
             color: #4a9eff;
             text-decoration: none;
+            transition: color 0.3s ease;
             cursor: pointer;
         }
 
         .subpage-content a:hover {
+            color: #6ba4ff;
             text-decoration: underline;
         }
 
+        /* Stats Counter - Bottom Right */
+        .stats-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(20, 20, 20, 0.9);
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            z-index: 2000;
+            font-size: 0.85rem;
+        }
+
+        .stats-container div {
+            margin: 0.3rem 0;
+            color: #b8b8b8;
+        }
+
+        /* Compact Footer */
+        footer {
+            position: relative;
+            z-index: 10;
+            background: rgba(10, 10, 10, 0.95);
+            border-top: 1px solid rgba(74, 158, 255, 0.15);
+            padding: 1.5rem 2rem;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+            font-size: 0.85rem;
+            color: #888888;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .footer-logo {
+            font-weight: bold;
+            color: #4a9eff;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+        }
+
+        .footer-info {
+            text-align: center;
+            flex: 1;
+        }
+
+        .footer-info a {
+            color: #4a9eff;
+            text-decoration: none;
+        }
+
+        .footer-info a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-contact button {
+            padding: 0.5rem 1rem;
+            background: rgba(74, 158, 255, 0.15);
+            border: 1px solid rgba(74, 158, 255, 0.25);
+            color: #4a9eff;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .footer-contact button:hover {
+            background: rgba(74, 158, 255, 0.25);
+        }
+
+        /* Translator Page Styles */
+        .translator-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .translator-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .translator-header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #4a9eff, #6ba4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 1rem;
+        }
+
+        .translator-header p {
+            font-size: 1.1rem;
+            color: #b8b8b8;
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .translator-explanation {
+            background: rgba(20, 20, 20, 0.7);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #4a9eff;
+            margin-bottom: 2.5rem;
+            line-height: 1.7;
+        }
+
+        .translator-explanation h3 {
+            color: #4a9eff;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .translator-explanation p {
+            color: #d0d0d0;
+            margin-bottom: 1rem;
+        }
+
+        .translator-explanation ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .translator-explanation li {
+            margin-bottom: 0.5rem;
+            color: #d0d0d0;
+        }
+
+        .translator-explanation strong {
+            color: #6ba4ff;
+        }
+
+        .translator-explanation code {
+            background: rgba(74, 158, 255, 0.15);
+            padding: 0.2rem 0.5rem;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #87ceeb;
+        }
+
+        #inputText {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 8px;
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            color: #e8e8e8;
+            font-family: inherit;
+            font-size: 1rem;
+            line-height: 1.6;
+            resize: vertical;
+        }
+
+        #inputText:focus {
+            outline: none;
+            border-color: rgba(74, 158, 255, 0.6);
+            box-shadow: 0 0 12px rgba(74, 158, 255, 0.2);
+        }
+
+        #translateBtn {
+            padding: 0.75rem 2rem;
+            background: rgba(74, 158, 255, 0.2);
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            color: #4a9eff;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        #translateBtn:hover {
+            background: rgba(74, 158, 255, 0.3);
+            border-color: rgba(74, 158, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        #outputSection {
+            margin-top: 2rem;
+        }
+
+        #outputSection h2 {
+            font-size: 1.5rem;
+            color: #4a9eff;
+            margin-bottom: 1rem;
+        }
+
+        #outputText {
+            background: rgba(20, 20, 20, 0.7);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        /* Language Paradox Slide Styles */
         .lang-slide {
             display: none;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
         }
 
         .lang-slide.active {
             display: block;
-            animation: fadeIn 0.5s ease-in-out;
+            opacity: 1;
         }
 
         .lang-text {
             font-size: 1.05rem;
-            line-height: 1.7;
+            line-height: 1.6;
             color: #d0d0d0;
-            min-height: 120px;
         }
 
-        .process-text {
-            font-weight: 500;
+        .lang-text.process-text {
+            color: #d0d0d0;
         }
 
         .slide-dot {
             width: 10px;
             height: 10px;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.3);
             cursor: pointer;
             transition: all 0.3s ease;
+            display: inline-block;
         }
 
         .slide-dot.active {
@@ -338,31 +575,13 @@
             transform: scale(1.3);
         }
 
-        .slide-dot:hover {
-            background: rgba(74, 158, 255, 0.5);
-        }
-
         @media (max-width: 768px) {
-            .container {
-                padding: 0 1rem;
-                padding-top: 2rem;
-            }
-
             .main-title {
-                font-size: 2rem;
+                font-size: 2.2rem;
             }
 
             .main-tagline {
                 font-size: 1rem;
-            }
-
-            .nav-links {
-                gap: 0.6rem;
-            }
-
-            .nav-links button {
-                font-size: 0.8rem;
-                padding: 0.4rem 0.7rem;
             }
 
             .content-grid {
@@ -370,165 +589,44 @@
                 gap: 2rem;
             }
 
-            .content-section h2 {
-                font-size: 1.5rem;
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .stats-container {
+                bottom: 10px;
+                right: 10px;
+                padding: 0.5rem 1rem;
+                font-size: 0.75rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Quick access to the Translator tool -->
-<div style="margin: 16px; text-align: center; position: relative; z-index: 10;">
-  <a href="translator.html" class="cosmic-button">▶ Process Language Translator</a>
-</div>
-
-<style>
-  .cosmic-button {
-    display: inline-block;
-    padding: 12px 28px;
-    border-radius: 10px;
-    background: radial-gradient(circle at top left, #0ff 0%, #0088ff 70%);
-    color: white;
-    font-family: 'Georgia', serif;
-    font-size: 1.1em;
-    text-decoration: none;
-    box-shadow: 0 0 12px rgba(0,255,255,0.6);
-    transition: all 0.3s ease-in-out;
-  }
-
-  .cosmic-button:hover {
-    background: radial-gradient(circle at top left, #66ffff 0%, #00ccff 70%);
-    box-shadow: 0 0 25px rgba(0,255,255,0.8);
-    transform: scale(1.05);
-  }
-    /* ==== Hero layout + portrait ==== */
-.hero {
-  display: flex;
-  align-items: center;
-  justify-content: center;          /* centers headline + portrait together */
-  gap: 20px;                        /* space between text + portrait */
-  flex-wrap: wrap;                  /* stack on small screens */
-  margin: 24px auto 8px;
-  max-width: 1100px;
-  position: relative;
-  z-index: 5;                       /* above starfield */
-}
-
-.hero-text {
-  text-align: center;
-  color: #e7eefc;
-  text-shadow: 0 0 10px rgba(70,120,255,0.25);
-}
-
-.hero-text h1 {
-  font-size: clamp(28px, 4vw, 46px);
-  line-height: 1.12;
-  margin: 0;
-}
-
-.hero-text p {
-  max-width: 680px;
-  margin: 10px auto 0;
-  color: #c8d3f7;
-}
-
-.hero-portrait {
-  width: 120px;                     /* SMALL, tasteful */
-  height: 120px;
-  border-radius: 9999px;            /* circle */
-  object-fit: cover;
-  object-position: center;
-  border: 1px solid rgba(180,200,255,0.35);
-  box-shadow:
-    0 0 0 3px rgba(25,35,80,0.35) inset,
-    0 8px 30px rgba(30,120,255,0.25),
-    0 0 18px rgba(80,180,255,0.25);
-  filter: saturate(1.05);
-  opacity: 0.95;
-}
-
-/* slightly larger on wide screens */
-@media (min-width: 900px) {
-  .hero-portrait { width: 160px; height: 160px; }
-}
-
-/* optional: subtle glow ring behind portrait */
-.hero-portrait-wrap {
-  position: relative;
-}
-.hero-portrait-wrap::after {
-  content: "";
-  position: absolute;
-  inset: -8px;
-  border-radius: 9999px;
-  background: radial-gradient(60% 60% at 50% 45%,
-    rgba(90,160,255,0.15), rgba(0,0,0,0) 70%);
-  filter: blur(6px);
-  z-index: -1;
-}
-/* ===== Balanced hero (title + small portrait) ===== */
-.hero{
-  display:flex; align-items:center; justify-content:center;
-  gap:20px; flex-wrap:wrap; margin:24px auto 8px; max-width:1100px;
-  position:relative; z-index:5;
-}
-.hero-text{ text-align:center; color:#e7eefc; text-shadow:0 0 10px rgba(70,120,255,.25); }
-.hero-text .main-title{ margin:0; font-size:clamp(28px,4vw,46px); line-height:1.12; }
-   <!-- HERO START -->
-<div class="hero">
-  <div class="hero-text">
- 
-.hero-subtitle{ max-width:680px; margin:10px auto 0; color:#c8d3f7; }
-
-.hero-portrait{ width:150px; height:150px; border-radius:9999px; object-fit:cover;
-  border:1px solid rgba(180,200,255,.35);
-  box-shadow: 0 0 0 3px rgba(25,35,80,.35) inset, 0 8px 30px rgba(30,120,255,.25), 0 0 18px rgba(80,180,255,.25);
-  filter:saturate(1.05); opacity:.95;
-}
-.hero-portrait-wrap{ position:relative; }
-.hero-portrait-wrap::after{
-  content:""; position:absolute; inset:-8px; border-radius:9999px;
-  background:radial-gradient(60% 60% at 50% 45%, rgba(90,160,255,.15), rgba(0,0,0,0) 70%);
-  filter:blur(6px); z-index:-1;
-}
-@media (min-width:900px){ .hero-portrait{ width:160px; height:160px; } }
-@media (max-width:700px){
-  .hero{ gap:14px; margin:16px auto 6px; }
-  .hero-portrait{ width:110px; height:110px; box-shadow:0 6px 18px rgba(30,120,255,.22); }
-}
-
-</style>
-
-
     <div class="stars" id="stars"></div>
+    
+    <!-- Stats Counter (bottom right) -->
+    <div class="stats-container">
+        <div id="totalViews">Total: 0</div>
+        <div id="uniqueVisitors">Unique: 0</div>
+        <div id="currentPage">Page: Home</div>
+    </div>
 
     <main class="container">
+        <!-- Header with CROSSROADS - appears on ALL pages -->
         <div class="header-section">
             <h1 class="main-title" onclick="showPage('home')">CROSSROADS</h1>
-            <p class="hero-subtitle">Where ideas meet and new paths begin</p>
-  </div> <!-- /.hero-text -->
-  <div class="hero-portrait-wrap">
-    <!-- Use your actual portrait path for src -->
-    <img src="Contemplating the Cosmos.png" alt="Portrait"
-         class="hero-portrait" width="160" height="160"
-         loading="lazy" decoding="async">
-  </div>
-</div>
-<!-- HERO END -->
-
-             <!-- Discrete view counter with metrics -->
-            <div style="position: absolute; top: 1rem; right: 2rem; font-size: 0.7rem; color: #666; font-family: monospace; text-align: right; line-height: 1.4;">
-                <div id="totalViews">Total: 0</div>
-                <div id="uniqueVisitors">Unique: 0</div>
-                <div id="currentPage">Page: Home</div>
-            </div>
+            <p class="main-tagline">Where ideas meet and new paths begin</p>
+            
             <nav>
                 <div class="nav-container">
                     <ul class="nav-links">
                         <li><button class="nav-btn active" data-page="home">Home</button></li>
                         <li><button class="nav-btn" data-page="field-theory">Field Theory</button></li>
-                        <li><button class="nav-btn" data-page="cosmic-divide">Cosmic Divide</button></li>
+                        <li><button class="nav-btn" data-page="translator">Process Language Translator</button></li>
                         <li><button class="nav-btn" data-page="language-paradox">Language Paradox</button></li>
+                        <li><button class="nav-btn" data-page="cosmic-divide">Cosmic Divide</button></li>
                         <li><button class="nav-btn" data-page="ideas">Other Ideas</button></li>
                         <li><button class="nav-btn" data-page="projects">Projects</button></li>
                         <li><button class="nav-btn" data-page="contact">Contact</button></li>
@@ -537,58 +635,117 @@
             </nav>
         </div>
 
+        <!-- HOME PAGE -->
         <div id="home" class="page active">
             <div class="hero">
                 <div class="hero-content">
                     <p>This site is an open invitation to curiosity, exploration, and collaboration. Here, you'll find ideas that reach across physics, cosmology, biology, and beyond—always guided by the belief that our greatest purpose is to learn, and to share what we learn.</p>
                     <p>I'm excited to connect with fellow explorers, whether you're an independent thinker, researcher, or part of larger organizations like NASA, DARPA, or other experimental venues.</p>
                 </div>
-
+                
                 <div class="illustration-wrap">
-                    <img class="illustration" 
-                         src="images/starry-night.png"
-                         alt="Cosmic scholar at work representing field theory and quantum processes"
-                         loading="eager"
-                         onerror="this.style.display='none';">
+                    <img src="./images/crossroads-illustration.png" alt="">
                 </div>
             </div>
 
             <div class="content-grid">
-                <div class="content-section card-base">
+                <div class="card-base">
                     <h2>The Language Problem</h2>
                     <p>Much of what appears mysterious in physics stems from how we describe reality rather than reality itself. Object-language creates puzzles by treating dynamic processes as static things with essential properties.</p>
-                    <p>Explore how shifting to process-language dissolves paradoxes in <a onclick="showPage('language-paradox')">The Language Paradox</a>.</p>
+                    <p style="margin-top: 1rem;">Explore how shifting to process language dissolves paradoxes in <a onclick="showPage('language-paradox')">The Language Paradox</a>.</p>
                 </div>
 
-                <div class="content-section card-base">
+                <div class="card-base">
                     <h2>Field Theory Exploration</h2>
                     <p>Investigating how field theories might bridge quantum mechanics and biological systems. Through mathematical modeling and theoretical development, we explore questions about consciousness, information processing, and fundamental interactions.</p>
+                    <p style="margin-top: 1rem;">Dive deeper into <a onclick="showPage('field-theory')">Field Theory</a>.</p>
                 </div>
-            </div>
 
-            <div class="content-grid">
-                <div class="content-section card-base">
+                <div class="card-base">
                     <h2>Interdisciplinary Thinking</h2>
                     <p>At the crossroads of physics, neuroscience, and philosophy, ideas emerge that challenge conventional boundaries. Mathematical frameworks meet experimental questions and philosophical inquiry.</p>
                 </div>
 
-                <div class="content-section card-base">
+                <div class="card-base">
                     <h2>Current Questions</h2>
                     <p>What role do fields play in biological information processing? How might consciousness emerge from physical processes? Can we develop testable predictions from field-based models?</p>
                 </div>
             </div>
         </div>
 
+        <!-- FIELD THEORY PAGE -->
+        <div id="field-theory" class="page">
+            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+            <div class="subpage-header">
+                <h1>Field Theory</h1>
+            </div>
+            <div class="subpage-content">
+                <h2>Theoretical Framework</h2>
+                <p>Field theory approaches build upon established quantum field theory while exploring extensions that might address consciousness and information processing. The mathematical framework utilizes tensor calculus and differential geometry to describe field interactions across multiple scales.</p>
+
+                <h2>Key Areas of Interest</h2>
+                <p>Current explorations include non-local correlations, emergent complexity from field interactions, and the role of information as a fundamental quantity alongside energy and momentum.</p>
+
+                <h2>Featured Research</h2>
+                <p>For in-depth exploration: <a onclick="showPage('cosmic-divide')">Bridging the Cosmic Divide</a></p>
+                <p style="margin-top: 1rem;">For conceptual foundations: <a onclick="showPage('language-paradox')">The Language Paradox</a></p>
+            </div>
+        </div>
+
+        <!-- PROCESS LANGUAGE TRANSLATOR PAGE -->
+        <div id="translator" class="page">
+            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+            <div class="translator-container">
+                <div class="translator-header">
+                    <h1>Process Language Translator</h1>
+                    <p>Transform static statements into dynamic, process-oriented language that reflects flow, interaction, and emergence.</p>
+                </div>
+
+                <!-- Educational Content -->
+                <div class="translator-explanation">
+                    <h3>Why Language Structure Matters</h3>
+                    <p>We unconsciously objectify dynamic processes through grammatical choices. "To be" verbs (<strong>is, are, was, were, be, being, been</strong>) and definite articles (<strong>the</strong>) freeze flowing processes into static objects with essential properties.</p>
+                    
+                    <p><strong>In Algorithms and Mathematics:</strong></p>
+                    <p>This linguistic habit obscures the process nature of computation and mathematical operations:</p>
+                    <ul>
+                        <li><strong>"The algorithm <em>is</em> sorting the data"</strong> → Treats sorting as a fixed state rather than an ongoing sequence of comparisons and swaps</li>
+                        <li><strong>"The function <em>is</em> continuous"</strong> → Masks the dynamic relationship between input transformations and output behavior</li>
+                        <li><strong>"The matrix <em>is</em> invertible"</strong> → Hides the computational process of finding inverse transformations</li>
+                    </ul>
+
+                    <p><strong>Process-Oriented Alternatives:</strong></p>
+                    <ul>
+                        <li><code>Sorting processes execute through sequential comparisons</code></li>
+                        <li><code>Input changes propagate smoothly to output transformations</code></li>
+                        <li><code>Inverse transformations emerge from systematic row operations</code></li>
+                    </ul>
+
+                    <p>When we describe algorithms and mathematical operations as processes rather than objects with properties, we align our language with what actually happens: transformations, flows, interactions, and emergent patterns.</p>
+                </div>
+
+                <textarea id="inputText" rows="6" placeholder="Type or paste your text here..."></textarea>
+                
+                <div style="text-align: center; margin-top: 1.5rem;">
+                    <button id="translateBtn">Translate</button>
+                </div>
+
+                <div id="outputSection" class="hidden">
+                    <h2>Process-Based Version</h2>
+                    <div id="outputText"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LANGUAGE PARADOX PAGE (6 SLIDES) -->
         <div id="language-paradox" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
-            
             <div class="subpage-header">
                 <h1>The Language Paradox</h1>
-                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">How object-language creates the "problems" it claims to solve</p>
+                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">How the structure of language shapes—and limits—our understanding of reality</p>
             </div>
 
-            <div style="max-width: 1100px; margin: 0 auto;">
-                
+            <div style="max-width: 1000px; margin: 0 auto;">
                 <!-- Slide 1: Wave-Particle Duality -->
                 <div class="lang-slide active" data-slide="1">
                     <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">Wave-Particle Duality</h2>
@@ -751,30 +908,13 @@
             </div>
         </div>
 
-        <div id="field-theory" class="page">
-            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
-            <div class="subpage-header">
-                <h1>Field Theory</h1>
-            </div>
-            <div class="subpage-content">
-                <h2>Theoretical Framework</h2>
-                <p>Field theory approaches build upon established quantum field theory while exploring extensions that might address consciousness and information processing. The mathematical framework utilizes tensor calculus and differential geometry to describe field interactions across multiple scales.</p>
-
-                <h2>Key Areas of Interest</h2>
-                <p>Current explorations include non-local correlations, emergent complexity from field interactions, and the role of information as a fundamental quantity alongside energy and momentum.</p>
-
-                <h2>Featured Research</h2>
-                <p>For in-depth exploration: <a onclick="showPage('cosmic-divide')">Bridging the Cosmic Divide</a></p>
-                <p style="margin-top: 1rem;">For conceptual foundations: <a onclick="showPage('language-paradox')">The Language Paradox</a></p>
-            </div>
-        </div>
-
+        <!-- COSMIC DIVIDE PAGE -->
         <div id="cosmic-divide" class="page">
             <button class="back-button" onclick="showPage('field-theory')">← Back to Field Theory</button>
             <div class="subpage-header">
                 <h1>Bridging the Cosmic Divide</h1>
                 <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Scale-Dependent Field Theory</p>
-                <p style="margin-top: 1rem; font-size: 0.95rem;"><em>New to process-language? Start with <a onclick="showPage('language-paradox')" style="color: #4a9eff; cursor: pointer;">The Language Paradox</a></em></p>
+                <p style="margin-top: 1rem; font-size: 0.95rem;"><em>New to process-language? Start with <a onclick="showPage('language-paradox')">The Language Paradox</a></em></p>
             </div>
             <div class="subpage-content">
                 <h2>The Nature of the Problem</h2>
@@ -788,6 +928,7 @@
             </div>
         </div>
 
+        <!-- OTHER IDEAS PAGE -->
         <div id="ideas" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="subpage-header">
@@ -802,6 +943,7 @@
             </div>
         </div>
 
+        <!-- PROJECTS PAGE -->
         <div id="projects" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="subpage-header">
@@ -816,6 +958,7 @@
             </div>
         </div>
 
+        <!-- CONTACT PAGE -->
         <div id="contact" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="subpage-header">
@@ -833,7 +976,27 @@
         </div>
     </main>
 
+    <!-- COMPACT FOOTER - Appears on all pages -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <span class="footer-logo">HOW2LLC</span>
+                <span style="color: #666;">|</span>
+                <span style="font-style: italic;">"Our Purpose is to Learn and Share What We Learn"</span>
+            </div>
+            
+            <div class="footer-info">
+                © 2025 HOW2LLC • CROSSROADS™ • Driven by Curiosity • <a href="https://fldtheory.org">fldtheory.org</a>
+            </div>
+            
+            <div class="footer-contact">
+                <button onclick="showPage('contact')">Contact</button>
+            </div>
+        </div>
+    </footer>
+
     <script>
+        // Create stars animation
         function createStars() {
             const starsContainer = document.getElementById('stars');
             const numStars = 150;
@@ -851,6 +1014,7 @@
             }
         }
 
+        // Page navigation
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
@@ -866,9 +1030,10 @@
             }
             
             window.scrollTo({ top: 0, behavior: 'smooth' });
-             updatePageDisplay(pageId);
+            updatePageDisplay(pageId);
         }
 
+        // Language Paradox slides
         let currentLangSlide = 1;
         const totalLangSlides = 6;
 
@@ -911,66 +1076,13 @@
             if (nextBtn) nextBtn.disabled = currentLangSlide === totalLangSlides;
         }
 
-        document.addEventListener('DOMContentLoaded', function() {
-            createStars();
-            document.querySelectorAll('.nav-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    showPage(this.getAttribute('data-page'));
-                });
-            });
-        });
-       function typeText(element, text, speed, callback, isProcess, processBox) {
-            let i = 0;
-            element.textContent = '';
-            
-            if (isProcess) {
-                element.style.color = '#d0d0d0';
-            }
-            
-            function type() {
-                if (i < text.length) {
-                    element.textContent += text.charAt(i);
-                    
-                    if (isProcess && processBox) {
-                        const progress = (i + 1) / text.length;
-                        const r = Math.floor(135 * progress);
-                        const g = Math.floor(206 * progress);
-                        const b = Math.floor(250 * progress);
-                        const alpha = 0.6 * progress;
-                        
-                        processBox.style.background = `linear-gradient(to bottom, 
-                            rgba(${r}, ${g}, ${b}, ${alpha}) 0%,
-                            rgba(${Math.floor(r * 0.95)}, ${Math.floor(g * 0.95)}, ${Math.floor(b * 0.95)}, ${alpha * 0.9}) 100%)`;
-                        
-                        const textR = Math.floor(208 - (182 * progress));
-                        const textG = Math.floor(208 - (182 * progress));
-                        const textB = Math.floor(208 - (182 * progress));
-                        element.style.color = `rgb(${textR}, ${textG}, ${textB})`;
-                        
-                        if (progress > 0.7) {
-                            const cloudOpacity = (progress - 0.7) / 0.3;
-                            processBox.style.setProperty('--cloud-opacity', cloudOpacity);
-                        }
-                    }
-                    
-                    i++;
-                    setTimeout(type, speed);
-                } else if (callback) {
-                    callback();
-                }
-            }
-            
-            type();
-        } 
-// View counter and analytics
+        // View counter
         function initViewCounter() {
-            // Total page views
             let totalViews = localStorage.getItem('totalViews') || 0;
             totalViews = parseInt(totalViews) + 1;
             localStorage.setItem('totalViews', totalViews);
             document.getElementById('totalViews').textContent = `Total: ${totalViews.toLocaleString()}`;
             
-            // Unique visitors (using session storage)
             let visitorId = sessionStorage.getItem('visitorId');
             if (!visitorId) {
                 visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
@@ -992,25 +1104,43 @@
                 pageElement.textContent = `Page: ${displayName}`;
             }
         }
-       
- document.addEventListener('DOMContentLoaded', function() {
+
+        // Translator functionality
+        const translatorMap = {
+            "is": "emerges as",
+            "are": "manifest as",
+            "was": "arose as",
+            "were": "interacted as",
+            "be": "transform into",
+            "being": "continuing through",
+            "been": "cohered as"
+        };
+
+        // Initialize everything
+        document.addEventListener('DOMContentLoaded', function() {
             createStars();
             initViewCounter();
             
+            // Navigation button handlers
             document.querySelectorAll('.nav-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     showPage(this.getAttribute('data-page'));
                 });
             });
+
+            // Translator button handler
+            const translateBtn = document.getElementById('translateBtn');
+            if (translateBtn) {
+                translateBtn.addEventListener('click', () => {
+                    let text = document.getElementById('inputText').value;
+                    if (!text.trim()) return;
+                    let processed = text.replace(/\b(is|are|was|were|be|being|been)\b/gi,
+                        match => translatorMap[match.toLowerCase()] || match);
+                    document.getElementById('outputText').textContent = processed;
+                    document.getElementById('outputSection').classList.remove('hidden');
+                });
+            }
         });
-        
     </script>
 </body>
-
 </html>
-
-
-
-
-
-
