@@ -108,14 +108,21 @@
     "spin": "intrinsic angular momentum pattern"
 };
 
-    document.getElementById('translateBtn').addEventListener('click', () => {
-      let text = document.getElementById('inputText').value;
-      if (!text.trim()) return;
-      let processed = text.replace(/\b(is|are|was|were|be|being|been)\b/gi,
-        match => map[match.toLowerCase()] || match);
-      document.getElementById('outputText').textContent = processed;
-      document.getElementById('outputSection').classList.remove('hidden');
-    });
+   ocument.getElementById('translateBtn').addEventListener('click', () => {
+  let text = document.getElementById('inputText').value;
+  if (!text.trim()) return;
+  
+  // Create a regex pattern from all translatorMap keys
+  const words = Object.keys(translatorMap);
+  const pattern = new RegExp('\\b(' + words.join('|') + ')\\b', 'gi');
+  
+  let processed = text.replace(pattern, match => {
+    return translatorMap[match.toLowerCase()] || match;
+  });
+  
+  document.getElementById('outputText').textContent = processed;
+  document.getElementById('outputSection').classList.remove('hidden');
+});
   </script>
   <!-- Return to Home button -->
 <div style="text-align:center; margin-top: 40px;">
