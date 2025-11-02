@@ -1184,19 +1184,27 @@
 
             // Translator button handler
             const translateBtn = document.getElementById('translateBtn');
-            if (translateBtn) {
-                translateBtn.addEventListener('click', () => {
-                    let text = document.getElementById('inputText').value;
-                    if (!text.trim()) return;
-                    let processed = text.replace(/\b(is|are|was|were|be|being|been)\b/gi,
-                        match => translatorMap[match.toLowerCase()] || match);
-                    document.getElementById('outputText').textContent = processed;
-                    document.getElementById('outputSection').classList.remove('hidden');
-                });
-            }
+if (translateBtn) {
+    translateBtn.addEventListener('click', () => {
+        let text = document.getElementById('inputText').value;
+        if (!text.trim()) return;
+        
+        // Create regex pattern from all translatorMap keys
+        const words = Object.keys(translatorMap);
+        const pattern = new RegExp('\\b(' + words.join('|') + ')\\b', 'gi');
+        
+        let processed = text.replace(pattern, match => {
+            return translatorMap[match.toLowerCase()] || match;
         });
+        
+        document.getElementById('outputText').textContent = processed;
+        document.getElementById('outputSection').classList.remove('hidden');
+    });
+            }
+    
     </script>
     
 </body>
 </html>
+
 
