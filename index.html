@@ -1107,14 +1107,68 @@
 
         // Translator functionality
         const translatorMap = {
-            "is": "emerges as",
-            "are": "manifest as",
-            "was": "arose as",
-            "were": "interacted as",
-            "be": "transform into",
-            "being": "continuing through",
-            "been": "cohered as"
-        };
+    // Basic verb transformations
+    "is": "emerges as",
+    "are": "manifest as", 
+    "was": "arose as",
+    "were": "interacted as",
+    "be": "transform into",
+    "being": "continuing through",
+    "been": "cohered as",
+    
+    // Physics objects → processes
+    "particle": "field excitation",
+    "particles": "field excitations",
+    "wave": "propagating disturbance",
+    "waves": "propagating disturbances",
+    "electron": "electronic excitation",
+    "electrons": "electronic excitations",
+    "photon": "electromagnetic excitation",
+    "photons": "electromagnetic excitations",
+    "atom": "bound excitation pattern",
+    "atoms": "bound excitation patterns",
+    "molecule": "complex binding pattern",
+    "molecules": "complex binding patterns",
+    
+    // Measurement terms
+    "measure": "interact with",
+    "measurement": "interaction event",
+    "measurements": "interaction events",
+    "observer": "interacting system",
+    "observers": "interacting systems",
+    "collapse": "decohere into",
+    "collapses": "decoheres into",
+    "exists": "manifests as",
+    "exist": "manifest as",
+    "property": "behavioral pattern",
+    "properties": "behavioral patterns",
+    "state": "configuration process",
+    "states": "configuration processes",
+    
+    // Quantum terms
+    "superposition": "coherent multiplicity",
+    "entangled": "correlation-maintaining",
+    "entanglement": "correlation maintenance",
+    "decoherence": "correlation dissolution",
+    
+    // Spacetime terms  
+    "space": "extensional relating",
+    "time": "sequential ordering",
+    "spacetime": "extensional-sequential relating",
+    "dimension": "relational aspect",
+    "dimensions": "relational aspects",
+    
+    // Physical quantities
+    "mass": "resistance to acceleration",
+    "energy": "transformation potential",
+    "force": "interaction gradient",
+    "forces": "interaction gradients",
+    "momentum": "motion persistence",
+    "field": "distributed interaction potential",
+    "fields": "distributed interaction potentials",
+    "charge": "electromagnetic coupling strength",
+    "spin": "intrinsic angular momentum pattern"
+};
 
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
@@ -1142,5 +1196,7 @@
             }
         });
     </script>
+    
 </body>
 </html>
+
