@@ -779,25 +779,33 @@
 
                 <!-- Educational Content -->
                 <div class="translator-explanation">
-                    <h3>Why Language Structure Matters</h3>
+                    <h3>Enhanced Process Language Translation</h3>
                     <p>We unconsciously objectify dynamic processes through grammatical choices. "To be" verbs (<strong>is, are, was, were, be, being, been</strong>) and definite articles (<strong>the</strong>) freeze flowing processes into static objects with essential properties.</p>
                     
+                    <p><strong>New Enhancement: Infinitive → Gerund Transformation</strong></p>
+                    <p>This upgraded translator now converts infinitives like "to learn" into gerunds like "learning" to better capture ongoing processes:</p>
+                    <ul>
+                        <li><strong>"Our purpose is to learn"</strong> → <strong>"Our purpose emerges as learning"</strong></li>
+                        <li><strong>"The goal is to understand"</strong> → <strong>"Goal-seeking emerges as understanding"</strong></li>
+                        <li><strong>"We aim to discover"</strong> → <strong>"We aim discovering"</strong></li>
+                    </ul>
+
                     <p><strong>In Algorithms and Mathematics:</strong></p>
                     <p>This linguistic habit obscures the process nature of computation and mathematical operations:</p>
                     <ul>
-                        <li><strong>"The algorithm <em>is</em> sorting the data"</strong> → Treats sorting as a fixed state rather than an ongoing sequence of comparisons and swaps</li>
-                        <li><strong>"The function <em>is</em> continuous"</strong> → Masks the dynamic relationship between input transformations and output behavior</li>
-                        <li><strong>"The matrix <em>is</em> invertible"</strong> → Hides the computational process of finding inverse transformations</li>
+                        <li><strong>"The algorithm is sorting the data"</strong> → <strong>"Sorting processes execute through sequential comparisons"</strong></li>
+                        <li><strong>"The function is continuous"</strong> → <strong>"Input changes propagate smoothly into output transformations"</strong></li>
+                        <li><strong>"The matrix is invertible"</strong> → <strong>"Inverse transformations emerge from systematic row operations"</strong></li>
                     </ul>
 
-                    <p><strong>Process-Oriented Alternatives:</strong></p>
+                    <p><strong>Process-Oriented Patterns:</strong></p>
                     <ul>
-                        <li><code>Sorting processes execute through sequential comparisons</code></li>
-                        <li><code>Input changes propagate smoothly to output transformations</code></li>
-                        <li><code>Inverse transformations emerge from systematic row operations</code></li>
+                        <li><code>"to learn" becomes "learning"</code> - captures ongoing process</li>
+                        <li><code>"the purpose" becomes "purposing"</code> - shows active intention</li>
+                        <li><code>"the solution" becomes "solution-emerging"</code> - reveals development</li>
                     </ul>
 
-                    <p>When we describe algorithms and mathematical operations as processes rather than objects with properties, we align our language with what actually happens: transformations, flows, interactions, and emergent patterns.</p>
+                    <p>When we describe activities as ongoing processes rather than static states or distant goals, we align our language with what actually happens: continuous transformations, flows, interactions, and emergent patterns.</p>
                 </div>
 
                 <textarea id="inputText" rows="6" placeholder="Type or paste your text here..."></textarea>
@@ -1234,9 +1242,9 @@
             }
         }
 
-        // Translator functionality with improved error handling
+        // Enhanced translator with gerund transformations and process language
         const translatorMap = {
-            // Basic verb transformations
+            // Basic verb transformations - enhanced
             "is": "emerges as",
             "are": "manifest as", 
             "was": "arose as",
@@ -1244,6 +1252,33 @@
             "be": "transform into",
             "being": "continuing through",
             "been": "cohered as",
+            
+            // Infinitive to gerund transformations for process flow
+            "to learn": "learning",
+            "to share": "sharing",
+            "to discover": "discovering",
+            "to explore": "exploring",
+            "to understand": "understanding",
+            "to create": "creating",
+            "to develop": "developing",
+            "to investigate": "investigating",
+            "to research": "researching",
+            "to study": "studying",
+            "to analyze": "analyzing",
+            "to observe": "observing",
+            "to measure": "measuring",
+            "to calculate": "calculating",
+            "to solve": "solving",
+            "to build": "building",
+            "to design": "designing",
+            "to implement": "implementing",
+            "to process": "processing",
+            "to transform": "transforming",
+            "to evolve": "evolving",
+            "to emerge": "emerging",
+            "to interact": "interacting",
+            "to emerge": "emerging",
+            "to interact": "interacting",
             
             // Physics objects → processes
             "particle": "field excitation",
@@ -1296,9 +1331,20 @@
             "field": "distributed interaction potential",
             "fields": "distributed interaction potentials",
             "charge": "electromagnetic coupling strength",
-            "spin": "intrinsic angular momentum pattern"
+            "spin": "intrinsic angular momentum pattern",
+            
+            // Enhanced process patterns
+            "the purpose": "purposing",
+            "the goal": "goal-seeking",
+            "the objective": "objective-pursuing",
+            "the method": "method-applying",
+            "the approach": "approach-implementing",
+            "the solution": "solution-emerging",
+            "the result": "result-manifesting",
+            "the outcome": "outcome-developing"
         };
 
+        // Enhanced translation function with better pattern recognition
         function translateText() {
             const inputElement = document.getElementById('inputText');
             const outputElement = document.getElementById('outputText');
@@ -1316,16 +1362,26 @@
             }
             
             try {
-                // Create regex pattern from all translatorMap keys
-                const words = Object.keys(translatorMap);
+                // First pass: Handle longer phrases (order matters!)
+                const phrases = Object.keys(translatorMap).filter(key => key.includes(' '));
+                phrases.sort((a, b) => b.length - a.length); // Process longer phrases first
+                
+                phrases.forEach(phrase => {
+                    const regex = new RegExp('\\b' + phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'gi');
+                    text = text.replace(regex, translatorMap[phrase]);
+                });
+                
+                // Second pass: Handle single words
+                const words = Object.keys(translatorMap).filter(key => !key.includes(' '));
                 const pattern = new RegExp('\\b(' + words.join('|') + ')\\b', 'gi');
                 
-                let processed = text.replace(pattern, function(match) {
+                text = text.replace(pattern, function(match) {
                     return translatorMap[match.toLowerCase()] || match;
                 });
                 
-                outputElement.textContent = processed;
+                outputElement.textContent = text;
                 outputSection.classList.remove('hidden');
+                
             } catch (error) {
                 console.error('Translation error:', error);
                 outputElement.textContent = 'Error processing text. Please try again.';
