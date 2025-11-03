@@ -22,7 +22,7 @@
             flex-direction: column;
         }
 
-        /* Starry night background image - applies to ALL pages */
+        /* Starry night background - fallback with GitHub integration */
         body::before {
             content: "";
             position: fixed;
@@ -30,12 +30,26 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('./images/starry-night.png');
+            background-image: url('https://raw.githubusercontent.com/GrummanGuy/Crossroads/main/images/starry-night.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             opacity: 0.25;
             z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Fallback background if GitHub image doesn't load */
+        body::after {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse at top, #1e3a8a 0%, #0f172a 50%, #000000 100%);
+            opacity: 0.4;
+            z-index: -1;
             pointer-events: none;
         }
 
@@ -72,7 +86,7 @@
             flex: 1;
         }
 
-        /* Header with CROSSROADS title - appears on ALL pages */
+        /* Header with CROSSROADS title */
         .header-section {
             text-align: center;
             padding: 2rem 0 2rem 0;
@@ -184,6 +198,11 @@
             border-color: rgba(74, 158, 255, 0.5);
         }
 
+        .back-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
         .page {
             display: none;
             min-height: calc(100vh - 300px);
@@ -223,6 +242,7 @@
             max-width: 900px;
             margin: 0 auto 4rem auto;
             overflow: hidden;
+            text-align: center;
         }
 
         .illustration {
@@ -240,6 +260,20 @@
                 rgba(0,0,0,1) 50%, 
                 rgba(0,0,0,0.5) 80%, 
                 rgba(0,0,0,0) 100%);
+        }
+
+        /* Fallback for missing illustration */
+        .illustration-placeholder {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(135deg, rgba(74,158,255,0.2), rgba(255,255,255,0.1));
+            border-radius: 12px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: #888;
+            font-style: italic;
+            border: 1px solid rgba(255,255,255,0.1);
         }
 
         .content-grid {
@@ -263,13 +297,15 @@
             transform: translateY(-5px);
         }
 
-        .content-section h2 {
+        .content-section h2,
+        .card-base h2 {
             font-size: 1.6rem;
             margin-bottom: 1rem;
             color: #ffffff;
         }
 
-        .content-section p {
+        .content-section p,
+        .card-base p {
             line-height: 1.7;
             color: #d0d0d0;
             margin-bottom: 1rem;
@@ -342,6 +378,8 @@
             margin: 0.3rem 0;
             color: #b8b8b8;
         }
+
+
 
         /* Compact Footer */
         footer {
@@ -488,6 +526,7 @@
             font-size: 1rem;
             line-height: 1.6;
             resize: vertical;
+            min-height: 120px;
         }
 
         #inputText:focus {
@@ -532,10 +571,11 @@
             border: 1px solid rgba(74, 158, 255, 0.3);
             white-space: pre-wrap;
             line-height: 1.6;
+            min-height: 100px;
         }
 
         .hidden {
-            display: none;
+            display: none !important;
         }
 
         /* Language Paradox Slide Styles */
@@ -575,6 +615,22 @@
             transform: scale(1.3);
         }
 
+        .slide-navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .slide-dots {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
         @media (max-width: 768px) {
             .main-title {
                 font-size: 2.2rem;
@@ -600,6 +656,20 @@
                 padding: 0.5rem 1rem;
                 font-size: 0.75rem;
             }
+
+            .nav-links {
+                gap: 0.5rem;
+            }
+
+            .nav-links button {
+                font-size: 0.8rem;
+                padding: 0.4rem 0.7rem;
+            }
+
+            .slide-navigation {
+                flex-direction: column;
+                gap: 1rem;
+            }
         }
     </style>
 </head>
@@ -614,7 +684,7 @@
     </div>
 
     <main class="container">
-        <!-- Header with CROSSROADS - appears on ALL pages -->
+        <!-- Header with CROSSROADS -->
         <div class="header-section">
             <h1 class="main-title" onclick="showPage('home')">CROSSROADS</h1>
             <p class="main-tagline">Where ideas meet and new paths begin</p>
@@ -644,7 +714,13 @@
                 </div>
                 
                 <div class="illustration-wrap">
-                    <img src="./images/crossroads-illustration.png" alt="">
+                    <img src="https://raw.githubusercontent.com/GrummanGuy/Crossroads/main/images/Contemplating%20the%20Cosmos.png" 
+                         alt="Contemplating the Cosmos" 
+                         class="illustration"
+                         onerror="this.style.display='none'; this.parentNode.querySelector('.illustration-placeholder').style.display='flex';">
+                    <div class="illustration-placeholder">
+                        [Contemplating the Cosmos - Image loading...]
+                    </div>
                 </div>
             </div>
 
@@ -891,13 +967,13 @@
                 </div>
 
                 <!-- Navigation -->
-                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+                <div class="slide-navigation">
                     <button class="back-button" onclick="prevSlide()" id="prevSlideBtn">← Previous</button>
                     <span style="color: #999999; font-size: 1rem;" id="slideCounter">1 / 6</span>
                     <button class="back-button" onclick="nextSlide()" id="nextSlideBtn">Next →</button>
                 </div>
 
-                <div style="display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem;">
+                <div class="slide-dots">
                     <div class="slide-dot active" onclick="goToLangSlide(1)"></div>
                     <div class="slide-dot" onclick="goToLangSlide(2)"></div>
                     <div class="slide-dot" onclick="goToLangSlide(3)"></div>
@@ -999,6 +1075,8 @@
         // Create stars animation
         function createStars() {
             const starsContainer = document.getElementById('stars');
+            if (!starsContainer) return;
+            
             const numStars = 150;
             for (let i = 0; i < numStars; i++) {
                 const star = document.createElement('div');
@@ -1016,11 +1094,18 @@
 
         // Page navigation
         function showPage(pageId) {
+            // Hide all pages
             document.querySelectorAll('.page').forEach(page => {
                 page.classList.remove('active');
             });
-            document.getElementById(pageId).classList.add('active');
             
+            // Show target page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+            
+            // Update navigation buttons
             document.querySelectorAll('.nav-btn').forEach(button => {
                 button.classList.remove('active');
             });
@@ -1029,8 +1114,17 @@
                 activeButton.classList.add('active');
             }
             
+            // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Update page display in stats
             updatePageDisplay(pageId);
+            
+            // Reset language paradox slides when entering that page
+            if (pageId === 'language-paradox') {
+                currentLangSlide = 1;
+                updateLangSlide();
+            }
         }
 
         // Language Paradox slides
@@ -1038,63 +1132,98 @@
         const totalLangSlides = 6;
 
         function nextSlide() {
-            currentLangSlide++;
-            if (currentLangSlide > totalLangSlides) currentLangSlide = totalLangSlides;
-            updateLangSlide();
+            if (currentLangSlide < totalLangSlides) {
+                currentLangSlide++;
+                updateLangSlide();
+            }
         }
 
         function prevSlide() {
-            currentLangSlide--;
-            if (currentLangSlide < 1) currentLangSlide = 1;
-            updateLangSlide();
+            if (currentLangSlide > 1) {
+                currentLangSlide--;
+                updateLangSlide();
+            }
         }
 
         function goToLangSlide(num) {
-            currentLangSlide = num;
-            updateLangSlide();
+            if (num >= 1 && num <= totalLangSlides) {
+                currentLangSlide = num;
+                updateLangSlide();
+            }
         }
 
         function updateLangSlide() {
-            const targetSlide = document.querySelector(`.lang-slide[data-slide="${currentLangSlide}"]`);
-            if (!targetSlide) return;
-            
+            // Hide all slides
             document.querySelectorAll('.lang-slide').forEach(slide => {
                 slide.classList.remove('active');
             });
-            targetSlide.classList.add('active');
             
+            // Show target slide
+            const targetSlide = document.querySelector(`.lang-slide[data-slide="${currentLangSlide}"]`);
+            if (targetSlide) {
+                targetSlide.classList.add('active');
+            }
+            
+            // Update dots
             document.querySelectorAll('.slide-dot').forEach((dot, index) => {
                 dot.classList.toggle('active', index + 1 === currentLangSlide);
             });
             
+            // Update counter and buttons
             const counter = document.getElementById('slideCounter');
             const prevBtn = document.getElementById('prevSlideBtn');
             const nextBtn = document.getElementById('nextSlideBtn');
             
-            if (counter) counter.textContent = `${currentLangSlide} / ${totalLangSlides}`;
-            if (prevBtn) prevBtn.disabled = currentLangSlide === 1;
-            if (nextBtn) nextBtn.disabled = currentLangSlide === totalLangSlides;
-        }
-
-        // View counter
-        function initViewCounter() {
-            let totalViews = localStorage.getItem('totalViews') || 0;
-            totalViews = parseInt(totalViews) + 1;
-            localStorage.setItem('totalViews', totalViews);
-            document.getElementById('totalViews').textContent = `Total: ${totalViews.toLocaleString()}`;
-            
-            let visitorId = sessionStorage.getItem('visitorId');
-            if (!visitorId) {
-                visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-                sessionStorage.setItem('visitorId', visitorId);
-                
-                let uniqueVisitors = localStorage.getItem('uniqueVisitors') || 0;
-                uniqueVisitors = parseInt(uniqueVisitors) + 1;
-                localStorage.setItem('uniqueVisitors', uniqueVisitors);
+            if (counter) {
+                counter.textContent = `${currentLangSlide} / ${totalLangSlides}`;
             }
             
-            let uniqueVisitors = localStorage.getItem('uniqueVisitors') || 0;
-            document.getElementById('uniqueVisitors').textContent = `Unique: ${parseInt(uniqueVisitors).toLocaleString()}`;
+            if (prevBtn) {
+                prevBtn.disabled = currentLangSlide === 1;
+                prevBtn.style.opacity = currentLangSlide === 1 ? '0.5' : '1';
+            }
+            
+            if (nextBtn) {
+                nextBtn.disabled = currentLangSlide === totalLangSlides;
+                nextBtn.style.opacity = currentLangSlide === totalLangSlides ? '0.5' : '1';
+            }
+        }
+
+        // View counter with error handling
+        function initViewCounter() {
+            try {
+                let totalViews = localStorage.getItem('totalViews') || '0';
+                totalViews = parseInt(totalViews) + 1;
+                localStorage.setItem('totalViews', totalViews.toString());
+                
+                const totalElement = document.getElementById('totalViews');
+                if (totalElement) {
+                    totalElement.textContent = `Total: ${totalViews.toLocaleString()}`;
+                }
+                
+                let visitorId = sessionStorage.getItem('visitorId');
+                if (!visitorId) {
+                    visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                    sessionStorage.setItem('visitorId', visitorId);
+                    
+                    let uniqueVisitors = localStorage.getItem('uniqueVisitors') || '0';
+                    uniqueVisitors = parseInt(uniqueVisitors) + 1;
+                    localStorage.setItem('uniqueVisitors', uniqueVisitors.toString());
+                }
+                
+                let uniqueVisitors = localStorage.getItem('uniqueVisitors') || '0';
+                const uniqueElement = document.getElementById('uniqueVisitors');
+                if (uniqueElement) {
+                    uniqueElement.textContent = `Unique: ${parseInt(uniqueVisitors).toLocaleString()}`;
+                }
+            } catch (error) {
+                console.log('Storage not available:', error);
+                // Fallback for when localStorage/sessionStorage isn't available
+                const totalElement = document.getElementById('totalViews');
+                const uniqueElement = document.getElementById('uniqueVisitors');
+                if (totalElement) totalElement.textContent = 'Total: --';
+                if (uniqueElement) uniqueElement.textContent = 'Unique: --';
+            }
         }
 
         function updatePageDisplay(pageName) {
@@ -1105,107 +1234,146 @@
             }
         }
 
-        // Translator functionality
+        // Translator functionality with improved error handling
         const translatorMap = {
-    // Basic verb transformations
-    "is": "emerges as",
-    "are": "manifest as", 
-    "was": "arose as",
-    "were": "interacted as",
-    "be": "transform into",
-    "being": "continuing through",
-    "been": "cohered as",
-    
-    // Physics objects → processes
-    "particle": "field excitation",
-    "particles": "field excitations",
-    "wave": "propagating disturbance",
-    "waves": "propagating disturbances",
-    "electron": "electronic excitation",
-    "electrons": "electronic excitations",
-    "photon": "electromagnetic excitation",
-    "photons": "electromagnetic excitations",
-    "atom": "bound excitation pattern",
-    "atoms": "bound excitation patterns",
-    "molecule": "complex binding pattern",
-    "molecules": "complex binding patterns",
-    
-    // Measurement terms
-    "measure": "interact with",
-    "measurement": "interaction event",
-    "measurements": "interaction events",
-    "observer": "interacting system",
-    "observers": "interacting systems",
-    "collapse": "decohere into",
-    "collapses": "decoheres into",
-    "exists": "manifests as",
-    "exist": "manifest as",
-    "property": "behavioral pattern",
-    "properties": "behavioral patterns",
-    "state": "configuration process",
-    "states": "configuration processes",
-    
-    // Quantum terms
-    "superposition": "coherent multiplicity",
-    "entangled": "correlation-maintaining",
-    "entanglement": "correlation maintenance",
-    "decoherence": "correlation dissolution",
-    
-    // Spacetime terms  
-    "space": "extensional relating",
-    "time": "sequential ordering",
-    "spacetime": "extensional-sequential relating",
-    "dimension": "relational aspect",
-    "dimensions": "relational aspects",
-    
-    // Physical quantities
-    "mass": "resistance to acceleration",
-    "energy": "transformation potential",
-    "force": "interaction gradient",
-    "forces": "interaction gradients",
-    "momentum": "motion persistence",
-    "field": "distributed interaction potential",
-    "fields": "distributed interaction potentials",
-    "charge": "electromagnetic coupling strength",
-    "spin": "intrinsic angular momentum pattern"
-};
+            // Basic verb transformations
+            "is": "emerges as",
+            "are": "manifest as", 
+            "was": "arose as",
+            "were": "interacted as",
+            "be": "transform into",
+            "being": "continuing through",
+            "been": "cohered as",
+            
+            // Physics objects → processes
+            "particle": "field excitation",
+            "particles": "field excitations",
+            "wave": "propagating disturbance",
+            "waves": "propagating disturbances",
+            "electron": "electronic excitation",
+            "electrons": "electronic excitations",
+            "photon": "electromagnetic excitation",
+            "photons": "electromagnetic excitations",
+            "atom": "bound excitation pattern",
+            "atoms": "bound excitation patterns",
+            "molecule": "complex binding pattern",
+            "molecules": "complex binding patterns",
+            
+            // Measurement terms
+            "measure": "interact with",
+            "measurement": "interaction event",
+            "measurements": "interaction events",
+            "observer": "interacting system",
+            "observers": "interacting systems",
+            "collapse": "decohere into",
+            "collapses": "decoheres into",
+            "exists": "manifests as",
+            "exist": "manifest as",
+            "property": "behavioral pattern",
+            "properties": "behavioral patterns",
+            "state": "configuration process",
+            "states": "configuration processes",
+            
+            // Quantum terms
+            "superposition": "coherent multiplicity",
+            "entangled": "correlation-maintaining",
+            "entanglement": "correlation maintenance",
+            "decoherence": "correlation dissolution",
+            
+            // Spacetime terms  
+            "space": "extensional relating",
+            "time": "sequential ordering",
+            "spacetime": "extensional-sequential relating",
+            "dimension": "relational aspect",
+            "dimensions": "relational aspects",
+            
+            // Physical quantities
+            "mass": "resistance to acceleration",
+            "energy": "transformation potential",
+            "force": "interaction gradient",
+            "forces": "interaction gradients",
+            "momentum": "motion persistence",
+            "field": "distributed interaction potential",
+            "fields": "distributed interaction potentials",
+            "charge": "electromagnetic coupling strength",
+            "spin": "intrinsic angular momentum pattern"
+        };
+
+        function translateText() {
+            const inputElement = document.getElementById('inputText');
+            const outputElement = document.getElementById('outputText');
+            const outputSection = document.getElementById('outputSection');
+            
+            if (!inputElement || !outputElement || !outputSection) {
+                console.error('Translator elements not found');
+                return;
+            }
+            
+            let text = inputElement.value;
+            if (!text.trim()) {
+                alert('Please enter some text to translate.');
+                return;
+            }
+            
+            try {
+                // Create regex pattern from all translatorMap keys
+                const words = Object.keys(translatorMap);
+                const pattern = new RegExp('\\b(' + words.join('|') + ')\\b', 'gi');
+                
+                let processed = text.replace(pattern, function(match) {
+                    return translatorMap[match.toLowerCase()] || match;
+                });
+                
+                outputElement.textContent = processed;
+                outputSection.classList.remove('hidden');
+            } catch (error) {
+                console.error('Translation error:', error);
+                outputElement.textContent = 'Error processing text. Please try again.';
+                outputSection.classList.remove('hidden');
+            }
+        }
 
         // Initialize everything
         document.addEventListener('DOMContentLoaded', function() {
-            createStars();
-            initViewCounter();
-            
-            // Navigation button handlers
-            document.querySelectorAll('.nav-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    showPage(this.getAttribute('data-page'));
+            try {
+                createStars();
+                initViewCounter();
+                
+                // Navigation button handlers
+                document.querySelectorAll('.nav-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const page = this.getAttribute('data-page');
+                        if (page) {
+                            showPage(page);
+                        }
+                    });
                 });
-            });
 
-            // Translator button handler
-           const translateBtn = document.getElementById('translateBtn');
-if (translateBtn) {
-    translateBtn.addEventListener('click', () => {
-        let text = document.getElementById('inputText').value;
-        if (!text.trim()) return;
-        
-        // Create regex pattern from all translatorMap keys
-        const words = Object.keys(translatorMap);
-        const pattern = new RegExp('\\b(' + words.join('|') + ')\\b', 'gi');
-        
-        let processed = text.replace(pattern, match => {
-            return translatorMap[match.toLowerCase()] || match;
-        });
-        
-        document.getElementById('outputText').textContent = processed;
-        document.getElementById('outputSection').classList.remove('hidden');
-    });
+                // Translator button handler
+                const translateBtn = document.getElementById('translateBtn');
+                if (translateBtn) {
+                    translateBtn.addEventListener('click', translateText);
+                }
+                
+                // Initialize language paradox slides
+                updateLangSlide();
+                
+            } catch (error) {
+                console.error('Initialization error:', error);
             }
-    
+        });
+
+        // Handle keyboard navigation for slides
+        document.addEventListener('keydown', function(event) {
+            const currentPage = document.querySelector('.page.active');
+            if (currentPage && currentPage.id === 'language-paradox') {
+                if (event.key === 'ArrowLeft') {
+                    prevSlide();
+                } else if (event.key === 'ArrowRight') {
+                    nextSlide();
+                }
+            }
+        });
     </script>
-    
 </body>
 </html>
-
-
-
