@@ -373,6 +373,25 @@
 
         .hero {
             margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 900px;
+            height: 400px;
+            background-image: url('https://raw.githubusercontent.com/GrummanGuy/Crossroads/main/images/Contemplating%20the%20Cosmos.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            z-index: -1;
+            pointer-events: none;
         }
 
         .hero-content {
@@ -1068,16 +1087,6 @@
                 <div class="hero-content">
                     <p>This site is an open invitation to curiosity, exploration, and collaboration. Here, you'll find ideas that reach across physics, cosmology, biology, and beyond—always guided by the belief that our greatest purpose is to learn, and to share what we learn.</p>
                     <p>Something fundamental about how we <span class="living-text" data-process="describing reveals as process-unfolding">describe</span> reality might be... backwards. Ready to explore?</p>
-                </div>
-                
-                <div class="illustration-wrap">
-                    <img src="https://raw.githubusercontent.com/GrummanGuy/Crossroads/main/images/Contemplating%20the%20Cosmos.png" 
-                         alt="Contemplating the Cosmos" 
-                         class="illustration"
-                         onerror="this.style.display='none'; this.parentNode.querySelector('.illustration-placeholder').style.display='flex';">
-                    <div class="illustration-placeholder">
-                        [Contemplating the Cosmos - Image loading...]
-                    </div>
                 </div>
             </div>
 
