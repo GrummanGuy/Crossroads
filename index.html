@@ -304,129 +304,6 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            margin-bottom: 3rem;
-        }
-
-        .card-base {
-            background: rgba(20, 20, 20, 0.7);
-            padding: 2rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
-        }
-
-        .card-base:hover {
-            border-color: rgba(74, 158, 255, 0.3);
-            transform: translateY(-5px);
-        }
-
-        .content-section h2,
-        .card-base h2 {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
-        }
-
-        .content-section p,
-        .card-base p {
-            line-height: 1.7;
-            color: #d0d0d0;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-
-        .subpage-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .subpage-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #4a9eff, #6ba4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .subpage-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .subpage-content h2 {
-            font-size: 1.8rem;
-            margin: 2rem 0 1rem 0;
-            color: #4a9eff;
-        }
-
-        .subpage-content h3 {
-            font-size: 1.3rem;
-            margin: 1.5rem 0 0.8rem 0;
-            color: #6ba4ff;
-        }
-
-        .subpage-content p {
-            line-height: 1.8;
-            color: #d0d0d0;
-            margin-bottom: 1.2rem;
-        }
-
-        .subpage-content a {
-            color: #4a9eff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .subpage-content a:hover {
-            color: #6ba4ff;
-            text-decoration: underline;
-        }
-
-        /* Stats Counter - Bottom Right */
-        .stats-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(20, 20, 20, 0.9);
-            padding: 0.8rem 1.2rem;
-            border-radius: 8px;
-            border: 1px solid rgba(74, 158, 255, 0.3);
-            z-index: 2000;
-            font-size: 0.85rem;
-        }
-
-        .stats-container div {
-            margin: 0.3rem 0;
-            color: #b8b8b8;
-        }
-
-        /* User progress indicator */
-        .user-progress {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            background: rgba(20, 20, 20, 0.9);
-            padding: 0.8rem 1.2rem;
-            border-radius: 8px;
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            z-index: 2000;
-            font-size: 0.85rem;
-            color: #ffd700;
-            display: none;
-        }
-
-        .user-progress.active {
-            display: block;
-        }
-
-        /* ACADEMY STYLES */
         /* Discovery Trail Styles */
         .discovery-trail {
             margin: 4rem 0;
@@ -593,57 +470,94 @@
             border-left: 3px solid #ffd700;
         }
 
-        /* Enhanced navigation breadcrumbs */
-        .nav-breadcrumb {
-            position: fixed;
-            top: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(20, 20, 20, 0.9);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            border: 1px solid rgba(74, 158, 255, 0.3);
-            z-index: 1500;
-            display: none;
-            font-size: 0.9rem;
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
         }
 
-        .nav-breadcrumb.active {
-            display: block;
-            animation: slideDown 0.5s ease-out;
-        }
-
-        @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(-20px); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
-        }
-
-        .breadcrumb-step {
-            display: inline-block;
-            padding: 0.3rem 0.8rem;
-            margin: 0 0.2rem;
-            border-radius: 15px;
+        .card-base {
+            background: rgba(20, 20, 20, 0.7);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
             transition: all 0.3s ease;
-            cursor: pointer;
         }
 
-        .breadcrumb-step.completed {
-            background: rgba(255, 215, 0, 0.2);
-            color: #ffd700;
+        .card-base:hover {
+            border-color: rgba(74, 158, 255, 0.3);
+            transform: translateY(-5px);
         }
 
-        .breadcrumb-step.current {
-            background: rgba(74, 158, 255, 0.3);
+        .content-section h2,
+        .card-base h2 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            color: #ffffff;
+        }
+
+        .content-section p,
+        .card-base p {
+            line-height: 1.7;
+            color: #d0d0d0;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+
+        .subpage-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .subpage-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #4a9eff, #6ba4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subpage-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .subpage-content h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem 0;
             color: #4a9eff;
         }
 
-        .breadcrumb-step.upcoming {
-            color: #888;
+        .subpage-content h3 {
+            font-size: 1.3rem;
+            margin: 1.5rem 0 0.8rem 0;
+            color: #6ba4ff;
         }
 
-        .breadcrumb-step:hover {
-            transform: scale(1.1);
+        .subpage-content p {
+            line-height: 1.8;
+            color: #d0d0d0;
+            margin-bottom: 1.2rem;
         }
+
+        .subpage-content a {
+            color: #4a9eff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .subpage-content a:hover {
+            color: #6ba4ff;
+            text-decoration: underline;
+        }
+
+        /* Academy Styles */
+        .academy-hero {
+            text-align: center;
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(74, 158, 255, 0.1));
             border-radius: 20px;
             padding: 3rem 2rem;
@@ -664,214 +578,26 @@
             font-size: 1.3rem;
             color: #e8e8e8;
             max-width: 600px;
-            margin: 0 auto 2rem auto;
+            margin: 0 auto;
             line-height: 1.6;
         }
 
-        .curiosity-hooks {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 3rem;
+        /* Stats Counter - Bottom Right */
+        .stats-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(20, 20, 20, 0.9);
+            padding: 0.8rem 1.2rem;
+            border-radius: 8px;
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            z-index: 2000;
+            font-size: 0.85rem;
         }
 
-        .hook-card {
-            background: rgba(20, 20, 20, 0.8);
-            border-radius: 15px;
-            padding: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .hook-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 215, 0, 0.4);
-            box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
-        }
-
-        .hook-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .hook-title {
-            font-size: 1.4rem;
-            color: #ffd700;
-            margin-bottom: 1rem;
-        }
-
-        .hook-description {
-            color: #d0d0d0;
-            line-height: 1.6;
-            margin-bottom: 1.5rem;
-        }
-
-        .hook-teaser {
-            font-style: italic;
-            color: #4a9eff;
-            font-size: 0.9rem;
-        }
-
-        .pathway-selector {
-            background: rgba(20, 20, 20, 0.7);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .pathway-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-        }
-
-        .pathway-card {
-            background: linear-gradient(135deg, rgba(74, 158, 255, 0.1), rgba(255, 255, 255, 0.05));
-            border-radius: 12px;
-            padding: 1.5rem;
-            border: 1px solid rgba(74, 158, 255, 0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .pathway-card:hover {
-            border-color: rgba(74, 158, 255, 0.5);
-            transform: translateY(-3px);
-        }
-
-        .pathway-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .pathway-title {
-            font-size: 1.2rem;
-            color: #4a9eff;
-            margin-bottom: 0.5rem;
-        }
-
-        .pathway-time {
-            font-size: 0.9rem;
-            color: #ffd700;
-            margin-bottom: 1rem;
-        }
-
-        .pathway-description {
-            color: #d0d0d0;
-            font-size: 0.95rem;
-            line-height: 1.5;
-        }
-
-        .progress-visualization {
-            background: rgba(20, 20, 20, 0.7);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .skill-tree {
-            display: flex;
-            justify-content: space-around;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 2rem;
-            margin-top: 2rem;
-        }
-
-        .skill-node {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .skill-node.locked {
-            background: rgba(100, 100, 100, 0.3);
-            border: 2px solid rgba(150, 150, 150, 0.5);
-            color: #888;
-        }
-
-        .skill-node.available {
-            background: linear-gradient(135deg, rgba(74, 158, 255, 0.3), rgba(255, 255, 255, 0.1));
-            border: 2px solid rgba(74, 158, 255, 0.6);
-            color: #4a9eff;
-        }
-
-        .skill-node.completed {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.3), rgba(255, 140, 0, 0.3));
-            border: 2px solid rgba(255, 215, 0, 0.8);
-            color: #ffd700;
-        }
-
-        .skill-node:hover {
-            transform: scale(1.1);
-        }
-
-        .skill-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .skill-name {
-            font-size: 0.8rem;
-            text-align: center;
-        }
-
-        .achievement-showcase {
-            background: rgba(20, 20, 20, 0.7);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 3rem;
-        }
-
-        .achievement-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-        }
-
-        .achievement-badge {
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 10px;
-            padding: 1rem;
-            text-align: center;
-            transition: all 0.3s ease;
-        }
-
-        .achievement-badge.earned {
-            background: rgba(255, 215, 0, 0.2);
-            border-color: rgba(255, 215, 0, 0.6);
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-        }
-
-        .achievement-icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-            display: block;
-        }
-
-        .achievement-name {
-            font-size: 0.9rem;
-            color: #ffd700;
-            margin-bottom: 0.5rem;
-        }
-
-        .achievement-description {
-            font-size: 0.8rem;
-            color: #ccc;
+        .stats-container div {
+            margin: 0.3rem 0;
+            color: #b8b8b8;
         }
 
         /* Translator enhanced styles */
@@ -943,41 +669,6 @@
             color: #87ceeb;
         }
 
-        .translator-controls {
-            display: flex;
-            gap: 1rem;
-            align-items: center;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .intensity-selector {
-            display: flex;
-            gap: 0.5rem;
-            align-items: center;
-        }
-
-        .intensity-btn {
-            padding: 0.5rem 1rem;
-            border: 1px solid rgba(74, 158, 255, 0.3);
-            background: rgba(74, 158, 255, 0.1);
-            color: #4a9eff;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-            font-size: 0.9rem;
-        }
-
-        .intensity-btn.active {
-            background: rgba(74, 158, 255, 0.3);
-            border-color: rgba(74, 158, 255, 0.6);
-        }
-
-        .intensity-btn:hover {
-            background: rgba(74, 158, 255, 0.2);
-        }
-
         #inputText {
             width: 100%;
             padding: 1rem;
@@ -1035,33 +726,6 @@
             white-space: pre-wrap;
             line-height: 1.6;
             min-height: 100px;
-        }
-
-        .translation-metrics {
-            display: flex;
-            gap: 2rem;
-            margin-top: 1rem;
-            padding: 1rem;
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 8px;
-            font-size: 0.9rem;
-        }
-
-        .metric {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .metric-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #ffd700;
-        }
-
-        .metric-label {
-            color: #ccc;
         }
 
         .hidden {
@@ -1212,13 +876,6 @@
                 font-size: 0.75rem;
             }
 
-            .user-progress {
-                bottom: 70px;
-                left: 10px;
-                padding: 0.5rem 1rem;
-                font-size: 0.75rem;
-            }
-
             .nav-links {
                 gap: 0.5rem;
             }
@@ -1232,44 +889,11 @@
                 flex-direction: column;
                 gap: 1rem;
             }
-
-            .curiosity-hooks {
-                grid-template-columns: 1fr;
-            }
-
-            .pathway-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .skill-tree {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .translation-metrics {
-                flex-direction: column;
-                gap: 1rem;
-            }
         }
     </style>
 </head>
 <body>
     <div class="stars" id="stars"></div>
-    
-    <!-- Navigation Breadcrumb (shows during trail) -->
-    <div class="nav-breadcrumb" id="navBreadcrumb">
-        <span class="breadcrumb-step completed" onclick="showPage('cosmic-divide')">🌌 Cosmic</span>
-        <span class="breadcrumb-step current" onclick="showPage('language-paradox')">🔍 Language</span>
-        <span class="breadcrumb-step upcoming" onclick="showPage('translator')">⚡ Try It</span>
-        <span class="breadcrumb-step upcoming" onclick="showPage('academy')">🎓 Master</span>
-    </div>
-    
-    <!-- User Progress Indicator (bottom left) -->
-    <div class="user-progress" id="userProgress">
-        <div>Level: <span id="userLevel">1</span></div>
-        <div>XP: <span id="userXP">0</span>/100</div>
-        <div>Streak: <span id="userStreak">0</span> days</div>
-    </div>
     
     <!-- Stats Counter (bottom right) -->
     <div class="stats-container">
@@ -1378,27 +1002,27 @@
                 <h2 style="text-align: center; color: #6ba4ff; margin: 4rem 0 2rem 0;">Or Jump In Based on Your Interest</h2>
                 
                 <div class="content-grid">
-                    <div class="card-base hook-card" onclick="showTrailStep('physicist')">
+                    <div class="card-base hook-card" onclick="showPage('cosmic-divide')">
                         <h3>🔬 "I'm a physicist/scientist"</h3>
                         <p>Tired of quantum "weirdness" and measurement "problems"? Discover how process language dissolves paradoxes that have puzzled physics for decades.</p>
                         <div class="hook-preview">"Spooky action at a distance" → "Correlated detection events"</div>
                     </div>
 
-                    <div class="card-base hook-card" onclick="showTrailStep('thinker')">
+                    <div class="card-base hook-card" onclick="showPage('language-paradox')">
                         <h3>🧠 "I love mind-bending ideas"</h3>
                         <p>Ready for concepts that will literally rewire how you perceive reality? Start with examples that will make you question everything you thought you knew.</p>
                         <div class="hook-preview">What if time isn't a dimension you can travel through?</div>
                     </div>
 
-                    <div class="card-base hook-card" onclick="showTrailStep('practical')">
+                    <div class="card-base hook-card" onclick="showPage('translator')">
                         <h3>💼 "Show me something useful"</h3>
                         <p>Transform how you communicate at work, solve problems, and lead teams. Process language = clearer thinking = better results.</p>
                         <div class="hook-preview">Turn "the project is failing" into "the project encounters navigational challenges"</div>
                     </div>
 
-                    <div class="card-base hook-card" onclick="showTrailStep('curious')">
+                    <div class="card-base hook-card" onclick="showPage('academy')">
                         <h3>🤔 "I'm just curious"</h3>
-                        <p>Perfect! Curiosity is the best starting point. Begin with our 15-minute quick start and see where your interest leads.</p>
+                        <p>Perfect! Curiosity is the best starting point. Begin with our structured learning platform and see where your interest leads.</p>
                         <div class="hook-preview">Every journey starts with a single step...</div>
                     </div>
                 </div>
@@ -1410,149 +1034,252 @@
             <div class="academy-hero">
                 <h1>🎓 Process Language Academy</h1>
                 <p>Master the art of dynamic thinking. Transform static language into flowing, processual descriptions that align with how reality actually works.</p>
-                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
-                    <button class="intensity-btn active" onclick="showPathways()">🚀 Start Learning</button>
-                    <button class="intensity-btn" onclick="showProgressDashboard()">📊 My Progress</button>
-                    <button class="intensity-btn" onclick="showCommunity()">👥 Community</button>
-                </div>
             </div>
 
-            <!-- Curiosity Hooks Section -->
-            <div class="curiosity-hooks">
-                <div class="hook-card" onclick="showPathway('physics')">
-                    <span class="hook-icon">🌌</span>
-                    <div class="hook-title">Quantum Reality Unlocked</div>
-                    <div class="hook-description">Discover why "wave-particle duality" confused physicists for 100 years—and how process language dissolves the mystery in minutes.</div>
-                    <div class="hook-teaser">"Light isn't both wave AND particle—that's linguistic confusion!"</div>
+            <div class="subpage-content">
+                <h2>Welcome to Transformative Learning</h2>
+                <p>The Process Language Academy is your gateway to fundamentally shifting how you think, communicate, and perceive reality. Through structured exercises and interactive practice, you'll learn to recognize static language patterns and transform them into dynamic, process-oriented descriptions.</p>
+
+                <h2>What You'll Discover</h2>
+                <p>Our approach reveals how much of what seems mysterious in science, confusing in communication, and limiting in thought stems not from the subjects themselves, but from how we describe them. When you shift from object-language to process-language, apparent paradoxes dissolve and new possibilities emerge.</p>
+
+                <h2>Learning Pathways</h2>
+                <div class="content-grid" style="margin-top: 2rem;">
+                    <div class="card-base">
+                        <h3>⚡ Quick Start</h3>
+                        <p>Transform your first 10 sentences and experience immediate impact on thinking clarity. Perfect for busy professionals who want instant results.</p>
+                    </div>
+
+                    <div class="card-base">
+                        <h3>🔬 Physics Mindset</h3>
+                        <p>Decode quantum mysteries through language. See how process descriptions make "impossible" physics intuitive and accessible.</p>
+                    </div>
+
+                    <div class="card-base">
+                        <h3>💡 Professional Edge</h3>
+                        <p>Elevate business communication. Learn to present challenges as opportunities and static problems as dynamic processes.</p>
+                    </div>
+
+                    <div class="card-base">
+                        <h3>🎓 Academic Excellence</h3>
+                        <p>Research writing that flows. Transform dense academic prose into engaging, processual descriptions that reviewers love.</p>
+                    </div>
                 </div>
 
-                <div class="hook-card" onclick="showPathway('business')">
-                    <span class="hook-icon">💼</span>
-                    <div class="hook-title">Leadership Communication 2.0</div>
-                    <div class="hook-description">Transform your professional communication. Teams report clearer thinking and more solution-focused discussions when leaders use process language.</div>
-                    <div class="hook-teaser">"The project isn't failing—it's encountering navigational challenges."</div>
-                </div>
+                <h2>Interactive Tools</h2>
+                <p>Practice with our <a onclick="showPage('translator')">Language Translator</a> to experience real-time transformation. Explore concrete examples in <a onclick="showPage('language-paradox')">The Language Paradox</a> to see how language shapes understanding.</p>
 
-                <div class="hook-card" onclick="showPathway('personal')">
-                    <span class="hook-icon">🧠</span>
-                    <div class="hook-title">Mental Flexibility Upgrade</div>
-                    <div class="hook-description">Rewire limiting beliefs instantly. "I am bad at math" becomes "Math skills develop through my practice"—feel the immediate difference!</div>
-                    <div class="hook-teaser">Students consistently report faster problem-solving and reduced anxiety.</div>
-                </div>
+                <h2>Foundation Studies</h2>
+                <p>Begin your journey with <a onclick="showPage('cosmic-divide')">The Cosmic Divide</a> to understand how language creates apparent conflicts between quantum mechanics and relativity, then progress through our systematic curriculum.</p>
+            </div>
+        </div>
 
-                <div class="hook-card" onclick="showPathway('academic')">
-                    <span class="hook-icon">📚</span>
-                    <div class="hook-title">Research Writing Revolution</div>
-                    <div class="hook-description">Academic papers come alive with process language. Reviewers notice the difference—your ideas flow like water instead of sitting like rocks.</div>
-                    <div class="hook-teaser">"Results suggest" → "Data patterns reveal through analysis"</div>
-                </div>
+        <!-- COSMIC DIVIDE PAGE -->
+        <div id="cosmic-divide" class="page">
+            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+            <div class="subpage-header">
+                <h1>Bridging the Cosmic Divide</h1>
+                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Scale-Dependent Field Theory</p>
+                <p style="margin-top: 1rem; font-size: 0.95rem;"><em>New to process-language? Start with <a onclick="showPage('language-paradox')">The Language Paradox</a></em></p>
+            </div>
+            <div class="subpage-content">
+                <h2>The Nature of the Problem</h2>
+                <p>General relativity describes gravity as spacetime curvature—a smooth, continuous geometric description. Quantum mechanics reveals discrete energy levels, fundamental uncertainties, and field fluctuations. The tension manifests in concrete mathematical difficulties when physicists attempt to combine these frameworks.</p>
+
+                <p>But what if the "divide" exists primarily in our language rather than in nature itself?</p>
+
+                <h2>Linguistic Obstacles</h2>
+                <p>Object-language forces us to treat quantum mechanics and general relativity as separate "things" that need to be "unified." This creates an artificial problem: how can two different kinds of reality be reconciled?</p>
+
+                <p>Process language reveals a different picture: field dynamics exhibit scale-dependent properties. What appears "quantum" at one scale emerges as "classical" at another through continuous transformation processes.</p>
+
+                <h2>Auxiliary Field Mechanisms</h2>
+                <p>The theoretical framework incorporates two auxiliary fields: a scalar field <strong>Ξ</strong> with discrete Z₂ symmetry and a vector field <strong>Ψμ</strong> with hidden U(1) gauge symmetry. These fields emerge from mathematical consistency requirements rather than arbitrary theoretical choices.</p>
+
+                <p>These auxiliary fields mediate interactions across scales, allowing quantum field dynamics to flow naturally into classical field behavior without requiring separate "quantum" and "classical" domains.</p>
+
+                <h2>Scale-Dependent Dynamics</h2>
+                <p>Rather than asking "how do we unify quantum and classical?", we describe how field coupling strengths vary with measurement scale. The renormalization group provides mathematical tools for understanding these scale transformations.</p>
+
+                <p>What we call "quantum weirdness" emerges from describing scale-dependent field processes using scale-independent object language. The "weirdness" disappears when our descriptions match the processual nature of what's actually happening.</p>
+
+                <h2>Implications for Physics</h2>
+                <p>This approach suggests that many foundational problems in physics stem from linguistic habits rather than physical mysteries. The measurement problem, the hard problem of consciousness, and the quantum-classical divide may dissolve when described using process language appropriate to their scale-dependent nature.</p>
+
+                <h2>Mathematical Framework</h2>
+                <p>The field equations incorporate both quantum mechanical and thermodynamic considerations. Decoherence processes naturally emerge from auxiliary field interactions, providing a bridge between microscopic quantum dynamics and macroscopic classical behavior.</p>
+
+                <p>For detailed mathematical development, see the <a onclick="showPage('field-theory')">Field Theory</a> section.</p>
+            </div>
+        </div>
+
+        <!-- LANGUAGE PARADOX PAGE -->
+        <div id="language-paradox" class="page">
+            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+            <div class="subpage-header">
+                <h1>The Language Paradox</h1>
+                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">How the structure of language shapes—and limits—our understanding of reality</p>
             </div>
 
-            <!-- Learning Pathways -->
-            <div class="pathway-selector" id="pathwaySelector">
-                <h2 style="text-align: center; color: #4a9eff; margin-bottom: 1rem;">Choose Your Learning Adventure</h2>
-                <p style="text-align: center; color: #d0d0d0; margin-bottom: 2rem;">Each pathway is designed for your specific goals and time availability. Start where your curiosity leads you.</p>
-                
-                <div class="pathway-grid">
-                    <div class="pathway-card" onclick="startPathway('quickstart')">
-                        <span class="pathway-icon">⚡</span>
-                        <div class="pathway-title">Quick Start</div>
-                        <div class="pathway-time">15 minutes</div>
-                        <div class="pathway-description">Transform your first 10 sentences. Experience the immediate impact of process language on your thinking clarity.</div>
+            <div style="max-width: 1000px; margin: 0 auto;">
+                <!-- Slide 1: Wave-Particle Duality -->
+                <div class="lang-slide active" data-slide="1">
+                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">Wave-Particle Duality</h2>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #ff6b6b;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b6b;">Object Language</div>
+                            <div class="lang-text">Light is both a wave and a particle. Sometimes it behaves like a wave, sometimes like a particle. The electron is a particle that also has wave properties.</div>
+                        </div>
+                        
+                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #4a9eff;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a9eff;">Process Language</div>
+                            <div class="lang-text process-text">Quantum fields produce localized excitations. Under certain measurement conditions, these excitations exhibit interference patterns. Under other conditions, they register as discrete detection events.</div>
+                        </div>
                     </div>
 
-                    <div class="pathway-card" onclick="startPathway('physics')">
-                        <span class="pathway-icon">🔬</span>
-                        <div class="pathway-title">Physics Mindset</div>
-                        <div class="pathway-time">45 minutes</div>
-                        <div class="pathway-description">Decode quantum mysteries through language. See how process descriptions make "impossible" physics intuitive.</div>
-                    </div>
-
-                    <div class="pathway-card" onclick="startPathway('professional')">
-                        <span class="pathway-icon">💡</span>
-                        <div class="pathway-title">Professional Edge</div>
-                        <div class="pathway-time">30 minutes</div>
-                        <div class="pathway-description">Elevate business communication. Learn to present challenges as opportunities and static problems as dynamic processes.</div>
-                    </div>
-
-                    <div class="pathway-card" onclick="startPathway('academic')">
-                        <span class="pathway-icon">🎓</span>
-                        <div class="pathway-title">Academic Excellence</div>
-                        <div class="pathway-time">60 minutes</div>
-                        <div class="pathway-description">Research writing that flows. Transform dense academic prose into engaging, processual descriptions that reviewers love.</div>
-                    </div>
-
-                    <div class="pathway-card" onclick="startPathway('personal')">
-                        <span class="pathway-icon">🌱</span>
-                        <div class="pathway-title">Personal Growth</div>
-                        <div class="pathway-time">40 minutes</div>
-                        <div class="pathway-description">Rewire limiting self-talk. Transform inner criticism into growth-oriented process descriptions that empower action.</div>
-                    </div>
-
-                    <div class="pathway-card" onclick="startPathway('team')">
-                        <span class="pathway-icon">👥</span>
-                        <div class="pathway-title">Team Facilitator</div>
-                        <div class="pathway-time">90 minutes</div>
-                        <div class="pathway-description">Guide groups to process thinking. Learn protocols for meetings, workshops, and collaborative problem-solving sessions.</div>
+                    <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(74, 158, 255, 0.15)); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; color: #ffd93d; margin-bottom: 0.5rem; font-weight: bold;">The Irony</div>
+                        <div style="font-size: 1.05rem; line-height: 1.6; color: #ffffff; font-style: italic;">
+                            We spent a century debating "what light really is" because we insisted on treating dynamic field excitations as static objects with essential properties. The "duality" vanishes when we describe what actually happens: fields interact with measurement apparatus in ways that depend on experimental configuration.
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Progress Visualization -->
-            <div class="progress-visualization" id="progressVisualization" style="display: none;">
-                <h2 style="text-align: center; color: #ffd700; margin-bottom: 2rem;">Your Learning Journey</h2>
-                
-                <div class="skill-tree">
-                    <div class="skill-node completed" onclick="reviewSkill('detector')">
-                        <span class="skill-icon">👁️</span>
-                        <div class="skill-name">Static Detector</div>
-                    </div>
+                <!-- Slide 2: Wave Function Collapse -->
+                <div class="lang-slide" data-slide="2">
+                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">Wave Function Collapse</h2>
                     
-                    <div class="skill-node available" onclick="learnSkill('transformer')">
-                        <span class="skill-icon">⚡</span>
-                        <div class="skill-name">Process Transformer</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #ff6b6b;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b6b;">Object Language</div>
+                            <div class="lang-text">The wave function is a real physical thing that collapses when measured. Before measurement, the particle exists in multiple states simultaneously. Measurement causes the collapse.</div>
+                        </div>
+                        
+                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #4a9eff;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a9eff;">Process Language</div>
+                            <div class="lang-text process-text">The wave function describes our information about measurement outcomes. Measurement apparatus interacts with quantum systems, producing definite results. The mathematical description updates to reflect new information gained through interaction.</div>
+                        </div>
                     </div>
-                    
-                    <div class="skill-node locked" onclick="unlockSkill('alchemist')">
-                        <span class="skill-icon">🧪</span>
-                        <div class="skill-name">Language Alchemist</div>
-                    </div>
-                    
-                    <div class="skill-node locked" onclick="unlockSkill('master')">
-                        <span class="skill-icon">🏆</span>
-                        <div class="skill-name">Reality Describer</div>
+
+                    <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(74, 158, 255, 0.15)); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; color: #ffd93d; margin-bottom: 0.5rem; font-weight: bold;">The Irony</div>
+                        <div style="font-size: 1.05rem; line-height: 1.6; color: #ffffff; font-style: italic;">
+                            By treating our mathematical tool (the wave function) as a physical object, we created the "measurement problem." The mystery dissolves when we recognize that updating mathematical descriptions after gaining information isn't a physical collapse—it's simply learning what happened.
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Achievement Showcase -->
-            <div class="achievement-showcase" id="achievementShowcase" style="display: none;">
-                <h2 style="text-align: center; color: #ffd700; margin-bottom: 2rem;">Achievements Unlocked</h2>
-                
-                <div class="achievement-grid">
-                    <div class="achievement-badge earned">
-                        <span class="achievement-icon">🌟</span>
-                        <div class="achievement-name">First Transformation</div>
-                        <div class="achievement-description">Completed your first process language translation</div>
-                    </div>
+                <!-- Slide 3: The Observer Problem -->
+                <div class="lang-slide" data-slide="3">
+                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">The Observer Problem</h2>
                     
-                    <div class="achievement-badge">
-                        <span class="achievement-icon">🔥</span>
-                        <div class="achievement-name">Week Warrior</div>
-                        <div class="achievement-description">Practice 7 days in a row</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #ff6b6b;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b6b;">Object Language</div>
+                            <div class="lang-text">The observer is fundamentally different from the observed system. Consciousness plays a special role in quantum mechanics. The observer causes wave function collapse through the act of observation.</div>
+                        </div>
+                        
+                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #4a9eff;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a9eff;">Process Language</div>
+                            <div class="lang-text process-text">Measurement apparatus interacts with quantum systems through physical coupling. Macroscopic devices undergo irreversible decoherence processes. No special consciousness mechanism needed—just thermodynamically irreversible interactions that leave records.</div>
+                        </div>
                     </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(74, 158, 255, 0.15)); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; color: #ffd93d; margin-bottom: 0.5rem; font-weight: bold;">The Irony</div>
+                        <div style="font-size: 1.05rem; line-height: 1.6; color: #ffffff; font-style: italic;">
+                            We invented a mystery about consciousness affecting physics because we separated "observer" from "observed" as distinct object-types. The puzzle vanishes when we describe ongoing physical interactions between coupled systems, regardless of whether anyone's watching.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 4: Quantum Entanglement -->
+                <div class="lang-slide" data-slide="4">
+                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">Quantum Entanglement</h2>
                     
-                    <div class="achievement-badge">
-                        <span class="achievement-icon">🎯</span>
-                        <div class="achievement-name">Precision Master</div>
-                        <div class="achievement-description">Achieve 95% translation accuracy</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #ff6b6b;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b6b;">Object Language</div>
+                            <div class="lang-text">Two particles are separate objects that somehow remain mysteriously connected. Measuring one particle instantly affects the other, even across vast distances. This is spooky action at a distance.</div>
+                        </div>
+                        
+                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #4a9eff;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a9eff;">Process Language</div>
+                            <div class="lang-text process-text">A single quantum system undergoes processes that produce correlated detection events. The correlation pattern emerges from how the system evolved, not from particles sending signals. Measurements reveal pre-existing correlations, not create new connections.</div>
+                        </div>
                     </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(74, 158, 255, 0.15)); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; color: #ffd93d; margin-bottom: 0.5rem; font-weight: bold;">The Irony</div>
+                        <div style="font-size: 1.05rem; line-height: 1.6; color: #ffffff; font-style: italic;">
+                            "Spooky action" only seems spooky if we insist particles are separate objects that need to communicate. When we describe a single evolving system producing correlated outcomes, the mystery evaporates. The spookiness was linguistic, not physical.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 5: The Nature of Time -->
+                <div class="lang-slide" data-slide="5">
+                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">The Nature of Time</h2>
                     
-                    <div class="achievement-badge">
-                        <span class="achievement-icon">👑</span>
-                        <div class="achievement-name">Community Leader</div>
-                        <div class="achievement-description">Help 10 other learners</div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #ff6b6b;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b6b;">Object Language</div>
+                            <div class="lang-text">Time is a dimension like space—a container through which objects move. The past, present, and future all exist simultaneously in the block universe. Time travel might be possible.</div>
+                        </div>
+                        
+                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #4a9eff;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a9eff;">Process Language</div>
+                            <div class="lang-text process-text">Time parameterizes change and ordering of events. Processes occur, transform, and create new patterns. The universe evolves toward increasing complexity through irreversible thermodynamic processes. Time measures transformation, not location in a container.</div>
+                        </div>
                     </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(74, 158, 255, 0.15)); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; color: #ffd93d; margin-bottom: 0.5rem; font-weight: bold;">The Irony</div>
+                        <div style="font-size: 1.05rem; line-height: 1.6; color: #ffffff; font-style: italic;">
+                            Spatializing time—treating it as a place you can visit—creates paradoxes about causality and free will. These dissolve when we recognize time as the parameter describing how processes unfold toward complexity, not a warehouse of frozen moments awaiting visitors.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 6: Scale-Dependent Field Theory -->
+                <div class="lang-slide" data-slide="6">
+                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">Scale-Dependent Field Theory</h2>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
+                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #ff6b6b;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b6b;">Object Language</div>
+                            <div class="lang-text">There are quantum fields at small scales and classical fields at large scales. These are fundamentally different types of things. We need to unify the quantum realm with the classical realm.</div>
+                        </div>
+                        
+                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #4a9eff;">
+                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a9eff;">Process Language</div>
+                            <div class="lang-text process-text">Field dynamics exhibit scale-dependent coupling strengths. Auxiliary fields Ξ and Ψμ mediate interactions across scales. What appears quantum at one scale emerges as classical behavior at another through renormalization group flow and decoherence processes.</div>
+                        </div>
+                    </div>
+
+                    <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(74, 158, 255, 0.15)); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
+                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; color: #ffd93d; margin-bottom: 0.5rem; font-weight: bold;">The Irony</div>
+                        <div style="font-size: 1.05rem; line-height: 1.6; color: #ffffff; font-style: italic;">
+                            The quantum-classical "divide" exists primarily in our language, not in nature. By describing field dynamics as scale-dependent processes rather than separate object-types, we eliminate the need to "bridge" artificially separated domains. The auxiliary fields reveal themselves as mediators not between different kinds of reality, but between different measurement scales of the same ongoing processes.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation -->
+                <div class="slide-navigation">
+                    <button class="back-button" onclick="prevSlide()" id="prevSlideBtn">← Previous</button>
+                    <span style="color: #999999; font-size: 1rem;" id="slideCounter">1 / 6</span>
+                    <button class="back-button" onclick="nextSlide()" id="nextSlideBtn">Next →</button>
+                </div>
+
+                <div class="slide-dots">
+                    <div class="slide-dot active" onclick="goToLangSlide(1)"></div>
+                    <div class="slide-dot" onclick="goToLangSlide(2)"></div>
+                    <div class="slide-dot" onclick="goToLangSlide(3)"></div>
+                    <div class="slide-dot" onclick="goToLangSlide(4)"></div>
+                    <div class="slide-dot" onclick="goToLangSlide(5)"></div>
+                    <div class="slide-dot" onclick="goToLangSlide(6)"></div>
                 </div>
             </div>
         </div>
@@ -1573,7 +1300,7 @@
                     <p><strong>New Enhancement: Infinitive → Gerund Transformation</strong></p>
                     <p>This upgraded translator now converts infinitives like "to learn" into gerunds like "learning" to better capture ongoing processes:</p>
                     <ul>
-                        <li><strong>"Our purpose is to learn"</strong> → <strong>"Our purpose emerges as learning"</strong></li>
+                        <li><strong>"Our purpose is to learn"</strong> → <strong>"Our purposing emerges as learning"</strong></li>
                         <li><strong>"The goal is to understand"</strong> → <strong>"Goal-seeking emerges as understanding"</strong></li>
                         <li><strong>"We aim to discover"</strong> → <strong>"We aim discovering"</strong></li>
                     </ul>
@@ -1586,15 +1313,6 @@
                     </ul>
                 </div>
 
-                <div class="translator-controls">
-                    <div class="intensity-selector">
-                        <span style="color: #d0d0d0; margin-right: 1rem;">Intensity:</span>
-                        <button class="intensity-btn" data-level="gentle">Gentle</button>
-                        <button class="intensity-btn active" data-level="moderate">Moderate</button>
-                        <button class="intensity-btn" data-level="strong">Strong</button>
-                    </div>
-                </div>
-
                 <textarea id="inputText" rows="6" placeholder="Type or paste your text here..."></textarea>
                 
                 <div style="text-align: center; margin-top: 1.5rem;">
@@ -1604,42 +1322,133 @@
                 <div id="outputSection" class="hidden">
                     <h2>Process-Based Version</h2>
                     <div id="outputText"></div>
-                    
-                    <div class="translation-metrics" id="translationMetrics">
-                        <div class="metric">
-                            <div class="metric-value" id="staticReduction">-7</div>
-                            <div class="metric-label">Static Words Reduced</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value" id="processIncrease">+5</div>
-                            <div class="metric-label">Process Words Added</div>
-                        </div>
-                        <div class="metric">
-                            <div class="metric-value" id="dynamicShift">✓</div>
-                            <div class="metric-label">Flow Enhanced</div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
 
-        <!-- LANGUAGE PARADOX PAGE (unchanged from previous version) -->
-        <div id="language-paradox" class="page">
+        <!-- FIELD THEORY PAGE -->
+        <div id="field-theory" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="subpage-header">
-                <h1>The Language Paradox</h1>
-                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">How the structure of language shapes—and limits—our understanding of reality</p>
+                <h1>Field Theory</h1>
+                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Exploring extensions of quantum field theory to consciousness and biological systems</p>
             </div>
+            <div class="subpage-content">
+                <h2>Theoretical Framework</h2>
+                <p>Field theory approaches build upon established quantum field theory while exploring extensions that might address consciousness and information processing. The mathematical framework utilizes tensor calculus and differential geometry to describe field interactions across multiple scales.</p>
 
-            <div style="max-width: 1000px; margin: 0 auto;">
-                <!-- All 6 slides remain the same as in previous version -->
-                <!-- For brevity, I'm not reproducing them here, but they would be identical -->
+                <h2>Scale-Dependent Dynamics</h2>
+                <p>The theoretical framework incorporates auxiliary fields that mediate interactions across different scales. A scalar field Ξ with discrete Z₂ symmetry and a vector field Ψμ with hidden U(1) gauge symmetry emerge from mathematical consistency requirements rather than arbitrary theoretical choices.</p>
+
+                <h2>Information Processing</h2>
+                <p>Field dynamics exhibit properties that might be relevant to biological information processing. The framework explores how complex behaviors and consciousness might emerge from field interactions, treating information as a fundamental quantity alongside energy and momentum.</p>
+
+                <h2>Current Explorations</h2>
+                <p>Active research includes non-local correlations, emergent complexity from field interactions, and the development of testable predictions that might distinguish field-based approaches from purely computational models of consciousness.</p>
+
+                <h2>Mathematical Development</h2>
+                <p>The field equations incorporate both quantum mechanical and thermodynamic considerations, using methods from renormalization group theory to understand how microscopic field dynamics might give rise to macroscopic phenomena in biological systems.</p>
+
+                <h2>Featured Research</h2>
+                <p>For detailed mathematical development: <a onclick="showPage('cosmic-divide')">Bridging the Cosmic Divide</a></p>
+                <p style="margin-top: 1rem;">For conceptual foundations: <a onclick="showPage('language-paradox')">The Language Paradox</a></p>
+                
+                <h2>Educational Resources</h2>
+                <p>New to process thinking? Start with our <a onclick="showPage('translator')">Language Translator</a> to experience how shifting from object to process descriptions changes understanding.</p>
             </div>
         </div>
 
-        <!-- Other pages remain the same... -->
-        <!-- FIELD THEORY, COSMIC DIVIDE, IDEAS, PROJECTS, CONTACT pages unchanged -->
+        <!-- OTHER IDEAS PAGE -->
+        <div id="ideas" class="page">
+            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+            <div class="subpage-header">
+                <h1>Other Ideas</h1>
+                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Interdisciplinary explorations at the crossroads of physics, consciousness, and philosophy</p>
+            </div>
+            <div class="subpage-content">
+                <h2>Consciousness Studies</h2>
+                <p>Explorations encompass broader questions about the nature of consciousness, including the hard problem of consciousness and the relationship between subjective experience and physical processes. The approach investigates how field-based descriptions might offer insights into consciousness that purely computational models miss.</p>
 
+                <h2>Information Theory Applications</h2>
+                <p>Investigating applications of information theory to biological systems, particularly in understanding how complex behaviors and consciousness might emerge from information processing patterns. This work explores treating information as a fundamental physical quantity rather than an emergent property.</p>
+
+                <h2>Emergence and Complexity</h2>
+                <p>How do complex systems exhibit properties that aren't present in their components? Field theory approaches offer mathematical tools for understanding emergence without invoking mysterious "higher-level" causation.</p>
+
+                <h2>Language and Reality</h2>
+                <p>The relationship between how we describe reality and what we can discover about it. Process language reveals patterns and possibilities that object language obscures, suggesting that linguistic choices have profound consequences for scientific understanding.</p>
+
+                <h2>Interdisciplinary Methods</h2>
+                <p>At the crossroads of physics, neuroscience, and philosophy, ideas emerge that challenge conventional boundaries. Mathematical frameworks meet experimental questions and philosophical inquiry in ways that illuminate all three domains.</p>
+
+                <h2>Educational Philosophy</h2>
+                <p>How can we teach complex ideas in ways that honor both intellectual rigor and accessibility? The <a onclick="showPage('academy')">Process Language Academy</a> represents one approach to making sophisticated concepts engaging and transformative.</p>
+            </div>
+        </div>
+
+        <!-- PROJECTS PAGE -->
+        <div id="projects" class="page">
+            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+            <div class="subpage-header">
+                <h1>Projects</h1>
+                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Current work and collaborative opportunities</p>
+            </div>
+            <div class="subpage-content">
+                <h2>Current Work</h2>
+                <p>Active projects investigate different aspects of field theory applications to consciousness studies, combining theoretical development with questions about experimental validation. The work spans mathematical modeling, conceptual analysis, and educational resource development.</p>
+
+                <h2>Scale-Dependent Field Theory</h2>
+                <p>Developing mathematical frameworks that describe how field dynamics change across different scales, with particular attention to how quantum field behaviors transition to classical field behaviors through auxiliary field interactions.</p>
+
+                <h2>Process Language Development</h2>
+                <p>Creating systematic methods for translating object-language descriptions into process-language alternatives. This includes developing educational materials, software tools, and training programs.</p>
+
+                <h2>Educational Initiatives</h2>
+                <p>The <a onclick="showPage('academy')">Process Language Academy</a> represents a new approach to science education that emphasizes the relationship between language and understanding. Additional educational projects include workshops, online courses, and collaborative learning environments.</p>
+
+                <h2>Collaborative Opportunities</h2>
+                <p>Open to connecting with researchers from all disciplines who share curiosity about consciousness, field theory applications, and fundamental questions about reality. Particular interest in collaborations with:</p>
+                
+                <p><strong>Physicists and Mathematicians:</strong> Developing rigorous mathematical frameworks for scale-dependent field theory and exploring connections to established physics.</p>
+                
+                <p><strong>Neuroscientists and Cognitive Scientists:</strong> Investigating how field-based approaches might inform understanding of neural information processing and consciousness.</p>
+                
+                <p><strong>Educators and Learning Specialists:</strong> Developing and testing new approaches to science education that emphasize process thinking and linguistic awareness.</p>
+                
+                <p><strong>Organizations:</strong> NASA, DARPA, and other experimental venues interested in supporting innovative approaches to fundamental questions.</p>
+
+                <h2>Publications and Presentations</h2>
+                <p>Research findings are shared through academic publications, conference presentations, and online resources. All work emphasizes accessibility without sacrificing intellectual rigor.</p>
+            </div>
+        </div>
+
+        <!-- CONTACT PAGE -->
+        <div id="contact" class="page">
+            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+            <div class="subpage-header">
+                <h1>Contact</h1>
+                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Connect with fellow explorers and researchers</p>
+            </div>
+            <div class="subpage-content">
+                <h3>Roy Roberts, PhD</h3>
+                <p><strong>Email:</strong> <a href="mailto:roy@fldtheory.org">roy@fldtheory.org</a></p>
+                <p><strong>ORCID:</strong> <a href="https://orcid.org/0009-0002-5048-9724" target="_blank">0009-0002-5048-9724</a></p>
+                <p><strong>Publications:</strong> <a href="https://figshare.com/authors/Roy_Roberts/19338289" target="_blank">Figshare</a></p>
+                <p><strong>Organization:</strong> HOW2LLC</p>
+                
+                <h2 style="margin-top: 2rem;">Connect</h2>
+                <p>Open to connecting with researchers from all disciplines who share curiosity about consciousness, field theory applications, and fundamental questions about reality. Whether you're an independent thinker, academic researcher, or part of larger organizations, collaboration possibilities abound.</p>
+
+                <h2>Research Interests</h2>
+                <p>Primary focus areas include scale-dependent field theory, process language development, consciousness studies, and educational innovation. Always interested in interdisciplinary approaches that bridge theoretical rigor with practical applications.</p>
+
+                <h2>Collaboration Philosophy</h2>
+                <p>Driven by the principle that "our greatest purpose is to learn, and to share what we learn." Collaborative work thrives when diverse perspectives combine with shared commitment to curiosity and intellectual honesty.</p>
+
+                <h2>Speaking and Workshops</h2>
+                <p>Available for presentations, workshops, and educational events focused on process language, consciousness studies, and innovative approaches to science education. Experience ranges from academic conferences to public outreach events.</p>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -1661,372 +1470,60 @@
     </footer>
 
     <script>
-        // Enhanced User Progress System with Journey Tracking
-        let userProgress = {
-            level: 1,
-            xp: 0,
-            streak: 0,
-            lastVisit: null,
-            completedPathways: [],
-            achievements: [],
-            translationsCompleted: 0,
-            journeySteps: {
-                'cosmic-divide': false,
-                'language-paradox': false,
-                'translator': false,
-                'academy': false
-            },
-            currentTrailStep: 0,
-            userType: null
+        // Enhanced translator with gerund transformations and process language
+        const translatorMap = {
+            // Basic verb transformations - enhanced
+            "is": "emerges as",
+            "are": "manifest as", 
+            "was": "arose as",
+            "were": "interacted as",
+            "be": "transform into",
+            "being": "continuing through",
+            "been": "cohered as",
+            
+            // Infinitive to gerund transformations for process flow
+            "to learn": "learning",
+            "to share": "sharing",
+            "to discover": "discovering",
+            "to explore": "exploring",
+            "to understand": "understanding",
+            "to create": "creating",
+            "to develop": "developing",
+            "to investigate": "investigating",
+            "to research": "researching",
+            "to study": "studying",
+            "to analyze": "analyzing",
+            "to observe": "observing",
+            "to measure": "measuring",
+            "to calculate": "calculating",
+            "to solve": "solving",
+            "to build": "building",
+            "to design": "designing",
+            "to implement": "implementing",
+            "to process": "processing",
+            "to transform": "transforming",
+            "to evolve": "evolving",
+            "to emerge": "emerging",
+            "to interact": "interacting",
+            
+            // Physics objects → processes
+            "particle": "field excitation",
+            "particles": "field excitations",
+            "wave": "propagating disturbance",
+            "waves": "propagating disturbances",
+            "electron": "electronic excitation",
+            "electrons": "electronic excitations",
+            "photon": "electromagnetic excitation",
+            "photons": "electromagnetic excitations",
+            
+            // Enhanced process patterns
+            "the purpose": "purposing",
+            "the goal": "goal-seeking",
+            "the solution": "solution-emerging",
+            "the result": "result-manifesting"
         };
 
-        // Trail step tracking
-        function updateBreadcrumb() {
-            const breadcrumb = document.getElementById('navBreadcrumb');
-            const steps = breadcrumb.querySelectorAll('.breadcrumb-step');
-            
-            steps.forEach((step, index) => {
-                step.classList.remove('completed', 'current', 'upcoming');
-                
-                if (index < userProgress.currentTrailStep) {
-                    step.classList.add('completed');
-                } else if (index === userProgress.currentTrailStep) {
-                    step.classList.add('current');
-                } else {
-                    step.classList.add('upcoming');
-                }
-            });
-        }
-
-        // Show breadcrumb when user is on trail
-        function showBreadcrumbIfOnTrail(pageId) {
-            const trailPages = ['cosmic-divide', 'language-paradox', 'translator', 'academy'];
-            const breadcrumb = document.getElementById('navBreadcrumb');
-            
-            if (trailPages.includes(pageId)) {
-                breadcrumb.classList.add('active');
-                userProgress.currentTrailStep = trailPages.indexOf(pageId);
-                updateBreadcrumb();
-            } else {
-                breadcrumb.classList.remove('active');
-            }
-        }
-
-        // Trail step functions for different user types
-        function showTrailStep(userType) {
-            userProgress.userType = userType;
-            saveUserProgress();
-            
-            // Award XP for identifying user type
-            awardXP(15, `Identified as ${userType}`);
-            
-            // Customized trail based on user type
-            switch(userType) {
-                case 'physicist':
-                    showTrailNotification("Perfect! Let's start with the physics that will blow your mind...");
-                    setTimeout(() => showPage('cosmic-divide'), 2000);
-                    break;
-                case 'thinker':
-                    showTrailNotification("Excellent! Prepare to have your reality gently turned inside out...");
-                    setTimeout(() => showPage('language-paradox'), 2000);
-                    break;
-                case 'practical':
-                    showTrailNotification("Smart choice! Let's see some immediate practical applications...");
-                    setTimeout(() => showPage('translator'), 2000);
-                    break;
-                case 'curious':
-                    showTrailNotification("Curiosity is the best compass! Starting with the cosmic mystery...");
-                    setTimeout(() => showPage('cosmic-divide'), 2000);
-                    break;
-            }
-        }
-
-        // Show trail notification
-        function showTrailNotification(message) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: linear-gradient(135deg, rgba(74, 158, 255, 0.9), rgba(255, 215, 0, 0.9));
-                color: #000;
-                padding: 2rem 3rem;
-                border-radius: 15px;
-                font-size: 1.3rem;
-                font-weight: bold;
-                z-index: 10000;
-                text-align: center;
-                box-shadow: 0 0 30px rgba(74, 158, 255, 0.6);
-                max-width: 500px;
-                line-height: 1.5;
-            `;
-            notification.innerHTML = message;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.style.opacity = '0';
-                notification.style.transform = 'translate(-50%, -50%) scale(0.8)';
-                notification.style.transition = 'all 0.5s ease';
-                setTimeout(() => notification.remove(), 500);
-            }, 1800);
-        }
-
-        // Enhanced page navigation with journey tracking
-        function showPage(pageId) {
-            // Track journey progress
-            if (userProgress.journeySteps.hasOwnProperty(pageId)) {
-                if (!userProgress.journeySteps[pageId]) {
-                    userProgress.journeySteps[pageId] = true;
-                    
-                    // Award XP for first-time page visits in the journey
-                    const xpRewards = {
-                        'cosmic-divide': 25,
-                        'language-paradox': 30,
-                        'translator': 35,
-                        'academy': 50
-                    };
-                    
-                    awardXP(xpRewards[pageId] || 10, `Discovered ${pageId.replace('-', ' ')}`);
-                    
-                    // Show encouraging messages
-                    const encouragements = {
-                        'cosmic-divide': "🌌 You've entered the cosmic mystery! Ready to see how language creates physics 'problems'?",
-                        'language-paradox': "🔍 Now you're seeing the matrix! Notice how language shapes reality perception.",
-                        'translator': "⚡ Time to get hands-on! Experience the transformation yourself.",
-                        'academy': "🎓 Welcome to mastery! You're ready to transform how you think and communicate."
-                    };
-                    
-                    if (encouragements[pageId]) {
-                        setTimeout(() => {
-                            showTrailNotification(encouragements[pageId]);
-                        }, 1000);
-                    }
-                }
-            }
-            
-            // Show breadcrumb navigation
-            showBreadcrumbIfOnTrail(pageId);
-            
-            // Regular page navigation
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-            
-            document.querySelectorAll('.nav-btn').forEach(button => {
-                button.classList.remove('active');
-            });
-            const activeButton = document.querySelector(`[data-page="${pageId}"]`);
-            if (activeButton) {
-                activeButton.classList.add('active');
-            }
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            updatePageDisplay(pageId);
-            
-            saveUserProgress();
-        }
-
-        // Check if user has completed the discovery trail
-        function checkTrailCompletion() {
-            const requiredSteps = ['cosmic-divide', 'language-paradox', 'translator'];
-            const completed = requiredSteps.every(step => userProgress.journeySteps[step]);
-            
-            if (completed && !userProgress.achievements.includes('trail-explorer')) {
-                userProgress.achievements.push('trail-explorer');
-                showAchievementUnlocked('Trail Explorer', '🗺️');
-                
-                // Suggest academy if they haven't been there yet
-                if (!userProgress.journeySteps['academy']) {
-                    setTimeout(() => {
-                        const suggestion = confirm("🎉 You've explored the discovery trail! Ready to master these concepts in the Process Language Academy?");
-                        if (suggestion) {
-                            showPage('academy');
-                        }
-                    }, 2000);
-                }
-            }
-        }
-
-        // Enhanced trail step animations
-        function animateTrailStep(stepElement) {
-            stepElement.style.transform = 'scale(0.95)';
-            stepElement.style.transition = 'all 0.2s ease';
-            
-            setTimeout(() => {
-                stepElement.style.transform = 'scale(1.05)';
-                setTimeout(() => {
-                    stepElement.style.transform = 'scale(1)';
-                }, 150);
-            }, 100);
-        }
-
-        // Add click handlers for trail steps
-        document.addEventListener('DOMContentLoaded', function() {
-            const trailSteps = document.querySelectorAll('.trail-step');
-            trailSteps.forEach(step => {
-                step.addEventListener('click', function() {
-                    animateTrailStep(this);
-                });
-            });
-            
-            // Check trail completion when any page loads
-            setTimeout(checkTrailCompletion, 1000);
-        });
-
-        // Load user progress from localStorage
-        function loadUserProgress() {
-            const saved = localStorage.getItem('processAcademyProgress');
-            if (saved) {
-                userProgress = { ...userProgress, ...JSON.parse(saved) };
-            }
-            updateProgressDisplay();
-        }
-
-        // Save user progress to localStorage
-        function saveUserProgress() {
-            localStorage.setItem('processAcademyProgress', JSON.stringify(userProgress));
-        }
-
-        // Update progress display
-        function updateProgressDisplay() {
-            document.getElementById('userLevel').textContent = userProgress.level;
-            document.getElementById('userXP').textContent = userProgress.xp;
-            document.getElementById('userStreak').textContent = userProgress.streak;
-            
-            // Show progress indicator only if user has started learning
-            if (userProgress.xp > 0) {
-                document.getElementById('userProgress').classList.add('active');
-            }
-        }
-
-        // Award XP and check for level up
-        function awardXP(amount, reason = '') {
-            userProgress.xp += amount;
-            
-            // Level up logic
-            const xpForNextLevel = userProgress.level * 100;
-            if (userProgress.xp >= xpForNextLevel) {
-                userProgress.level++;
-                userProgress.xp = 0;
-                showLevelUpNotification();
-            }
-            
-            saveUserProgress();
-            updateProgressDisplay();
-        }
-
-        // Show level up notification
-        function showLevelUpNotification() {
-            // Create temporary notification
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                background: linear-gradient(135deg, #ffd700, #ff8c00);
-                color: #000;
-                padding: 2rem;
-                border-radius: 15px;
-                font-size: 1.5rem;
-                font-weight: bold;
-                z-index: 10000;
-                text-align: center;
-                box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
-            `;
-            notification.innerHTML = `🎉 LEVEL UP! 🎉<br>You are now Level ${userProgress.level}!`;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-        }
-
-        // Enhanced translator with intensity levels and metrics
-        const translatorMaps = {
-            gentle: {
-                "is": "appears as",
-                "are": "seem to be",
-                "was": "emerged as",
-                "were": "appeared as"
-            },
-            moderate: {
-                "is": "emerges as",
-                "are": "manifest as", 
-                "was": "arose as",
-                "were": "interacted as",
-                "be": "transform into",
-                "being": "continuing through",
-                "been": "cohered as",
-                
-                // Infinitive to gerund transformations
-                "to learn": "learning",
-                "to share": "sharing",
-                "to discover": "discovering",
-                "to explore": "exploring",
-                "to understand": "understanding",
-                "to create": "creating",
-                "to develop": "developing",
-                "to investigate": "investigating",
-                "to research": "researching",
-                "to study": "studying",
-                "to analyze": "analyzing",
-                "to observe": "observing",
-                "to measure": "measuring",
-                "to calculate": "calculating",
-                "to solve": "solving",
-                "to build": "building",
-                "to design": "designing",
-                "to implement": "implementing",
-                "to process": "processing",
-                "to transform": "transforming",
-                "to evolve": "evolving",
-                "to emerge": "emerging",
-                "to interact": "interacting",
-                
-                // Physics objects → processes
-                "particle": "field excitation",
-                "particles": "field excitations",
-                "wave": "propagating disturbance",
-                "waves": "propagating disturbances",
-                "electron": "electronic excitation",
-                "electrons": "electronic excitations",
-                "photon": "electromagnetic excitation",
-                "photons": "electromagnetic excitations",
-                
-                // Enhanced process patterns
-                "the purpose": "purposing",
-                "the goal": "goal-seeking",
-                "the solution": "solution-emerging",
-                "the result": "result-manifesting"
-            },
-            strong: {
-                // All moderate transformations plus more aggressive ones
-                "is": "manifests through ongoing processes as",
-                "are": "continuously emerge as",
-                "was": "emerged through dynamic processes as",
-                "were": "interacted through complex patterns as",
-                
-                // Add all moderate transformations
-                ...{}, // Would include all moderate transformations
-                
-                // More aggressive transformations
-                "exists": "continuously manifests through",
-                "exist": "continuously manifest through",
-                "has": "engages in relationship with",
-                "have": "engage in relationship with"
-            }
-        };
-
-        let currentIntensity = 'moderate';
-
-        // Enhanced translation function with journey integration
+        // Enhanced translation function with better pattern recognition
         function translateText() {
             const inputElement = document.getElementById('inputText');
             const outputElement = document.getElementById('outputText');
@@ -2044,172 +1541,31 @@
             }
             
             try {
-                const translatorMap = translatorMaps[currentIntensity];
-                const originalWordCount = text.split(/\s+/).length;
-                let staticWordsFound = 0;
-                
-                // Enhanced translation with two-pass processing
+                // First pass: Handle longer phrases (order matters!)
                 const phrases = Object.keys(translatorMap).filter(key => key.includes(' '));
-                phrases.sort((a, b) => b.length - a.length);
+                phrases.sort((a, b) => b.length - a.length); // Process longer phrases first
                 
                 phrases.forEach(phrase => {
                     const regex = new RegExp('\\b' + phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'gi');
-                    const matches = text.match(regex);
-                    if (matches) staticWordsFound += matches.length;
                     text = text.replace(regex, translatorMap[phrase]);
                 });
                 
+                // Second pass: Handle single words
                 const words = Object.keys(translatorMap).filter(key => !key.includes(' '));
                 const pattern = new RegExp('\\b(' + words.join('|') + ')\\b', 'gi');
                 
                 text = text.replace(pattern, function(match) {
-                    staticWordsFound++;
                     return translatorMap[match.toLowerCase()] || match;
                 });
                 
                 outputElement.textContent = text;
                 outputSection.classList.remove('hidden');
                 
-                // Calculate and display metrics (simplified, no percentages)
-                const newWordCount = text.split(/\s+/).length;
-                const processWordsAdded = newWordCount - originalWordCount;
-                
-                document.getElementById('staticReduction').textContent = `-${staticWordsFound}`;
-                document.getElementById('processIncrease').textContent = `+${processWordsAdded}`;
-                document.getElementById('dynamicShift').textContent = processWordsAdded > 0 ? '✓' : '○';
-                
-                // Award XP for translation
-                awardXP(10, 'Translation completed');
-                userProgress.translationsCompleted++;
-                
-                // First translation achievement
-                if (userProgress.translationsCompleted === 1 && !userProgress.achievements.includes('first-transformation')) {
-                    userProgress.achievements.push('first-transformation');
-                    showAchievementUnlocked('First Transformation', '🌟');
-                    
-                    // Suggest academy after first translation
-                    setTimeout(() => {
-                        showTrailNotification("🎉 You've experienced the power of process language! Ready to dive deeper in the Academy?");
-                        setTimeout(() => {
-                            const suggestion = confirm("Continue your journey in the Process Language Academy?");
-                            if (suggestion) {
-                                showPage('academy');
-                            }
-                        }, 3000);
-                    }, 2000);
-                }
-                
-                checkAchievements();
-                checkTrailCompletion();
-                
             } catch (error) {
                 console.error('Translation error:', error);
                 outputElement.textContent = 'Error processing text. Please try again.';
                 outputSection.classList.remove('hidden');
             }
-        }
-
-        // Intensity selector handlers
-        document.addEventListener('DOMContentLoaded', function() {
-            const intensityBtns = document.querySelectorAll('.intensity-btn[data-level]');
-            intensityBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    intensityBtns.forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    currentIntensity = this.dataset.level;
-                });
-            });
-        });
-
-        // Academy pathway functions
-        function showPathway(type) {
-            showPage('academy');
-            // Scroll to pathway selector
-            setTimeout(() => {
-                document.getElementById('pathwaySelector').scrollIntoView({ behavior: 'smooth' });
-            }, 300);
-        }
-
-        function startPathway(pathwayId) {
-            awardXP(25, `Started ${pathwayId} pathway`);
-            
-            // Simulate pathway starting
-            alert(`Starting ${pathwayId} pathway! This is where the structured learning content would begin.`);
-            
-            // For demo, immediately show some progress
-            setTimeout(() => {
-                showProgressDashboard();
-            }, 1000);
-        }
-
-        function showPathways() {
-            document.getElementById('pathwaySelector').style.display = 'block';
-            document.getElementById('progressVisualization').style.display = 'none';
-            document.getElementById('achievementShowcase').style.display = 'none';
-        }
-
-        function showProgressDashboard() {
-            document.getElementById('pathwaySelector').style.display = 'none';
-            document.getElementById('progressVisualization').style.display = 'block';
-            document.getElementById('achievementShowcase').style.display = 'block';
-        }
-
-        function showCommunity() {
-            alert('Community features coming soon! Connect with other process language learners, share translations, and collaborate on challenging texts.');
-        }
-
-        // Skill interaction functions
-        function reviewSkill(skillId) {
-            alert(`Reviewing ${skillId} skill. You've mastered identifying static language patterns!`);
-        }
-
-        function learnSkill(skillId) {
-            awardXP(50, `Learning ${skillId} skill`);
-            alert(`Learning ${skillId}! This advanced module teaches sophisticated process transformations.`);
-        }
-
-        function unlockSkill(skillId) {
-            alert(`${skillId} skill locked. Complete the Process Transformer skill first!`);
-        }
-
-        // Achievement system
-        function checkAchievements() {
-            // Week Warrior
-            if (userProgress.streak >= 7 && !userProgress.achievements.includes('week-warrior')) {
-                userProgress.achievements.push('week-warrior');
-                showAchievementUnlocked('Week Warrior', '🔥');
-            }
-            
-            // Precision Master
-            if (userProgress.translationsCompleted >= 20 && !userProgress.achievements.includes('precision-master')) {
-                userProgress.achievements.push('precision-master');
-                showAchievementUnlocked('Precision Master', '🎯');
-            }
-            
-            saveUserProgress();
-        }
-
-        function showAchievementUnlocked(name, icon) {
-            const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: linear-gradient(135deg, #ffd700, #ff8c00);
-                color: #000;
-                padding: 1rem 2rem;
-                border-radius: 10px;
-                font-weight: bold;
-                z-index: 10000;
-                box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-                animation: slideIn 0.5s ease-out;
-            `;
-            notification.innerHTML = `${icon} Achievement Unlocked: ${name}!`;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.remove();
-            }, 4000);
         }
 
         // Create stars animation
@@ -2254,9 +1610,72 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
             updatePageDisplay(pageId);
             
-            // Award XP for page visits (small amount)
-            if (pageId === 'academy') {
-                awardXP(5, 'Visited Academy');
+            // Reset language paradox slides when entering that page
+            if (pageId === 'language-paradox') {
+                currentLangSlide = 1;
+                updateLangSlide();
+            }
+        }
+
+        // Language Paradox slides
+        let currentLangSlide = 1;
+        const totalLangSlides = 6;
+
+        function nextSlide() {
+            if (currentLangSlide < totalLangSlides) {
+                currentLangSlide++;
+                updateLangSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (currentLangSlide > 1) {
+                currentLangSlide--;
+                updateLangSlide();
+            }
+        }
+
+        function goToLangSlide(num) {
+            if (num >= 1 && num <= totalLangSlides) {
+                currentLangSlide = num;
+                updateLangSlide();
+            }
+        }
+
+        function updateLangSlide() {
+            // Hide all slides
+            document.querySelectorAll('.lang-slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Show target slide
+            const targetSlide = document.querySelector(`.lang-slide[data-slide="${currentLangSlide}"]`);
+            if (targetSlide) {
+                targetSlide.classList.add('active');
+            }
+            
+            // Update dots
+            document.querySelectorAll('.slide-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index + 1 === currentLangSlide);
+            });
+            
+            // Update counter and buttons
+            const counter = document.getElementById('slideCounter');
+            const prevBtn = document.getElementById('prevSlideBtn');
+            const nextBtn = document.getElementById('nextSlideBtn');
+            
+            if (counter) {
+                counter.textContent = `${currentLangSlide} / ${totalLangSlides}`;
+            }
+            
+            if (prevBtn) {
+                prevBtn.disabled = currentLangSlide === 1;
+                prevBtn.style.opacity = currentLangSlide === 1 ? '0.5' : '1';
+            }
+            
+            if (nextBtn) {
+                nextBtn.disabled = currentLangSlide === totalLangSlides;
+                nextBtn.style.opacity = currentLangSlide === totalLangSlides ? '0.5' : '1';
             }
         }
 
@@ -2309,7 +1728,6 @@
             try {
                 createStars();
                 initViewCounter();
-                loadUserProgress();
                 
                 // Navigation button handlers
                 document.querySelectorAll('.nav-btn').forEach(button => {
@@ -2327,28 +1745,23 @@
                     translateBtn.addEventListener('click', translateText);
                 }
                 
+                // Initialize language paradox slides
+                updateLangSlide();
+                
             } catch (error) {
                 console.error('Initialization error:', error);
             }
         });
 
-        // Update streak on page load (simplified for demo)
-        window.addEventListener('load', function() {
-            const today = new Date().toDateString();
-            const lastVisit = localStorage.getItem('lastVisit');
-            
-            if (lastVisit !== today) {
-                if (lastVisit && new Date(today) - new Date(lastVisit) === 86400000) {
-                    userProgress.streak++;
-                } else if (!lastVisit) {
-                    userProgress.streak = 1;
-                } else {
-                    userProgress.streak = 1;
+        // Handle keyboard navigation for slides
+        document.addEventListener('keydown', function(event) {
+            const currentPage = document.querySelector('.page.active');
+            if (currentPage && currentPage.id === 'language-paradox') {
+                if (event.key === 'ArrowLeft') {
+                    prevSlide();
+                } else if (event.key === 'ArrowRight') {
+                    nextSlide();
                 }
-                
-                localStorage.setItem('lastVisit', today);
-                saveUserProgress();
-                updateProgressDisplay();
             }
         });
     </script>
