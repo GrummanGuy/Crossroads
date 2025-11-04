@@ -582,22 +582,18 @@
             line-height: 1.6;
         }
 
-        /* Stats Counter - Bottom Right */
+        /* Stats Counter - Footer Integration */
         .stats-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(20, 20, 20, 0.9);
-            padding: 0.8rem 1.2rem;
-            border-radius: 8px;
-            border: 1px solid rgba(74, 158, 255, 0.3);
-            z-index: 2000;
-            font-size: 0.85rem;
+            display: inline-block;
+            font-size: 0.75rem;
+            color: #666;
+            opacity: 0.7;
+            margin-top: 0.5rem;
         }
 
         .stats-container div {
-            margin: 0.3rem 0;
-            color: #b8b8b8;
+            display: inline;
+            margin-right: 1rem;
         }
 
         /* Translator enhanced styles */
@@ -869,13 +865,6 @@
                 text-align: center;
             }
 
-            .stats-container {
-                bottom: 10px;
-                right: 10px;
-                padding: 0.5rem 1rem;
-                font-size: 0.75rem;
-            }
-
             .nav-links {
                 gap: 0.5rem;
             }
@@ -895,13 +884,6 @@
 <body>
     <div class="stars" id="stars"></div>
     
-    <!-- Stats Counter (bottom right) -->
-    <div class="stats-container">
-        <div id="totalViews">Total: 0</div>
-        <div id="uniqueVisitors">Unique: 0</div>
-        <div id="currentPage">Page: Home</div>
-    </div>
-
     <main class="container">
         <!-- Header with CROSSROADS -->
         <div class="header-section">
@@ -1461,6 +1443,12 @@
             
             <div class="footer-info">
                 © 2025 HOW2LLC • CROSSROADS™ • Driven by Curiosity • <a href="https://fldtheory.org">fldtheory.org</a>
+                <br>
+                <div class="stats-container">
+                    <div id="totalViews">Total: 0</div>
+                    <div id="uniqueVisitors">Unique: 0</div>
+                    <div id="currentPage">Page: Home</div>
+                </div>
             </div>
             
             <div class="footer-contact">
