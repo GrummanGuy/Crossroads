@@ -416,6 +416,23 @@
             position: relative;
         }
 
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 900px;
+            height: 400px;
+            background-image: url('https://raw.githubusercontent.com/GrummanGuy/Crossroads/main/images/Contemplating%20the%20Cosmos.png');
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            z-index: -1;
+            pointer-events: none;
+        }
 
         .hero-content {
             max-width: 700px;
@@ -973,7 +990,7 @@
             z-index: 10;
             background: rgba(10, 10, 10, 0.95);
             border-top: 1px solid rgba(74, 158, 255, 0.15);
-            padding: 1.5rem 2rem;
+            padding: 1.5rem 2rem 1rem 2rem;
             margin-top: auto;
         }
 
@@ -981,18 +998,35 @@
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: #888888;
+        }
+
+        .footer-top-row {
+            display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 2rem;
-            font-size: 0.85rem;
-            color: #888888;
+            gap: 1rem;
+        }
+
+        .footer-bottom-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1rem;
         }
 
         .footer-brand {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            flex-wrap: wrap;
+            gap: 0;
         }
 
         .footer-logo {
@@ -1002,18 +1036,14 @@
             letter-spacing: 0.1em;
         }
 
-        .footer-info {
-            text-align: center;
+        .footer-copyright {
+            font-size: 0.8rem;
+        }
+
+        .footer-stats {
+            text-align: right;
             flex: 1;
-        }
-
-        .footer-info a {
-            color: #4a9eff;
-            text-decoration: none;
-        }
-
-        .footer-info a:hover {
-            text-decoration: underline;
+            max-width: 400px;
         }
 
         .footer-contact button {
@@ -1616,40 +1646,24 @@
 
     <footer>
         <div class="footer-content">
-            .footer-top-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer-bottom-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 1rem;
-        }
-
-        .footer-copyright {
-            font-size: 0.8rem;
-            text-align: right;
-            min-width: 200px;
-        }
-
-        .footer-stats {
-            text-align: left;
-            flex: 1;
-            max-width: 400px;
-            min-width: 200px;
-        }
-
-        .footer-contact {
-            text-align: center;
-        }
+            <div class="footer-top-row">
+                <div class="footer-brand">
+                    <span style="color: #d0d0d0;">Driven by Curiosity</span>
+                    <span style="color: #666; margin: 0 1rem;">•</span>
+                    <span class="footer-logo">HOW2LLC</span>
+                    <span style="color: #666; margin: 0 1rem;">•</span>
+                    <span style="font-style: italic; color: #b8b8b8;">"Learning and Sharing What We Learn"</span>
+                </div>
+                
+                <div class="footer-contact">
+                    <button onclick="showPage('contact')">Contact</button>
+                </div>
+            </div>
+            
+            <div class="footer-bottom-row">
+                <div class="footer-copyright">
+                    <span style="color: #888;">© 2025 HOW2LLC • CROSSROADS™</span>
+                </div>
                 
                 <div class="footer-stats">
                     <div class="stats-container">
@@ -2036,6 +2050,3 @@
     </script>
 </body>
 </html>
-
-
-
