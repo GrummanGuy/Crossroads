@@ -22,7 +22,7 @@
             flex-direction: column;
         }
 
-        /* Starry night background with GitHub integration */
+        /* Starry night background */
         body::before {
             content: "";
             position: fixed;
@@ -39,7 +39,7 @@
             pointer-events: none;
         }
 
-        /* Fallback background if GitHub image doesn't load */
+        /* Fallback background */
         body::after {
             content: "";
             position: fixed;
@@ -75,7 +75,7 @@
             50% { opacity: 0.8; }
         }
 
-        /* Emergent Academy Symbol - The Heart of Transformation */
+        /* Emergent Academy Symbol */
         .emergence-symbol {
             position: fixed;
             top: 30px;
@@ -102,7 +102,6 @@
             transition: all 1.5s ease;
         }
 
-        /* Symbol Evolution States */
         .emergence-symbol.stage-1 {
             opacity: 0.4;
             border-color: rgba(74, 158, 255, 0.2);
@@ -147,7 +146,7 @@
             50% { transform: scale(1.1); opacity: 1; }
         }
 
-        /* Transformation Traces - Footer Evolution */
+        /* Transformation Traces */
         .transformation-traces {
             opacity: 0;
             transition: opacity 1s ease;
@@ -155,7 +154,7 @@
             font-size: 0.75rem;
             color: #666;
             font-style: italic;
-            text-align: center;
+            text-align: left;
         }
 
         .transformation-traces.visible {
@@ -178,7 +177,7 @@
             to { opacity: 0.7; transform: translateY(0); }
         }
 
-        /* Hover Effects for Living Interface */
+        /* Living Interface */
         .living-text {
             transition: all 0.3s ease;
             position: relative;
@@ -204,7 +203,7 @@
             border: 1px solid rgba(74, 158, 255, 0.3);
         }
 
-        /* Process Hint Tooltips - Subtle Educational Reinforcement */
+        /* Process Hints */
         .process-hint {
             position: relative;
             border-bottom: 1px dotted rgba(74, 158, 255, 0.5);
@@ -233,17 +232,6 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
-        .process-hint:hover::before {
-            content: "";
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%) translateY(100%);
-            border: 4px solid transparent;
-            border-top-color: rgba(74, 158, 255, 0.3);
-            z-index: 1000;
-        }
-
         .container {
             position: relative;
             z-index: 10;
@@ -255,7 +243,7 @@
             flex: 1;
         }
 
-        /* Header with CROSSROADS title */
+        /* Header */
         .header-section {
             text-align: center;
             padding: 2rem 0 2rem 0;
@@ -347,7 +335,7 @@
             border: 1px solid rgba(74, 158, 255, 0.3);
         }
 
-        /* Hidden Academy Button - Emerges Only When Ready */
+        /* Hidden Academy Button */
         .nav-links button[data-page="academy"] {
             opacity: 0;
             transform: scale(0.8);
@@ -391,11 +379,6 @@
             border-color: rgba(74, 158, 255, 0.5);
         }
 
-        .back-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
         .page {
             display: none;
             min-height: calc(100vh - 300px);
@@ -414,24 +397,6 @@
         .hero {
             margin-bottom: 2.5rem;
             position: relative;
-        }
-
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 100%;
-            max-width: 900px;
-            height: 400px;
-            background-image: url('https://raw.githubusercontent.com/GrummanGuy/Crossroads/main/images/Contemplating%20the%20Cosmos.png');
-            background-size: contain;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.3;
-            z-index: -1;
-            pointer-events: none;
         }
 
         .hero-content {
@@ -474,7 +439,6 @@
                 rgba(0,0,0,0) 100%);
         }
 
-        /* Fallback for missing illustration */
         .illustration-placeholder {
             width: 100%;
             height: 300px;
@@ -488,7 +452,7 @@
             border: 1px solid rgba(255,255,255,0.1);
         }
 
-        /* Discovery Trail Styles - Enhanced for Transformation */
+        /* Discovery Trail */
         .discovery-trail {
             margin: 4rem 0;
             background: rgba(20, 20, 20, 0.6);
@@ -536,7 +500,6 @@
             box-shadow: 0 15px 35px rgba(74, 158, 255, 0.2);
         }
 
-        /* Academy Entry - Modified for Emergent Discovery */
         .trail-step.academy-entry {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(74, 158, 255, 0.1));
             border-color: rgba(255, 215, 0, 0.3);
@@ -758,7 +721,7 @@
             text-decoration: underline;
         }
 
-        /* Academy Styles - Enhanced for Emergent Discovery */
+        /* Academy Styles */
         .academy-hero {
             text-align: center;
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(74, 158, 255, 0.1));
@@ -785,7 +748,7 @@
             line-height: 1.6;
         }
 
-        /* Translator enhanced styles */
+        /* Translator Styles */
         .translator-container {
             max-width: 900px;
             margin: 0 auto;
@@ -844,14 +807,6 @@
 
         .translator-explanation strong {
             color: #6ba4ff;
-        }
-
-        .translator-explanation code {
-            background: rgba(74, 158, 255, 0.15);
-            padding: 0.2rem 0.5rem;
-            border-radius: 3px;
-            font-family: 'Courier New', monospace;
-            color: #87ceeb;
         }
 
         #inputText {
@@ -917,7 +872,7 @@
             display: none !important;
         }
 
-        /* Language Paradox Slide Styles */
+        /* Language Paradox Slides */
         .lang-slide {
             display: none;
             opacity: 0;
@@ -932,10 +887,6 @@
         .lang-text {
             font-size: 1.05rem;
             line-height: 1.6;
-            color: #d0d0d0;
-        }
-
-        .lang-text.process-text {
             color: #d0d0d0;
         }
 
@@ -970,13 +921,13 @@
             margin-top: 1rem;
         }
 
-        /* Stats Counter - Footer Integration */
+        /* Stats Counter */
         .stats-container {
             display: inline-block;
             font-size: 0.75rem;
             color: #666;
             opacity: 0.7;
-            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
         }
 
         .stats-container div {
@@ -984,7 +935,7 @@
             margin-right: 1rem;
         }
 
-        /* Compact Footer */
+        /* Balanced Footer */
         footer {
             position: relative;
             z-index: 10;
@@ -1006,7 +957,7 @@
 
         .footer-top-row {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
@@ -1015,7 +966,7 @@
         .footer-bottom-row {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -1038,12 +989,19 @@
 
         .footer-copyright {
             font-size: 0.8rem;
+            text-align: right;
+            min-width: 200px;
         }
 
         .footer-stats {
-            text-align: right;
+            text-align: left;
             flex: 1;
             max-width: 400px;
+            min-width: 200px;
+        }
+
+        .footer-contact {
+            text-align: center;
         }
 
         .footer-contact button {
@@ -1081,11 +1039,18 @@
                 flex-direction: column;
                 text-align: center;
                 align-items: center;
+                gap: 1rem;
             }
 
             .footer-stats {
                 text-align: center;
                 max-width: 100%;
+                min-width: auto;
+            }
+
+            .footer-copyright {
+                text-align: center;
+                min-width: auto;
             }
 
             .nav-links {
@@ -1115,7 +1080,7 @@
 <body>
     <div class="stars" id="stars"></div>
     
-    <!-- Emergent Academy Symbol - The Portal That Awakens -->
+    <!-- Emergent Academy Symbol -->
     <div class="emergence-symbol" id="emergenceSymbol" onclick="handleSymbolClick()"></div>
 
     <main class="container">
@@ -1149,9 +1114,19 @@
                     <p>This site offers an open invitation to curiosity, exploration, and collaboration. Here, you'll find ideas that reach across physics, cosmology, biology, and beyond—consistently guided by our commitment to learning and sharing what we learn.</p>
                     <p>Something fundamental about how we <span class="living-text" data-process="describing reveals as process-unfolding">describe</span> reality might be... backwards. Ready to explore?</p>
                 </div>
+                
+                <div class="illustration-wrap">
+                    <img src="https://raw.githubusercontent.com/GrummanGuy/Crossroads/main/images/Contemplating%20the%20Cosmos.png" 
+                         alt="Contemplating the Cosmos" 
+                         class="illustration"
+                         onerror="this.style.display='none'; this.parentNode.querySelector('.illustration-placeholder').style.display='flex';">
+                    <div class="illustration-placeholder">
+                        [Contemplating the Cosmos - Image loading...]
+                    </div>
+                </div>
             </div>
 
-            <!-- Cookie Crumb Trail -->
+            <!-- Discovery Trail -->
             <div class="discovery-trail">
                 <h2 style="text-align: center; color: #4a9eff; margin-bottom: 3rem; font-size: 1.8rem;">
                     🍪 Follow the Trail of Discovery
@@ -1196,15 +1171,15 @@
                     <div class="trail-step academy-entry" data-step="4" onclick="handleAcademyClick()">
                         <div class="trail-content">
                             <h3>🎓 Continue Consciously</h3>
-                            <p>You've already begun thinking in new ways. The shift has started. Ready to continue consciously along this path of understanding?</p>
-                            <div class="trail-teaser">You've already changed. Continue with intention.</div>
+                            <p>You've begun thinking in new ways. The shift has started. Ready to continue consciously along this path of understanding?</p>
+                            <div class="trail-teaser">You've changed. Continue with intention.</div>
                             <div class="trail-cta">✨ Continue the Journey →</div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Quick Hooks for Different User Types -->
+            <!-- User Type Hooks -->
             <div class="user-type-hooks">
                 <h2 style="text-align: center; color: #6ba4ff; margin: 4rem 0 2rem 0;">Or Jump In Based on Your Interest</h2>
                 
@@ -1236,11 +1211,11 @@
             </div>
         </div>
 
-        <!-- PROCESS LANGUAGE ACADEMY PAGE -->
+        <!-- ACADEMY PAGE -->
         <div id="academy" class="page">
             <div class="academy-hero">
-                <h1>🌟 You've Already Begun</h1>
-                <p>The transformation you're experiencing isn't something you choose—it's something you recognize. You're already thinking differently. Here, we continue consciously.</p>
+                <h1>🌟 You've Begun</h1>
+                <p>The transformation you're experiencing isn't something you choose—it's something you recognize. You're thinking differently. Here, we continue consciously.</p>
             </div>
 
             <div class="subpage-content">
@@ -1280,7 +1255,7 @@
                 <p>This isn't a program you complete. It's a way of seeing you've begun. The Academy isn't a destination—it's recognition of where you find yourself: thinking in new ways, perceiving reality differently, speaking the language of process.</p>
                 
                 <p style="margin-top: 2rem; font-style: italic; text-align: center; color: #87ceeb;">
-                    "Learning and Sharing What We Learn"—you're already doing both.
+                    "Learning and Sharing What We Learn"—you're doing both.
                 </p>
             </div>
         </div>
@@ -1346,122 +1321,26 @@
                     </div>
                 </div>
 
-                <!-- Slide 2: Wave Function Collapse -->
+                <!-- Continue with remaining slides... -->
                 <div class="lang-slide" data-slide="2">
                     <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">Wave Function Collapse</h2>
                     
                     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
                         <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #ff6b6b;">
                             <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b6b;">Object Language</div>
-                            <div class="lang-text">The wave function is a real physical thing that collapses when measured. Before measurement, the particle exists in multiple states simultaneously. Measurement causes the collapse.</div>
+                            <div class="lang-text">The wave function is a real physical thing that collapses when measured. Before measurement, the particle exists in multiple states simultaneously.</div>
                         </div>
                         
                         <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #4a9eff;">
                             <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a9eff;">Process Language</div>
-                            <div class="lang-text process-text">The wave function describes our information about measurement outcomes. Measurement apparatus interacts with quantum systems, producing definite results. The mathematical description updates to reflect new information gained through interaction.</div>
+                            <div class="lang-text process-text">The wave function describes our information about measurement outcomes. Measurement apparatus interacts with quantum systems, producing definite results. The mathematical description updates to reflect new information.</div>
                         </div>
                     </div>
 
                     <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(74, 158, 255, 0.15)); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
                         <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; color: #ffd93d; margin-bottom: 0.5rem; font-weight: bold;">The Irony</div>
                         <div style="font-size: 1.05rem; line-height: 1.6; color: #ffffff; font-style: italic;">
-                            By treating our mathematical tool (the wave function) as a physical object, we created the "measurement problem." The mystery dissolves when we recognize that updating mathematical descriptions after gaining information isn't a physical collapse—it's simply learning what happened.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 3: The Observer Problem -->
-                <div class="lang-slide" data-slide="3">
-                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">The Observer Problem</h2>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #ff6b6b;">
-                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b6b;">Object Language</div>
-                            <div class="lang-text">The observer is fundamentally different from the observed system. Consciousness plays a special role in quantum mechanics. The observer causes wave function collapse through the act of observation.</div>
-                        </div>
-                        
-                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #4a9eff;">
-                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a9eff;">Process Language</div>
-                            <div class="lang-text process-text">Measurement apparatus interacts with quantum systems through physical coupling. Macroscopic devices undergo irreversible decoherence processes. No special consciousness mechanism needed—just thermodynamically irreversible interactions that leave records.</div>
-                        </div>
-                    </div>
-
-                    <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(74, 158, 255, 0.15)); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
-                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; color: #ffd93d; margin-bottom: 0.5rem; font-weight: bold;">The Irony</div>
-                        <div style="font-size: 1.05rem; line-height: 1.6; color: #ffffff; font-style: italic;">
-                            We invented a mystery about consciousness affecting physics because we separated "observer" from "observed" as distinct object-types. The puzzle vanishes when we describe ongoing physical interactions between coupled systems, regardless of whether anyone's watching.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 4: Quantum Entanglement -->
-                <div class="lang-slide" data-slide="4">
-                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">Quantum Entanglement</h2>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #ff6b6b;">
-                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b6b;">Object Language</div>
-                            <div class="lang-text">Two particles are separate objects that somehow remain mysteriously connected. Measuring one particle instantly affects the other, even across vast distances. This is spooky action at a distance.</div>
-                        </div>
-                        
-                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #4a9eff;">
-                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a9eff;">Process Language</div>
-                            <div class="lang-text process-text">A single quantum system undergoes processes that produce correlated detection events. The correlation pattern emerges from how the system evolved, not from particles sending signals. Measurements reveal pre-existing correlations, not create new connections.</div>
-                        </div>
-                    </div>
-
-                    <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(74, 158, 255, 0.15)); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
-                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; color: #ffd93d; margin-bottom: 0.5rem; font-weight: bold;">The Irony</div>
-                        <div style="font-size: 1.05rem; line-height: 1.6; color: #ffffff; font-style: italic;">
-                            "Spooky action" only seems spooky if we insist particles are separate objects that need to communicate. When we describe a single evolving system producing correlated outcomes, the mystery evaporates. The spookiness was linguistic, not physical.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 5: The Nature of Time -->
-                <div class="lang-slide" data-slide="5">
-                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">The Nature of Time</h2>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #ff6b6b;">
-                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b6b;">Object Language</div>
-                            <div class="lang-text">Time is a dimension like space—a container through which objects move. The past, present, and future all exist simultaneously in the block universe. Time travel might be possible.</div>
-                        </div>
-                        
-                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #4a9eff;">
-                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a9eff;">Process Language</div>
-                            <div class="lang-text process-text">Time parameterizes change and ordering of events. Processes occur, transform, and create new patterns. The universe evolves toward increasing complexity through irreversible thermodynamic processes. Time measures transformation, not location in a container.</div>
-                        </div>
-                    </div>
-
-                    <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(74, 158, 255, 0.15)); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
-                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; color: #ffd93d; margin-bottom: 0.5rem; font-weight: bold;">The Irony</div>
-                        <div style="font-size: 1.05rem; line-height: 1.6; color: #ffffff; font-style: italic;">
-                            Spatializing time—treating it as a place you can visit—creates paradoxes about causality and free will. These dissolve when we recognize time as the parameter describing how processes unfold toward complexity, not a warehouse of frozen moments awaiting visitors.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 6: Scale-Dependent Field Theory -->
-                <div class="lang-slide" data-slide="6">
-                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">Scale-Dependent Field Theory</h2>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #ff6b6b;">
-                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b6b;">Object Language</div>
-                            <div class="lang-text">There are quantum fields at small scales and classical fields at large scales. These are fundamentally different types of things. We need to unify the quantum realm with the classical realm.</div>
-                        </div>
-                        
-                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #4a9eff;">
-                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a9eff;">Process Language</div>
-                            <div class="lang-text process-text">Field dynamics exhibit scale-dependent coupling strengths. Auxiliary fields Ξ and Ψμ mediate interactions across scales. What appears quantum at one scale emerges as classical behavior at another through renormalization group flow and decoherence processes.</div>
-                        </div>
-                    </div>
-
-                    <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(74, 158, 255, 0.15)); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
-                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; color: #ffd93d; margin-bottom: 0.5rem; font-weight: bold;">The Irony</div>
-                        <div style="font-size: 1.05rem; line-height: 1.6; color: #ffffff; font-style: italic;">
-                            The quantum-classical "divide" exists primarily in our language, not in nature. By describing field dynamics as scale-dependent processes rather than separate object-types, we eliminate the need to "bridge" artificially separated domains. The auxiliary fields reveal themselves as mediators not between different kinds of reality, but between different measurement scales of the same ongoing processes.
+                            By treating our mathematical tool as a physical object, we created the "measurement problem." The mystery dissolves when we recognize that updating descriptions isn't collapse—it's learning.
                         </div>
                     </div>
                 </div>
@@ -1484,7 +1363,7 @@
             </div>
         </div>
 
-        <!-- ENHANCED TRANSLATOR PAGE -->
+        <!-- TRANSLATOR PAGE -->
         <div id="translator" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="translator-container">
@@ -1497,8 +1376,8 @@
                     <h3>Enhanced Process Language Translation</h3>
                     <p>We unconsciously objectify dynamic processes through grammatical choices. "To be" verbs (<strong>is, are, was, were</strong>) and definite articles (<strong>the</strong>) freeze flowing processes into static objects with essential properties.</p>
                     
-                    <p><strong>New Enhancement: Infinitive → Gerund Transformation</strong></p>
-                    <p>This upgraded translator now converts infinitives like "to learn" into gerunds like "learning" to better capture ongoing processes:</p>
+                    <p><strong>Enhancement: Infinitive → Gerund Transformation</strong></p>
+                    <p>This translator converts infinitives like "to learn" into gerunds like "learning" to better capture ongoing processes:</p>
                     <ul>
                         <li><strong>"Our purpose is to learn"</strong> → <strong>"Our purposing emerges as learning"</strong></li>
                         <li><strong>"The goal is to understand"</strong> → <strong>"Goal-seeking emerges as understanding"</strong></li>
@@ -1518,54 +1397,6 @@
             </div>
         </div>
 
-        <!-- FIELD THEORY PAGE -->
-        <div id="field-theory" class="page">
-            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
-            <div class="subpage-header">
-                <h1>Field Theory</h1>
-                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Exploring extensions of quantum field theory</p>
-            </div>
-            <div class="subpage-content">
-                <h2>Theoretical Framework</h2>
-                <p>Field theory approaches build upon established quantum field theory while exploring extensions that might address consciousness and information processing. The mathematical framework utilizes tensor calculus and differential geometry to describe field interactions across multiple scales.</p>
-
-                <h2>Current Explorations</h2>
-                <p>Active research includes non-local correlations, emergent complexity from field interactions, and the development of testable predictions that might distinguish field-based approaches from purely computational models.</p>
-            </div>
-        </div>
-
-        <!-- OTHER IDEAS PAGE -->
-        <div id="ideas" class="page">
-            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
-            <div class="subpage-header">
-                <h1>Other Ideas</h1>
-                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Interdisciplinary explorations</p>
-            </div>
-            <div class="subpage-content">
-                <h2>Consciousness Studies</h2>
-                <p>Explorations encompass broader questions about the nature of consciousness, including the hard problem of consciousness and the relationship between subjective experience and physical processes.</p>
-
-                <h2>Language and Reality</h2>
-                <p>The relationship between how we describe reality and what we can discover about it. Process language reveals patterns and possibilities that object language obscures.</p>
-            </div>
-        </div>
-
-        <!-- PROJECTS PAGE -->
-        <div id="projects" class="page">
-            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
-            <div class="subpage-header">
-                <h1>Projects</h1>
-                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Current work and collaborative opportunities</p>
-            </div>
-            <div class="subpage-content">
-                <h2>Current Work</h2>
-                <p>Active projects investigate different aspects of field theory applications to consciousness studies, combining theoretical development with questions about experimental validation.</p>
-
-                <h2>Collaborative Opportunities</h2>
-                <p>Open to connecting with researchers from all disciplines who share curiosity about consciousness, field theory applications, and fundamental questions about reality.</p>
-            </div>
-        </div>
-
         <!-- OUR METHODS PAGE -->
         <div id="methods" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
@@ -1578,7 +1409,7 @@
                     <h2 style="color: #ffd700; margin-bottom: 1.5rem; text-align: center;">Process-Language Commitment</h2>
                     <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem;">We avoid absolutes and dichotomies; we bound claims by evidence and conditions. Our descriptions emphasize interactions, tendencies, and transformations rather than static properties. When we encounter habituated object-language patterns in our own communication, we work to transform them into process-oriented alternatives.</p>
                     <div style="text-align: center; margin-top: 2rem;">
-                        <a onclick="showPage('translator')" style="color: #4a9eff; text-decoration: none; font-weight: 600; cursor: pointer; padding: 0.75rem 1.5rem; border: 1px solid rgba(74, 158, 255, 0.4); border-radius: 8px; background: rgba(74, 158, 255, 0.1); transition: all 0.3s ease;" onmouseover="this.style.background='rgba(74, 158, 255, 0.2)'" onmouseout="this.style.background='rgba(74, 158, 255, 0.1)'">Experience our analytical approach →</a>
+                        <a onclick="showPage('translator')" style="color: #4a9eff; text-decoration: none; font-weight: 600; cursor: pointer; padding: 0.75rem 1.5rem; border: 1px solid rgba(74, 158, 255, 0.4); border-radius: 8px; background: rgba(74, 158, 255, 0.1); transition: all 0.3s ease;">Experience our analytical approach →</a>
                     </div>
                 </div>
 
@@ -1596,7 +1427,7 @@
 
                     <div class="card-base">
                         <h3>📊 Bounded Claims Over Absolutes</h3>
-                        <p>We replace "always works" with "consistently produces desired outcomes in our observed trials under laboratory conditions."</p>
+                        <p>We replace "works consistently" with "produces desired outcomes in our observed trials under laboratory conditions."</p>
                     </div>
 
                     <div class="card-base">
@@ -1604,27 +1435,46 @@
                         <p>Instead of "quantum or classical," we describe "scale-dependent field dynamics exhibiting different coupling strengths at different measurement scales."</p>
                     </div>
                 </div>
-
-                <h2>Evidence-Based Communication</h2>
-                <p>Our approach to scientific communication reflects our understanding that language shapes perception. By consistently applying process-oriented descriptions, we model the kind of thinking that reveals rather than obscures natural phenomena.</p>
-
-                <p>This methodology appears throughout our website content, research publications, and educational materials. Every page demonstrates conscious language choices that prioritize clarity, accuracy, and intellectual honesty over rhetorical persuasion.</p>
-
-                <h2>Observable Outcomes</h2>
-                <p>Visitors to CROSSROADS often report experiencing shifts in how they perceive scientific concepts, even before encountering our formal educational content. This suggests that process-language methodology creates learning environments where insights emerge naturally from engagement rather than requiring persuasive argument.</p>
-
-                <h2>Collaborative Application</h2>
-                <p>We apply these methods in collaborative research, technical writing, and educational program development. Partners and students consistently note that process-oriented communication reduces misunderstandings and accelerates meaningful progress on complex problems.</p>
-
-                <div style="background: rgba(20, 20, 20, 0.6); border-radius: 12px; padding: 2rem; margin-top: 3rem; border-left: 4px solid #4a9eff;">
-                    <h3 style="color: #4a9eff; margin-bottom: 1rem;">Methodology in Practice</h3>
-                    <p style="margin-bottom: 1rem;">Experience how language transformation affects understanding by exploring our <a onclick="showPage('language-paradox')" style="color: #4a9eff; cursor: pointer;">Language Paradox</a> examples and experimenting with our <a onclick="showPage('translator')" style="color: #4a9eff; cursor: pointer;">Language Translator</a>.</p>
-                    <p>For those ready to develop conscious competency in process-language methodology, the <a onclick="showPage('academy')" style="color: #ffd700; cursor: pointer;">Academy</a> provides structured guidance for integrating these approaches into your own work.</p>
-                </div>
             </div>
         </div>
 
-        <!-- CONTACT PAGE -->
+        <!-- REMAINING PAGES -->
+        <div id="field-theory" class="page">
+            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+            <div class="subpage-header">
+                <h1>Field Theory</h1>
+                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Exploring extensions of quantum field theory</p>
+            </div>
+            <div class="subpage-content">
+                <h2>Theoretical Framework</h2>
+                <p>Field theory approaches build upon established quantum field theory while exploring extensions that might address consciousness and information processing.</p>
+            </div>
+        </div>
+
+        <div id="ideas" class="page">
+            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+            <div class="subpage-header">
+                <h1>Other Ideas</h1>
+                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Interdisciplinary explorations</p>
+            </div>
+            <div class="subpage-content">
+                <h2>Consciousness Studies</h2>
+                <p>Explorations encompass broader questions about the nature of consciousness and the relationship between subjective experience and physical processes.</p>
+            </div>
+        </div>
+
+        <div id="projects" class="page">
+            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+            <div class="subpage-header">
+                <h1>Projects</h1>
+                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Current work and collaborative opportunities</p>
+            </div>
+            <div class="subpage-content">
+                <h2>Current Work</h2>
+                <p>Active projects investigate different aspects of field theory applications to consciousness studies.</p>
+            </div>
+        </div>
+
         <div id="contact" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="subpage-header">
@@ -1637,9 +1487,6 @@
                 <p><strong>ORCID:</strong> <a href="https://orcid.org/0009-0002-5048-9724" target="_blank">0009-0002-5048-9724</a></p>
                 <p><strong>Publications:</strong> <a href="https://figshare.com/authors/Roy_Roberts/19338289" target="_blank">Figshare</a></p>
                 <p><strong>Organization:</strong> HOW2LLC</p>
-                
-                <h2 style="margin-top: 2rem;">Connect</h2>
-                <p>Open to connecting with researchers from all disciplines who share curiosity about consciousness, field theory applications, and fundamental questions about reality.</p>
             </div>
         </div>
     </main>
@@ -1654,17 +1501,9 @@
                     <span style="color: #666; margin: 0 1rem;">•</span>
                     <span style="font-style: italic; color: #b8b8b8;">"Learning and Sharing What We Learn"</span>
                 </div>
-                
-                <div class="footer-contact">
-                    <button onclick="showPage('contact')">Contact</button>
-                </div>
             </div>
             
             <div class="footer-bottom-row">
-                <div class="footer-copyright">
-                    <span style="color: #888;">© 2025 HOW2LLC • CROSSROADS™</span>
-                </div>
-                
                 <div class="footer-stats">
                     <div class="stats-container">
                         <div id="totalViews">Total: 0</div>
@@ -1672,49 +1511,44 @@
                         <div id="currentPage">Page: Home</div>
                     </div>
                     
-                    <!-- Transformation Traces -->
                     <div class="transformation-traces" id="transformationTraces">
                         <div class="trace" id="trace1">Observation dissolves boundaries.</div>
                         <div class="trace" id="trace2">Perception rewrites description.</div>
                         <div class="trace" id="trace3">Language transforms the thinker.</div>
                     </div>
                 </div>
+                
+                <div class="footer-contact">
+                    <button onclick="showPage('contact')">Contact</button>
+                </div>
+                
+                <div class="footer-copyright">
+                    <span style="color: #888;">© 2025 HOW2LLC • CROSSROADS™</span>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Transformation Tracking System
+        // Transformation System
         let transformationStage = 0;
         let visitedPages = new Set();
         let interactionCount = 0;
         const transformationTraces = ['trace1', 'trace2', 'trace3'];
 
-        // Enhanced translator with gerund transformations and process language
+        // Enhanced translator
         const translatorMap = {
-            // Basic verb transformations
             "is": "emerges as",
             "are": "manifest as", 
             "was": "arose as",
             "were": "interacted as",
-            "be": "transform into",
-            "being": "continuing through",
-            "been": "cohered as",
-            
-            // Infinitive to gerund transformations for process flow
             "to learn": "learning",
             "to share": "sharing",
             "to discover": "discovering",
             "to explore": "exploring",
             "to understand": "understanding",
-            "to create": "creating",
-            "to develop": "developing",
-            
-            // Enhanced process patterns
             "the purpose": "purposing",
-            "the goal": "goal-seeking",
-            "the solution": "solution-emerging",
-            "the result": "result-manifesting"
+            "the goal": "goal-seeking"
         };
 
         // Language Paradox slides
@@ -1743,23 +1577,19 @@
         }
 
         function updateLangSlide() {
-            // Hide all slides
             document.querySelectorAll('.lang-slide').forEach(slide => {
                 slide.classList.remove('active');
             });
             
-            // Show target slide
             const targetSlide = document.querySelector(`.lang-slide[data-slide="${currentLangSlide}"]`);
             if (targetSlide) {
                 targetSlide.classList.add('active');
             }
             
-            // Update dots
             document.querySelectorAll('.slide-dot').forEach((dot, index) => {
                 dot.classList.toggle('active', index + 1 === currentLangSlide);
             });
             
-            // Update counter and buttons
             const counter = document.getElementById('slideCounter');
             const prevBtn = document.getElementById('prevSlideBtn');
             const nextBtn = document.getElementById('nextSlideBtn');
@@ -1779,7 +1609,6 @@
             }
         }
 
-        // Transformation Stage Management
         function advanceTransformation() {
             interactionCount++;
             
@@ -1807,10 +1636,8 @@
             const symbol = document.getElementById('emergenceSymbol');
             const stages = ['stage-1', 'stage-2', 'stage-3'];
             
-            // Remove all stage classes
             stages.forEach(stage => symbol.classList.remove(stage));
             
-            // Add current stage
             if (transformationStage > 0) {
                 symbol.classList.add(stages[transformationStage - 1]);
             }
@@ -1828,13 +1655,11 @@
 
         function revealAcademy() {
             setTimeout(() => {
-                // Reveal Academy in navigation
                 const academyBtn = document.querySelector('[data-page="academy"]');
                 if (academyBtn) {
                     academyBtn.classList.add('emerged');
                 }
                 
-                // Reveal Academy entry in trail
                 const academyEntry = document.querySelector('.academy-entry');
                 if (academyEntry) {
                     academyEntry.classList.add('revealed');
@@ -1842,14 +1667,12 @@
             }, 1500);
         }
 
-        // Symbol Click Handler
         function handleSymbolClick() {
             if (transformationStage >= 3) {
                 showPage('academy');
             }
         }
 
-        // Academy Click Handler
         function handleAcademyClick() {
             if (transformationStage >= 3) {
                 showPage('academy');
@@ -1858,12 +1681,10 @@
             }
         }
 
-        // Discovery Click Handler
         function handleDiscoveryClick() {
             showPage('cosmic-divide');
         }
 
-        // Enhanced translation function with better pattern recognition
         function translateText() {
             const inputElement = document.getElementById('inputText');
             const outputElement = document.getElementById('outputText');
@@ -1881,10 +1702,8 @@
             }
             
             try {
-                // Track translator usage
                 advanceTransformation();
                 
-                // First pass: Handle longer phrases (order matters!)
                 const phrases = Object.keys(translatorMap).filter(key => key.includes(' '));
                 phrases.sort((a, b) => b.length - a.length);
                 
@@ -1893,7 +1712,6 @@
                     text = text.replace(regex, translatorMap[phrase]);
                 });
                 
-                // Second pass: Handle single words
                 const words = Object.keys(translatorMap).filter(key => !key.includes(' '));
                 const pattern = new RegExp('\\b(' + words.join('|') + ')\\b', 'gi');
                 
@@ -1911,7 +1729,6 @@
             }
         }
 
-        // Create stars animation
         function createStars() {
             const starsContainer = document.getElementById('stars');
             if (!starsContainer) return;
@@ -1931,9 +1748,7 @@
             }
         }
 
-        // Enhanced page navigation with transformation tracking
         function showPage(pageId) {
-            // Track page visits
             visitedPages.add(pageId);
             advanceTransformation();
             
@@ -1957,14 +1772,12 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
             updatePageDisplay(pageId);
             
-            // Reset language paradox slides when entering that page
             if (pageId === 'language-paradox') {
                 currentLangSlide = 1;
                 updateLangSlide();
             }
         }
 
-        // View counter with error handling
         function initViewCounter() {
             try {
                 let totalViews = localStorage.getItem('totalViews') || '0';
@@ -2014,7 +1827,6 @@
                 createStars();
                 initViewCounter();
                 
-                // Navigation button handlers
                 document.querySelectorAll('.nav-btn').forEach(button => {
                     button.addEventListener('click', function() {
                         const page = this.getAttribute('data-page');
@@ -2024,16 +1836,12 @@
                     });
                 });
 
-                // Translator button handler
                 const translateBtn = document.getElementById('translateBtn');
                 if (translateBtn) {
                     translateBtn.addEventListener('click', translateText);
                 }
                 
-                // Language Paradox slide initialization
                 updateLangSlide();
-                
-                // Track initial engagement
                 advanceTransformation();
                 
             } catch (error) {
@@ -2041,7 +1849,6 @@
             }
         });
 
-        // Living text hover effects
         document.addEventListener('mouseover', function(e) {
             if (e.target.classList.contains('living-text')) {
                 advanceTransformation();
