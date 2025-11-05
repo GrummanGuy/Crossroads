@@ -1536,22 +1536,94 @@
         let interactionCount = 0;
         const transformationTraces = ['trace1', 'trace2', 'trace3'];
 
-        // Enhanced translator
-        const translatorMap = {
-            "is": "emerges as",
-            "are": "manifest as", 
-            "was": "arose as",
-            "were": "interacted as",
-            "to learn": "learning",
-            "to share": "sharing",
-            "to discover": "discovering",
-            "to explore": "exploring",
-            "to understand": "understanding",
-            "the purpose": "purposing",
-            "the goal": "goal-seeking"
-        };
-
-        // Language Paradox slides
+        // ====================== Process Translator v2 ======================
+(function () {
+  function keepCase(src, repl) {
+    if (!src) return repl;
+    if (src.toUpperCase() == src) return repl.toUpperCase();
+    if (src[0] == src[0].toUpperCase()) return repl[0].toUpperCase() + repl.slice(1);
+    return repl;
+  }
+  function toGerund(verb) {
+    const v = verb.toLowerCase();
+    if (v.endsWith("ie")) return v.slice(0, -2) + "ying";
+    if (v.endsWith("ee")) return v + "ing";
+    if (v.endsWith("e") && !v.endsWith("ee")) return v.slice(0, -1) + "ing";
+    if (/^[a-z]*[aeiou][bcdfghjklmnpqrstvwxyz]$/i.test(v) && v.length >= 3) return v + v.slice(-1) + "ing";
+    return v + "ing";
+  }
+  const abstractGerunds = {
+    "purpose": "purposing",
+    "goal": "goal-seeking",
+    "truth": "truth-making",
+    "decision": "decision-making",
+    "project": "projecting",
+    "learning": "learning",
+    "understanding": "understanding"
+  };
+  const copulaMap = { "is": "emerges as", "are": "manifest as", "was": "arose as", "were": "interacted as" };
+  function stage1_infinitivesToGerunds(text) {
+    return text.replace(/\bto\s+([A-Za-z]+)\b/g, (m, v) => keepCase(v, toGerund(v)));
+  }
+  function stage2_definiteAbstracts(text) {
+    return text.replace(/\b(the)\s+(purpose|goal|truth|decision|project)\b/gi, (m, the_, noun) => keepCase(noun, abstractGerunds[noun.toLowerCase()] || noun));
+  }
+  function stage3_copulaToProcess(text) {
+    return text.replace(/\b(is|are|was|were)\b/gi, (m, cop) => keepCase(cop, copulaMap[cop.toLowerCase()] || cop));
+  }
+  function stage4_lightPassiveToProcess(text) {
+    return text
+      .replace(/\b(decision|decisions)\s+(is|are|was|were)\s+made\b/gi, (m, n, cop) => {
+        const occurs = /was|were/i.test(cop) ? "occurred" : "occurs";
+        const head = keepCase(n, "decision-making");
+        return `${head} ${occurs}`;
+      })
+      .replace(/\b([A-Za-z-]+)\s+(is|are|was|were)\s+([A-Za-z]+)ed\b/gi, (m, subj, cop, v) => {
+        const plural = subj.toLowerCase().endsWith("s") && !subj.toLowerCase().endsWith("ss");
+        const aux = /was|were/i.test(cop) ? "underwent" : (plural ? "undergo" : "undergoes");
+        const ger = toGerund(v);
+        return `${keepCase(subj, subj)} ${aux} ${ger}`;
+      });
+  }
+  function stage5_cleanupSpacing(text) {
+    return text.replace(/\s{2,}/g, " ").replace(/\s+([,.;:!?])/g, "$1").replace(/\(\s+/g, "(").replace(/\s+\)/g, ")");
+  }
+  function processTranslate(input) {
+    let t = input;
+    t = stage1_infinitivesToGerunds(t);
+    t = stage2_definiteAbstracts(t);
+    t = stage3_copulaToProcess(t);
+    t = stage4_lightPassiveToProcess(t);
+    t = stage5_cleanupSpacing(t);
+    return t;
+  }
+  function translateText() {
+    const inputElement = document.getElementById('inputText');
+    const outputElement = document.getElementById('outputText');
+    const outputSection = document.getElementById('outputSection');
+    if (!inputElement || !outputElement || !outputSection) return;
+    const raw = inputElement.value || "";
+    if (!raw.trim()) { alert('Please enter some text to translate.'); return; }
+    try {
+      if (typeof advanceTransformation === "function") advanceTransformation();
+      const out = processTranslate(raw);
+      outputElement.textContent = out;
+      outputSection.classList.remove('hidden');
+    } catch (e) {
+      console.error(e);
+      outputElement.textContent = 'Error processing text. Please try again.';
+      outputSection.classList.remove('hidden');
+    }
+  }
+  document.addEventListener('DOMContentLoaded', function () {
+    const btn = document.getElementById('translateBtn');
+    const input = document.getElementById('inputText');
+    if (btn) btn.addEventListener('click', translateText);
+    if (input) input.addEventListener('keydown', function (e) { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') translateText(); });
+    window.translateText = translateText;
+  });
+})();
+// Language Paradox slides
         let currentLangSlide = 1;
         const totalLangSlides = 6;
 
