@@ -1063,9 +1063,16 @@
                 gap: 2rem;
             }
 
-            .footer-content {
+            .footer-top-row,
+            .footer-bottom-row {
                 flex-direction: column;
                 text-align: center;
+                align-items: center;
+            }
+
+            .footer-stats {
+                text-align: center;
+                max-width: 100%;
             }
 
             .nav-links {
@@ -1626,31 +1633,39 @@
 
     <footer>
         <div class="footer-content">
-            <div class="footer-brand">
-                <span class="footer-logo">HOW2LLC</span>
-                <span style="color: #666;">|</span>
-                <span style="font-style: italic;">"Learning and Sharing What We Learn"</span>
-            </div>
-            
-            <div class="footer-info">
-                © 2025 HOW2LLC • CROSSROADS™ • Driven by Curiosity • <a href="https://fldtheory.org">fldtheory.org</a>
-                <br>
-                <div class="stats-container">
-                    <div id="totalViews">Total: 0</div>
-                    <div id="uniqueVisitors">Unique: 0</div>
-                    <div id="currentPage">Page: Home</div>
+            <div class="footer-top-row">
+                <div class="footer-brand">
+                    <span style="color: #d0d0d0;">Driven by Curiosity</span>
+                    <span style="color: #666; margin: 0 1rem;">•</span>
+                    <span class="footer-logo">HOW2LLC</span>
+                    <span style="color: #666; margin: 0 1rem;">•</span>
+                    <span style="font-style: italic; color: #b8b8b8;">"Learning and Sharing What We Learn"</span>
                 </div>
                 
-                <!-- Transformation Traces -->
-                <div class="transformation-traces" id="transformationTraces">
-                    <div class="trace" id="trace1">Observation dissolves boundaries.</div>
-                    <div class="trace" id="trace2">Perception rewrites description.</div>
-                    <div class="trace" id="trace3">Language transforms the thinker.</div>
+                <div class="footer-contact">
+                    <button onclick="showPage('contact')">Contact</button>
                 </div>
             </div>
             
-            <div class="footer-contact">
-                <button onclick="showPage('contact')">Contact</button>
+            <div class="footer-bottom-row">
+                <div class="footer-copyright">
+                    <span style="color: #888;">© 2025 HOW2LLC • CROSSROADS™</span>
+                </div>
+                
+                <div class="footer-stats">
+                    <div class="stats-container">
+                        <div id="totalViews">Total: 0</div>
+                        <div id="uniqueVisitors">Unique: 0</div>
+                        <div id="currentPage">Page: Home</div>
+                    </div>
+                    
+                    <!-- Transformation Traces -->
+                    <div class="transformation-traces" id="transformationTraces">
+                        <div class="trace" id="trace1">Observation dissolves boundaries.</div>
+                        <div class="trace" id="trace2">Perception rewrites description.</div>
+                        <div class="trace" id="trace3">Language transforms the thinker.</div>
+                    </div>
+                </div>
             </div>
         </div>
     </footer>
@@ -2022,3 +2037,4 @@
     </script>
 </body>
 </html>
+
