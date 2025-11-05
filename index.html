@@ -1116,10 +1116,6 @@
                 </div>
                 
                 <div class="illustration-wrap">
-                    <img src="https://raw.githubusercontent.com/GrummanGuy/Crossroads/main/images/Contemplating%20the%20Cosmos.png" 
-                         alt="Contemplating the Cosmos" 
-                         class="illustration"
-                         onerror="this.style.display='none'; this.parentNode.querySelector('.illustration-placeholder').style.display='flex';">
                     <div class="illustration-placeholder">
                         [Contemplating the Cosmos - Image loading...]
                     </div>
@@ -1652,7 +1648,25 @@
     const input = document.getElementById('inputText');
     if (btn) btn.addEventListener('click', translateText);
     if (input) input.addEventListener('keydown', function (e) { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') translateText(); });
-    window.translateText = translateText;
+    
+    // Robust nav wiring: make buttons switch pages
+    const navButtons = document.querySelectorAll('.nav-btn');
+    navButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const target = btn.getAttribute('data-page');
+        if (target) {
+          if (typeof showPage === 'function') {
+            showPage(target);
+          } else {
+            // Fallback: reveal the section by id
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const targetPage = document.getElementById(target);
+            if (targetPage) targetPage.classList.add('active');
+          }
+        }
+      });
+    });
+window.translateText = translateText;
   });
 })();
 </body>
