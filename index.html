@@ -1616,24 +1616,40 @@
 
     <footer>
         <div class="footer-content">
-            <div class="footer-top-row">
-                <div class="footer-brand">
-                    <span style="color: #d0d0d0;">Driven by Curiosity</span>
-                    <span style="color: #666; margin: 0 1rem;">•</span>
-                    <span class="footer-logo">HOW2LLC</span>
-                    <span style="color: #666; margin: 0 1rem;">•</span>
-                    <span style="font-style: italic; color: #b8b8b8;">"Learning and Sharing What We Learn"</span>
-                </div>
-                
-                <div class="footer-contact">
-                    <button onclick="showPage('contact')">Contact</button>
-                </div>
-            </div>
-            
-            <div class="footer-bottom-row">
-                <div class="footer-copyright">
-                    <span style="color: #888;">© 2025 HOW2LLC • CROSSROADS™</span>
-                </div>
+            .footer-top-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 1rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.8rem;
+            text-align: right;
+            min-width: 200px;
+        }
+
+        .footer-stats {
+            text-align: left;
+            flex: 1;
+            max-width: 400px;
+            min-width: 200px;
+        }
+
+        .footer-contact {
+            text-align: center;
+        }
                 
                 <div class="footer-stats">
                     <div class="stats-container">
@@ -2020,5 +2036,6 @@
     </script>
 </body>
 </html>
+
 
 
