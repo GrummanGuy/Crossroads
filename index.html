@@ -1704,5 +1704,113 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 </script>
 
+
+<script>
+/* === Site Safety Harness v2.2 === */
+(function () {
+  function byId(id){ return document.getElementById(id); }
+  var currentLangSlide = window.currentLangSlide || 1;
+  var totalLangSlides = window.totalLangSlides || (function(){
+    var slides = document.querySelectorAll('.lang-slide');
+    return slides.length || 6;
+  })();
+  function updateLangSlideSafe() {
+    var slides = document.querySelectorAll('.lang-slide');
+    slides.forEach && slides.forEach(function(s){ s.classList.remove('active'); });
+    var target = document.querySelector('.lang-slide[data-slide="'+currentLangSlide+'"]') || slides[currentLangSlide-1];
+    if (target) target.classList.add('active');
+    var dots = document.querySelectorAll('.slide-dot');
+    dots.forEach && dots.forEach(function(d,i){ d.classList.toggle('active', i+1===currentLangSlide); });
+    var counter = byId('slideCounter');
+    if (counter) counter.textContent = currentLangSlide + ' / ' + totalLangSlides;
+    var prevBtn = byId('prevSlideBtn');
+    var nextBtn = byId('nextSlideBtn');
+    if (prevBtn){ prevBtn.disabled = currentLangSlide===1; prevBtn.style.opacity = prevBtn.disabled ? '0.5':'1'; }
+    if (nextBtn){ nextBtn.disabled = currentLangSlide===totalLangSlides; nextBtn.style.opacity = nextBtn.disabled ? '0.5':'1'; }
+  }
+  window.nextSlide = function(){ if (currentLangSlide < totalLangSlides){ currentLangSlide++; updateLangSlideSafe(); } };
+  window.prevSlide = function(){ if (currentLangSlide > 1){ currentLangSlide--; updateLangSlideSafe(); } };
+  window.goToLangSlide = function(n){ n = Math.max(1, Math.min(totalLangSlides, Number(n)||1)); currentLangSlide = n; updateLangSlideSafe(); };
+
+  window.showPage = function(pageId){
+    try {
+      var pages = document.querySelectorAll('.page');
+      pages.forEach && pages.forEach(function(p){ p.classList.remove('active'); });
+      var target = byId(pageId);
+      if (target) target.classList.add('active');
+      var btns = document.querySelectorAll('.nav-btn');
+      btns.forEach && btns.forEach(function(b){ b.classList.remove('active'); });
+      var activeBtn = document.querySelector('.nav-btn[data-page="'+pageId+'"]');
+      if (activeBtn) activeBtn.classList.add('active');
+      var currentPage = byId('currentPage');
+      if (currentPage) currentPage.textContent = 'Page: ' + (pageId.charAt(0).toUpperCase()+pageId.slice(1).replace('-', ' '));
+      if (pageId === 'language-paradox'){ currentLangSlide = 1; updateLangSlideSafe(); }
+      window.scrollTo && window.scrollTo({top:0, behavior:'smooth'});
+    } catch (e) { console.error('showPage error:', e); }
+  };
+
+  function keepCase(src, repl){ if (!src) return repl; if (src.toUpperCase()===src) return repl.toUpperCase(); if (src[0]===src[0].toUpperCase()) return repl[0].toUpperCase()+repl.slice(1); return repl; }
+  function toGerund(v){
+    v = (v||'').toLowerCase();
+    if (v==='be') return 'being';
+    if (v.endsWith('ie')) return v.slice(0,-2)+'ying';
+    if (v.endsWith('ee')) return v+'ing';
+    if (v.endsWith('e') && !v.endsWith('ee')) return v.slice(0,-1)+'ing';
+    if (/^[a-z]*[aeiou][bcdfghjklmnpqrstvwxyz]$/i.test(v) && v.length>=3) return v+v.slice(-1)+'ing';
+    return v+'ing';
+  }
+  var abstractGerunds = {'purpose':'purposing','goal':'goal-seeking','truth':'truth-making','decision':'decision-making','project':'projecting','learning':'learning','understanding':'understanding'};
+  var copulaMap = {'is':'emerges as','are':'manifest as','was':'arose as','were':'interacted as'};
+  function stage1(t){ return t.replace(/\bto\s+([A-Za-z]+)\b/g,function(m,v){return keepCase(v,toGerund(v));}); }
+  function stage2(t){ return t.replace(/\bthe\s+(purpose|goal|truth|decision|project)\b/gi,function(m,n){return keepCase(n,abstractGerunds[n.toLowerCase()]||n);}); }
+  function stage3(t){ return t.replace(/\b(is|are|was|were)\b/gi,function(m,c){return keepCase(c,copulaMap[c.toLowerCase()]||c);}); }
+  function stage3b(t){
+    t = t.replace(/\b(he|she|they)\s+(always|often|sometimes)?\s*does\s+the\s+best\s+(he|she|they)\s+can\b/gi,
+      function(m,p1,f){ return (keepCase(p1,p1)+' '+(f?keepCase(f,f)+' ':'')+'sustains best-effort').trim(); });
+    t = t.replace(/\b([A-Z][a-z]+|I|We|You|He|She|They)\s+do(?:es)?\s+([A-Za-z]+(?:tion|ment))\b/g,
+      function(m,subj,n){ return subj + ' engages in ' + n.toLowerCase(); });
+    return t;
+  }
+  function stage4(t){
+    var heads = ['creation','analysis','development','exploration','observation'];
+    var rx = new RegExp('\b(' + heads.join('|') + ') of ([A-Za-z-]+)\b','gi');
+    return t.replace(rx,function(m,head,tail){ return tail.toLowerCase() + '-' + head.toLowerCase(); });
+  }
+  function stage5(t){
+    return t
+     .replace(/\b(decision|decisions)\s+(is|are|was|were)\s+made\b/gi,function(m,n,c){ return keepCase(n,'decision-making') + ' ' + (/was|were/i.test(c)?'occurred':'occurs'); })
+     .replace(/\b([A-Za-z-]+)\s+(is|are|was|were)\s+([A-Za-z]+)ed\b/gi,function(m,subj,c,v){
+        var plural = subj.toLowerCase().endsWith('s') && !subj.toLowerCase().endsWith('ss');
+        var aux = /was|were/i.test(c) ? 'underwent' : (plural ? 'undergo' : 'undergoes');
+        return keepCase(subj,subj) + ' ' + aux + ' ' + toGerund(v);
+     });
+  }
+  function tidy(t){ return t.replace(/\s{2,}/g,' ').replace(/\s+([,.;:!?])/g,'$1').replace(/\(\s+/g,'(').replace(/\s+\)/g,')'); }
+  function processTranslate(input){ var t = String(input||''); t = stage1(t); t = stage2(t); t = stage3(t); t = stage3b(t); t = stage4(t); t = stage5(t); t = tidy(t); return t; }
+  window.translateText = function(){
+    var input = byId('inputText'), output = byId('outputText'), sec = byId('outputSection');
+    if (!input || !output || !sec) return;
+    var raw = input.value || '';
+    if (!raw.trim()){ alert('Please enter some text to translate.'); return; }
+    if (typeof window.advanceTransformation === 'function') try{ window.advanceTransformation(); }catch(e){}
+    var out = processTranslate(raw);
+    output.textContent = out;
+    sec.classList && sec.classList.remove('hidden');
+  };
+
+  document.addEventListener('click', function(e){
+    var btn = e.target.closest && e.target.closest('.nav-btn');
+    if (btn){ var target = btn.getAttribute('data-page'); if (target){ e.preventDefault(); window.showPage(target);} return; }
+    var dot = e.target.closest && e.target.closest('.slide-dot');
+    if (dot){ var dots = Array.prototype.slice.call(document.querySelectorAll('.slide-dot')); var idx = dots.indexOf(dot); if (idx>=0){ window.goToLangSlide(idx+1);} return; }
+    var backBtn = e.target.closest && e.target.closest('.back-button');
+    if (backBtn && backBtn.textContent && backBtn.textContent.toLowerCase().includes('back to home')){ e.preventDefault(); window.showPage('home'); }
+    var footerContact = e.target.closest && e.target.closest('button');
+    if (footerContact && footerContact.textContent && footerContact.textContent.trim().toLowerCase()==='contact'){ e.preventDefault(); window.showPage('contact'); }
+  }, true);
+
+  document.addEventListener('DOMContentLoaded', function(){ updateLangSlideSafe(); });
+})();
+</script>
 </body>
 </html>
