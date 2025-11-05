@@ -1536,7 +1536,7 @@
         let interactionCount = 0;
         const transformationTraces = ['trace1', 'trace2', 'trace3'];
 
-        // ====================== Process Translator v2 ======================
+        // ====================== Process Translator v2.1 ======================
 (function () {
   function keepCase(src, repl) {
     if (!src) return repl;
@@ -1562,16 +1562,42 @@
     "understanding": "understanding"
   };
   const copulaMap = { "is": "emerges as", "are": "manifest as", "was": "arose as", "were": "interacted as" };
+
   function stage1_infinitivesToGerunds(text) {
     return text.replace(/\bto\s+([A-Za-z]+)\b/g, (m, v) => keepCase(v, toGerund(v)));
   }
+
   function stage2_definiteAbstracts(text) {
     return text.replace(/\b(the)\s+(purpose|goal|truth|decision|project)\b/gi, (m, the_, noun) => keepCase(noun, abstractGerunds[noun.toLowerCase()] || noun));
   }
+
   function stage3_copulaToProcess(text) {
     return text.replace(/\b(is|are|was|were)\b/gi, (m, cop) => keepCase(cop, copulaMap[cop.toLowerCase()] || cop));
   }
-  function stage4_lightPassiveToProcess(text) {
+
+  // New: light-verb 'do/does/did' handling + idiom normalization
+  function stage3b_lightDo(text) {
+    // Idiom: "<pronoun> (always|often|sometimes)? does the best (he|she|they) can"
+    text = text.replace(/\b(he|she|they)\s+(always|often|sometimes)?\s*does\s+the\s+best\s+(he|she|they)\s+can\b/gi,
+      (m, p1, freq) => {
+        const head = keepCase(p1, p1);
+        const adv = freq ? keepCase(freq, freq) + " " : "";
+        return `${head} ${adv}sustains best-effort`;
+      });
+    // Generic: "<subject> does <N>tion|ment" -> "<subject> engages in <N>tion|ment"
+    text = text.replace(/\b([A-Z][a-z]+|I|we|We|you|You|he|He|she|She|they|They)\s+do(?:es)?\s+([A-Za-z]+(?:tion|ment))\b/g,
+      (m, subj, noun) => `${subj} engages in ${noun.toLowerCase()}`);
+    return text;
+  }
+
+  // New: nominal compound "X of Y" -> "Y-X" (limited list)
+  function stage4_nominalCompounds(text) {
+    const heads = ["creation","analysis","development","exploration","observation"];
+    return text.replace(new RegExp("\\b(" + heads.join("|") + ") of ([A-Za-z-]+)\\b", "gi"),
+      (m, head, tail) => `${tail.toLowerCase()}-${head.toLowerCase()}`);
+  }
+
+  function stage5_lightPassiveToProcess(text) {
     return text
       .replace(/\b(decision|decisions)\s+(is|are|was|were)\s+made\b/gi, (m, n, cop) => {
         const occurs = /was|were/i.test(cop) ? "occurred" : "occurs";
@@ -1585,18 +1611,23 @@
         return `${keepCase(subj, subj)} ${aux} ${ger}`;
       });
   }
-  function stage5_cleanupSpacing(text) {
+
+  function stage6_cleanupSpacing(text) {
     return text.replace(/\s{2,}/g, " ").replace(/\s+([,.;:!?])/g, "$1").replace(/\(\s+/g, "(").replace(/\s+\)/g, ")");
   }
+
   function processTranslate(input) {
     let t = input;
     t = stage1_infinitivesToGerunds(t);
     t = stage2_definiteAbstracts(t);
     t = stage3_copulaToProcess(t);
-    t = stage4_lightPassiveToProcess(t);
-    t = stage5_cleanupSpacing(t);
+    t = stage3b_lightDo(t);
+    t = stage4_nominalCompounds(t);
+    t = stage5_lightPassiveToProcess(t);
+    t = stage6_cleanupSpacing(t);
     return t;
   }
+
   function translateText() {
     const inputElement = document.getElementById('inputText');
     const outputElement = document.getElementById('outputText');
@@ -1615,6 +1646,7 @@
       outputSection.classList.remove('hidden');
     }
   }
+
   document.addEventListener('DOMContentLoaded', function () {
     const btn = document.getElementById('translateBtn');
     const input = document.getElementById('inputText');
@@ -1623,309 +1655,5 @@
     window.translateText = translateText;
   });
 })();
-// Language Paradox slides
-        let currentLangSlide = 1;
-        const totalLangSlides = 6;
-
-        function nextSlide() {
-            if (currentLangSlide < totalLangSlides) {
-                currentLangSlide++;
-                updateLangSlide();
-            }
-        }
-
-        function prevSlide() {
-            if (currentLangSlide > 1) {
-                currentLangSlide--;
-                updateLangSlide();
-            }
-        }
-
-        function goToLangSlide(num) {
-            if (num >= 1 && num <= totalLangSlides) {
-                currentLangSlide = num;
-                updateLangSlide();
-            }
-        }
-
-        function updateLangSlide() {
-            document.querySelectorAll('.lang-slide').forEach(slide => {
-                slide.classList.remove('active');
-            });
-            
-            const targetSlide = document.querySelector(`.lang-slide[data-slide="${currentLangSlide}"]`);
-            if (targetSlide) {
-                targetSlide.classList.add('active');
-            }
-            
-            document.querySelectorAll('.slide-dot').forEach((dot, index) => {
-                dot.classList.toggle('active', index + 1 === currentLangSlide);
-            });
-            
-            const counter = document.getElementById('slideCounter');
-            const prevBtn = document.getElementById('prevSlideBtn');
-            const nextBtn = document.getElementById('nextSlideBtn');
-            
-            if (counter) {
-                counter.textContent = `${currentLangSlide} / ${totalLangSlides}`;
-            }
-            
-            if (prevBtn) {
-                prevBtn.disabled = currentLangSlide === 1;
-                prevBtn.style.opacity = currentLangSlide === 1 ? '0.5' : '1';
-            }
-            
-            if (nextBtn) {
-                nextBtn.disabled = currentLangSlide === totalLangSlides;
-                nextBtn.style.opacity = currentLangSlide === totalLangSlides ? '0.5' : '1';
-            }
-        }
-
-        function advanceTransformation() {
-            interactionCount++;
-            
-            if (interactionCount >= 2 && transformationStage < 1) {
-                transformationStage = 1;
-                updateEmergenceSymbol();
-                showTransformationTrace(0);
-            }
-            
-            if (visitedPages.size >= 2 && transformationStage < 2) {
-                transformationStage = 2;
-                updateEmergenceSymbol();
-                showTransformationTrace(1);
-            }
-            
-            if ((visitedPages.has('language-paradox') || visitedPages.has('translator')) && transformationStage < 3) {
-                transformationStage = 3;
-                updateEmergenceSymbol();
-                showTransformationTrace(2);
-                revealAcademy();
-            }
-        }
-
-        function updateEmergenceSymbol() {
-            const symbol = document.getElementById('emergenceSymbol');
-            const stages = ['stage-1', 'stage-2', 'stage-3'];
-            
-            stages.forEach(stage => symbol.classList.remove(stage));
-            
-            if (transformationStage > 0) {
-                symbol.classList.add(stages[transformationStage - 1]);
-            }
-        }
-
-        function showTransformationTrace(index) {
-            setTimeout(() => {
-                const tracesContainer = document.getElementById('transformationTraces');
-                const trace = document.getElementById(transformationTraces[index]);
-                
-                tracesContainer.classList.add('visible');
-                trace.classList.add('active');
-            }, 1000);
-        }
-
-        function revealAcademy() {
-            setTimeout(() => {
-                const academyBtn = document.querySelector('[data-page="academy"]');
-                if (academyBtn) {
-                    academyBtn.classList.add('emerged');
-                }
-                
-                const academyEntry = document.querySelector('.academy-entry');
-                if (academyEntry) {
-                    academyEntry.classList.add('revealed');
-                }
-            }, 1500);
-        }
-
-        function handleSymbolClick() {
-            if (transformationStage >= 3) {
-                showPage('academy');
-            }
-        }
-
-        function handleAcademyClick() {
-            if (transformationStage >= 3) {
-                showPage('academy');
-            } else {
-                alert('Continue exploring the journey above first...');
-            }
-        }
-
-        function handleDiscoveryClick() {
-            showPage('cosmic-divide');
-        }
-
-        function translateText() {
-            const inputElement = document.getElementById('inputText');
-            const outputElement = document.getElementById('outputText');
-            const outputSection = document.getElementById('outputSection');
-            
-            if (!inputElement || !outputElement || !outputSection) {
-                console.error('Translator elements not found');
-                return;
-            }
-            
-            let text = inputElement.value;
-            if (!text.trim()) {
-                alert('Please enter some text to translate.');
-                return;
-            }
-            
-            try {
-                advanceTransformation();
-                
-                const phrases = Object.keys(translatorMap).filter(key => key.includes(' '));
-                phrases.sort((a, b) => b.length - a.length);
-                
-                phrases.forEach(phrase => {
-                    const regex = new RegExp('\\b' + phrase.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\b', 'gi');
-                    text = text.replace(regex, translatorMap[phrase]);
-                });
-                
-                const words = Object.keys(translatorMap).filter(key => !key.includes(' '));
-                const pattern = new RegExp('\\b(' + words.join('|') + ')\\b', 'gi');
-                
-                text = text.replace(pattern, function(match) {
-                    return translatorMap[match.toLowerCase()] || match;
-                });
-                
-                outputElement.textContent = text;
-                outputSection.classList.remove('hidden');
-                
-            } catch (error) {
-                console.error('Translation error:', error);
-                outputElement.textContent = 'Error processing text. Please try again.';
-                outputSection.classList.remove('hidden');
-            }
-        }
-
-        function createStars() {
-            const starsContainer = document.getElementById('stars');
-            if (!starsContainer) return;
-            
-            const numStars = 150;
-            for (let i = 0; i < numStars; i++) {
-                const star = document.createElement('div');
-                star.className = 'star';
-                star.style.left = Math.random() * 100 + '%';
-                star.style.top = Math.random() * 100 + '%';
-                const size = Math.random() * 2 + 0.5;
-                star.style.width = size + 'px';
-                star.style.height = size + 'px';
-                star.style.animationDelay = Math.random() * 3 + 's';
-                star.style.opacity = Math.random() * 0.3 + 0.1;
-                starsContainer.appendChild(star);
-            }
-        }
-
-        function showPage(pageId) {
-            visitedPages.add(pageId);
-            advanceTransformation();
-            
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            
-            const targetPage = document.getElementById(pageId);
-            if (targetPage) {
-                targetPage.classList.add('active');
-            }
-            
-            document.querySelectorAll('.nav-btn').forEach(button => {
-                button.classList.remove('active');
-            });
-            const activeButton = document.querySelector(`[data-page="${pageId}"]`);
-            if (activeButton) {
-                activeButton.classList.add('active');
-            }
-            
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            updatePageDisplay(pageId);
-            
-            if (pageId === 'language-paradox') {
-                currentLangSlide = 1;
-                updateLangSlide();
-            }
-        }
-
-        function initViewCounter() {
-            try {
-                let totalViews = localStorage.getItem('totalViews') || '0';
-                totalViews = parseInt(totalViews) + 1;
-                localStorage.setItem('totalViews', totalViews.toString());
-                
-                const totalElement = document.getElementById('totalViews');
-                if (totalElement) {
-                    totalElement.textContent = `Total: ${totalViews.toLocaleString()}`;
-                }
-                
-                let visitorId = sessionStorage.getItem('visitorId');
-                if (!visitorId) {
-                    visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
-                    sessionStorage.setItem('visitorId', visitorId);
-                    
-                    let uniqueVisitors = localStorage.getItem('uniqueVisitors') || '0';
-                    uniqueVisitors = parseInt(uniqueVisitors) + 1;
-                    localStorage.setItem('uniqueVisitors', uniqueVisitors.toString());
-                }
-                
-                let uniqueVisitors = localStorage.getItem('uniqueVisitors') || '0';
-                const uniqueElement = document.getElementById('uniqueVisitors');
-                if (uniqueElement) {
-                    uniqueElement.textContent = `Unique: ${parseInt(uniqueVisitors).toLocaleString()}`;
-                }
-            } catch (error) {
-                console.log('Storage not available:', error);
-                const totalElement = document.getElementById('totalViews');
-                const uniqueElement = document.getElementById('uniqueVisitors');
-                if (totalElement) totalElement.textContent = 'Total: --';
-                if (uniqueElement) uniqueElement.textContent = 'Unique: --';
-            }
-        }
-
-        function updatePageDisplay(pageName) {
-            const pageElement = document.getElementById('currentPage');
-            if (pageElement) {
-                const displayName = pageName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
-                pageElement.textContent = `Page: ${displayName}`;
-            }
-        }
-
-        // Initialize everything
-        document.addEventListener('DOMContentLoaded', function() {
-            try {
-                createStars();
-                initViewCounter();
-                
-                document.querySelectorAll('.nav-btn').forEach(button => {
-                    button.addEventListener('click', function() {
-                        const page = this.getAttribute('data-page');
-                        if (page) {
-                            showPage(page);
-                        }
-                    });
-                });
-
-                const translateBtn = document.getElementById('translateBtn');
-                if (translateBtn) {
-                    translateBtn.addEventListener('click', translateText);
-                }
-                
-                updateLangSlide();
-                advanceTransformation();
-                
-            } catch (error) {
-                console.error('Initialization error:', error);
-            }
-        });
-
-        document.addEventListener('mouseover', function(e) {
-            if (e.target.classList.contains('living-text')) {
-                advanceTransformation();
-            }
-        });
-    </script>
 </body>
 </html>
