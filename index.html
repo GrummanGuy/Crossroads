@@ -1812,5 +1812,59 @@ document.addEventListener('DOMContentLoaded', function() {
   document.addEventListener('DOMContentLoaded', function(){ updateLangSlideSafe(); });
 })();
 </script>
+
+<script>
+/* === Crossroads Patch v2.3 ===
+   - Slide dots/buttons robust: handles [data-slide], [data-goto], .slide-dot, .dot
+   - Question-aware copula transform to avoid "Emerges as ..." at sentence start
+*/
+(function(){
+  // --- Robust slide click handling (works for buttons 1–6) ---
+  document.addEventListener('click', function(e){
+    var t = e.target;
+    var dot = t.closest && (t.closest('[data-slide]') || t.closest('[data-goto]') || t.closest('.slide-dot') || t.closest('.dot'));
+    if (dot){
+      var n = dot.getAttribute('data-slide') || dot.getAttribute('data-goto') || dot.getAttribute('data-index') || dot.textContent;
+      n = parseInt(String(n).trim(), 10);
+      if (!isNaN(n)){ e.preventDefault(); if (typeof window.goToLangSlide === 'function') window.goToLangSlide(n); }
+    }
+  }, true);
+
+  // --- Wrap/override translator to handle leading-copula questions gracefully ---
+  (function(){
+    if (typeof window.translateText !== 'function') return;
+
+    // Lightweight copy of the copula map used in the main translator
+    var copulaMap = {"is":"emerges as","are":"manifest as","was":"arose as","were":"interacted as"};
+
+    function fixLeadingCopulaQuestions(text){
+      // Example: "Is she actually the best at superior efforts?"
+      // -> "She emerges as actually the best at superior efforts?"
+      // Handles Is/Are/Was/Were + Subject + Rest ?
+      return text.replace(/^[\s]*\b(Is|Are|Was|Were)\b\s+([^?]+?)\s*\?\s*$/gmi, function(m, cop, body){
+        var repl = copulaMap[cop.toLowerCase()] || cop;
+        // If body already begins with a pronoun/noun, just move copula phrase behind subject
+        return body.trim() + " " + repl + "?";
+      });
+    }
+
+    var originalTranslate = window.translateText;
+    window.translateText = function(){
+      // Run original translator
+      originalTranslate();
+      // Then post-process the output to fix leading-copula questions
+      try{
+        var output = document.getElementById('outputText');
+        if (output && output.textContent){
+          var fixed = fixLeadingCopulaQuestions(output.textContent);
+          // avoid double spaces
+          fixed = fixed.replace(/\s{2,}/g, ' ').trim();
+          output.textContent = fixed;
+        }
+      }catch(e){ console.warn('post-fix failed', e); }
+    };
+  })();
+})();
+</script>
 </body>
 </html>
