@@ -204,6 +204,46 @@
             border: 1px solid rgba(74, 158, 255, 0.3);
         }
 
+        /* Process Hint Tooltips - Subtle Educational Reinforcement */
+        .process-hint {
+            position: relative;
+            border-bottom: 1px dotted rgba(74, 158, 255, 0.5);
+            cursor: help;
+            transition: all 0.2s ease;
+        }
+
+        .process-hint:hover {
+            color: #4a9eff;
+        }
+
+        .process-hint:hover::after {
+            content: attr(data-tooltip);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 20, 20, 0.95);
+            color: #87ceeb;
+            padding: 0.5rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            white-space: nowrap;
+            z-index: 1000;
+            border: 1px solid rgba(74, 158, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .process-hint:hover::before {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(100%);
+            border: 4px solid transparent;
+            border-top-color: rgba(74, 158, 255, 0.3);
+            z-index: 1000;
+        }
+
         .container {
             position: relative;
             z-index: 10;
@@ -1072,6 +1112,7 @@
                         <li><button class="nav-btn" data-page="language-paradox">Language Paradox</button></li>
                         <li><button class="nav-btn" data-page="translator">Language Translator</button></li>
                         <li><button class="nav-btn" data-page="academy">Continue Consciously</button></li>
+                        <li><button class="nav-btn" data-page="methods">Our Methods</button></li>
                         <li><button class="nav-btn" data-page="field-theory">Field Theory</button></li>
                         <li><button class="nav-btn" data-page="ideas">Other Ideas</button></li>
                         <li><button class="nav-btn" data-page="projects">Projects</button></li>
@@ -1085,7 +1126,7 @@
         <div id="home" class="page active">
             <div class="hero">
                 <div class="hero-content">
-                    <p>This site is an open invitation to curiosity, exploration, and collaboration. Here, you'll find ideas that reach across physics, cosmology, biology, and beyond—always guided by the belief that our greatest purpose is to learn, and to share what we learn.</p>
+                    <p>This site offers an open invitation to curiosity, exploration, and collaboration. Here, you'll find ideas that reach across physics, cosmology, biology, and beyond—consistently guided by our commitment to learning and sharing what we learn.</p>
                     <p>Something fundamental about how we <span class="living-text" data-process="describing reveals as process-unfolding">describe</span> reality might be... backwards. Ready to explore?</p>
                 </div>
             </div>
@@ -1184,16 +1225,16 @@
 
             <div class="subpage-content">
                 <h2>Recognition, Not Recruitment</h2>
-                <p>You didn't arrive here by accident. Every interaction with the Language Paradox, every moment using the Translator, every insight about the Cosmic Divide has been reshaping how you think. You're not joining something new—you're acknowledging what's already happening.</p>
+                <p>You didn't arrive here by accident. Every interaction with the Language Paradox, every moment using the Translator, every insight about the Cosmic Divide has been reshaping how you think. You're not joining something new—you're acknowledging what's emerging.</p>
 
-                <h2>The Path Already Traveled</h2>
-                <p>Look back at your journey here. You began curious about physics puzzles. You discovered that language shapes reality perception. You experienced firsthand how word choices transform thinking. You've already been learning the art of process description.</p>
+                <h2>The Path Currently Traveled</h2>
+                <p>Look back at your journey here. You began curious about physics puzzles. You discovered that <span class="process-hint" data-tooltip="Language participates in shaping rather than simply describing">language shapes reality perception</span>. You experienced firsthand how word choices transform thinking. You've been learning the art of process description.</p>
 
                 <h2>Conscious Continuation</h2>
                 <div class="content-grid" style="margin-top: 2rem;">
                     <div class="card-base">
                         <h3>⚡ Deepen What's Started</h3>
-                        <p>Your mind has already begun this shift. Now we develop the skill consciously, with intention and method.</p>
+                        <p>Your mind has begun this shift. Now we develop the skill consciously, with intention and method.</p>
                     </div>
 
                     <div class="card-base">
@@ -1215,8 +1256,8 @@
                 <h2>The Work Continues</h2>
                 <p>Return to the <a onclick="showPage('translator')">Language Translator</a> with new awareness. Revisit <a onclick="showPage('language-paradox')">The Language Paradox</a> and notice what you see differently now. Explore <a onclick="showPage('cosmic-divide')">The Cosmic Divide</a> with your transformed perception.</p>
 
-                <h2>You're Already Here</h2>
-                <p>This isn't a program you complete. It's a way of seeing you've already begun. The Academy isn't a destination—it's recognition of where you find yourself: thinking in new ways, perceiving reality differently, speaking the language of process.</p>
+                <h2>You're Currently Here</h2>
+                <p>This isn't a program you complete. It's a way of seeing you've begun. The Academy isn't a destination—it's recognition of where you find yourself: thinking in new ways, perceiving reality differently, speaking the language of process.</p>
                 
                 <p style="margin-top: 2rem; font-style: italic; text-align: center; color: #87ceeb;">
                     "Learning and Sharing What We Learn"—you're already doing both.
@@ -1240,12 +1281,12 @@
                 <h2>Linguistic Obstacles</h2>
                 <p>Object-language forces us to treat quantum mechanics and general relativity as separate "things" that need to be "unified." This creates an artificial problem: how can two different kinds of reality be reconciled?</p>
 
-                <p>Process language reveals a different picture: field dynamics exhibit scale-dependent properties. What appears "quantum" at one scale emerges as "classical" at another through continuous transformation processes.</p>
+                <p>Process language reveals a different picture: <span class="process-hint" data-tooltip="We describe ongoing relationships rather than fixed properties">field dynamics exhibit scale-dependent properties</span>. What appears "quantum" at one scale <span class="process-hint" data-tooltip="Emergence as process rather than sudden appearance">emerges as</span> "classical" at another through continuous transformation processes.</p>
 
                 <h2>Scale-Dependent Dynamics</h2>
-                <p>Rather than asking "how do we unify quantum and classical?", we describe how field coupling strengths vary with measurement scale. The renormalization group provides mathematical tools for understanding these scale transformations.</p>
+                <p>Rather than asking "how do we unify quantum and classical?", we describe how <span class="process-hint" data-tooltip="Measurable parameters that change with observation scale">field coupling strengths vary with measurement scale</span>. The renormalization group provides mathematical tools for understanding these scale transformations.</p>
 
-                <p>What we call "quantum weirdness" emerges from describing scale-dependent field processes using scale-independent object language. The "weirdness" disappears when our descriptions match the processual nature of what's actually happening.</p>
+                <p>What we call "quantum weirdness" <span class="process-hint" data-tooltip="Arises from conditions rather than being inherent">emerges from</span> describing scale-dependent field processes using scale-independent object language. The "weirdness" disappears when our descriptions match the processual nature of what's actually happening.</p>
 
                 <h2>Implications for Physics</h2>
                 <p>This approach suggests that many foundational problems in physics stem from linguistic habits rather than physical mysteries. The measurement problem, the hard problem of consciousness, and the quantum-classical divide may dissolve when described using process language appropriate to their scale-dependent nature.</p>
@@ -1502,6 +1543,64 @@
 
                 <h2>Collaborative Opportunities</h2>
                 <p>Open to connecting with researchers from all disciplines who share curiosity about consciousness, field theory applications, and fundamental questions about reality.</p>
+            </div>
+        </div>
+
+        <!-- OUR METHODS PAGE -->
+        <div id="methods" class="page">
+            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+            <div class="subpage-header">
+                <h1>Our Methods</h1>
+                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">How we practice what we teach</p>
+            </div>
+            <div class="subpage-content">
+                <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(74, 158, 255, 0.1)); border-radius: 16px; padding: 2.5rem; margin-bottom: 3rem; border: 1px solid rgba(255, 215, 0, 0.2);">
+                    <h2 style="color: #ffd700; margin-bottom: 1.5rem; text-align: center;">Process-Language Commitment</h2>
+                    <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem;">We avoid absolutes and dichotomies; we bound claims by evidence and conditions. Our descriptions emphasize interactions, tendencies, and transformations rather than static properties. When we encounter habituated object-language patterns in our own communication, we work to transform them into process-oriented alternatives.</p>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <a onclick="showPage('translator')" style="color: #4a9eff; text-decoration: none; font-weight: 600; cursor: pointer; padding: 0.75rem 1.5rem; border: 1px solid rgba(74, 158, 255, 0.4); border-radius: 8px; background: rgba(74, 158, 255, 0.1); transition: all 0.3s ease;" onmouseover="this.style.background='rgba(74, 158, 255, 0.2)'" onmouseout="this.style.background='rgba(74, 158, 255, 0.1)'">Experience our analytical approach →</a>
+                    </div>
+                </div>
+
+                <h2>Methodological Principles</h2>
+                <div class="content-grid" style="margin-top: 2rem;">
+                    <div class="card-base">
+                        <h3>🔄 Process Verbs Over Static Identity</h3>
+                        <p>Instead of "light is a wave," we describe "quantum fields produce wave-like interference patterns under specific measurement conditions."</p>
+                    </div>
+
+                    <div class="card-base">
+                        <h3>🎯 Named Agents Over Passive Voice</h3>
+                        <p>Rather than "decisions are made," we specify "researchers decide based on experimental evidence gathered between 2022-2025."</p>
+                    </div>
+
+                    <div class="card-base">
+                        <h3>📊 Bounded Claims Over Absolutes</h3>
+                        <p>We replace "always works" with "consistently produces desired outcomes in our observed trials under laboratory conditions."</p>
+                    </div>
+
+                    <div class="card-base">
+                        <h3>🌈 Continua Over Binary Thinking</h3>
+                        <p>Instead of "quantum or classical," we describe "scale-dependent field dynamics exhibiting different coupling strengths at different measurement scales."</p>
+                    </div>
+                </div>
+
+                <h2>Evidence-Based Communication</h2>
+                <p>Our approach to scientific communication reflects our understanding that language shapes perception. By consistently applying process-oriented descriptions, we model the kind of thinking that reveals rather than obscures natural phenomena.</p>
+
+                <p>This methodology appears throughout our website content, research publications, and educational materials. Every page demonstrates conscious language choices that prioritize clarity, accuracy, and intellectual honesty over rhetorical persuasion.</p>
+
+                <h2>Observable Outcomes</h2>
+                <p>Visitors to CROSSROADS often report experiencing shifts in how they perceive scientific concepts, even before encountering our formal educational content. This suggests that process-language methodology creates learning environments where insights emerge naturally from engagement rather than requiring persuasive argument.</p>
+
+                <h2>Collaborative Application</h2>
+                <p>We apply these methods in collaborative research, technical writing, and educational program development. Partners and students consistently note that process-oriented communication reduces misunderstandings and accelerates meaningful progress on complex problems.</p>
+
+                <div style="background: rgba(20, 20, 20, 0.6); border-radius: 12px; padding: 2rem; margin-top: 3rem; border-left: 4px solid #4a9eff;">
+                    <h3 style="color: #4a9eff; margin-bottom: 1rem;">Methodology in Practice</h3>
+                    <p style="margin-bottom: 1rem;">Experience how language transformation affects understanding by exploring our <a onclick="showPage('language-paradox')" style="color: #4a9eff; cursor: pointer;">Language Paradox</a> examples and experimenting with our <a onclick="showPage('translator')" style="color: #4a9eff; cursor: pointer;">Language Translator</a>.</p>
+                    <p>For those ready to develop conscious competency in process-language methodology, the <a onclick="showPage('academy')" style="color: #ffd700; cursor: pointer;">Academy</a> provides structured guidance for integrating these approaches into your own work.</p>
+                </div>
             </div>
         </div>
 
