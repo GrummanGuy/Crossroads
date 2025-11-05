@@ -1669,5 +1669,39 @@
 window.translateText = translateText;
   });
 })();
+
+<script>
+// === Robust nav wiring (event delegation) ===
+document.addEventListener('DOMContentLoaded', function() {
+  // Clicks anywhere in the doc that bubble up from a .nav-btn
+  document.addEventListener('click', function(e) {
+    const btn = e.target.closest && e.target.closest('.nav-btn');
+    if (!btn) return;
+    const target = btn.getAttribute('data-page');
+    if (!target) return;
+
+    // Prefer site's showPage if defined
+    if (typeof window.showPage === 'function') {
+      e.preventDefault();
+      window.showPage(target);
+      return;
+    }
+
+    // Fallback: toggle .page containers
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(p => p.classList.remove('active'));
+    const page = document.getElementById(target);
+    if (page) page.classList.add('active');
+
+    // Reflect active state in nav
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    // Scroll to top for consistency
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, true);
+});
+</script>
+
 </body>
 </html>
