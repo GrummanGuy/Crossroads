@@ -13,7 +13,7 @@
 
         body {
             font-family: 'Georgia', serif;
-            background: #0a0a0a;
+            background: #0a0f1a;
             color: #e8e8e8;
             overflow-x: hidden;
             position: relative;
@@ -22,371 +22,293 @@
             flex-direction: column;
         }
 
-        /* Starry night background */
-        body::before {
-            content: "";
+        /* Animated starfield background */
+        #starfield {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://raw.githubusercontent.com/GrummanGuy/Crossroads/main/images/starry-night.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            opacity: 0.25;
             z-index: 0;
-            pointer-events: none;
         }
 
-        /* Fallback background */
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(ellipse at top, #1e3a8a 0%, #0f172a 50%, #000000 100%);
-            opacity: 0.4;
-            z-index: -1;
-            pointer-events: none;
-        }
-
-        .stars {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
+        /* Content wrapper */
+        .content-wrapper {
+            position: relative;
             z-index: 1;
-        }
-
-        .star {
-            position: absolute;
-            background: white;
-            border-radius: 50%;
-            animation: twinkle 3s infinite ease-in-out;
-        }
-
-        @keyframes twinkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.8; }
-        }
-
-        /* Emergent Academy Symbol */
-        .emergence-symbol {
-            position: fixed;
-            top: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(74, 158, 255, 0.1), rgba(255, 215, 0, 0.05));
-            border: 1px solid rgba(74, 158, 255, 0.1);
-            opacity: 0.2;
-            z-index: 1500;
-            transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: default;
-            pointer-events: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .emergence-symbol::before {
-            content: "◉";
-            color: rgba(74, 158, 255, 0.3);
-            transition: all 1.5s ease;
-        }
-
-        .emergence-symbol.stage-1 {
-            opacity: 0.4;
-            border-color: rgba(74, 158, 255, 0.2);
-            background: radial-gradient(circle, rgba(74, 158, 255, 0.15), rgba(255, 215, 0, 0.08));
-        }
-
-        .emergence-symbol.stage-1::before {
-            content: "◉";
-            color: rgba(74, 158, 255, 0.5);
-        }
-
-        .emergence-symbol.stage-2 {
-            opacity: 0.6;
-            border-color: rgba(74, 158, 255, 0.4);
-            background: radial-gradient(circle, rgba(74, 158, 255, 0.2), rgba(255, 215, 0, 0.12));
-            transform: scale(1.05);
-        }
-
-        .emergence-symbol.stage-2::before {
-            content: "◎";
-            color: rgba(74, 158, 255, 0.7);
-        }
-
-        .emergence-symbol.stage-3 {
-            opacity: 0.8;
-            border-color: rgba(255, 215, 0, 0.6);
-            background: radial-gradient(circle, rgba(74, 158, 255, 0.25), rgba(255, 215, 0, 0.2));
-            transform: scale(1.1);
-            box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
-            pointer-events: auto;
-            cursor: pointer;
-        }
-
-        .emergence-symbol.stage-3::before {
-            content: "◈";
-            color: rgba(255, 215, 0, 0.9);
-            animation: pulse 2s infinite ease-in-out;
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.9; }
-            50% { transform: scale(1.1); opacity: 1; }
-        }
-
-        /* Transformation Traces */
-        .transformation-traces {
-            opacity: 0;
-            transition: opacity 1s ease;
-            margin-top: 0.5rem;
-            font-size: 0.75rem;
-            color: #666;
-            font-style: italic;
-            text-align: left;
-        }
-
-        .transformation-traces.visible {
-            opacity: 0.7;
-        }
-
-        .transformation-traces .trace {
-            display: none;
-            margin: 0.2rem 0;
-            transition: all 0.8s ease;
-        }
-
-        .transformation-traces .trace.active {
-            display: block;
-            animation: traceAppear 1s ease-in-out;
-        }
-
-        @keyframes traceAppear {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 0.7; transform: translateY(0); }
-        }
-
-        /* Living Interface */
-        .living-text {
-            transition: all 0.3s ease;
-            position: relative;
-        }
-
-        .living-text:hover {
-            color: #4a9eff;
-            cursor: help;
-        }
-
-        .living-text:hover::after {
-            content: attr(data-process);
-            position: absolute;
-            bottom: 100%;
-            left: 0;
-            background: rgba(20, 20, 20, 0.9);
-            color: #87ceeb;
-            padding: 0.3rem 0.6rem;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            white-space: nowrap;
-            z-index: 1000;
-            border: 1px solid rgba(74, 158, 255, 0.3);
-        }
-
-        /* Process Hints */
-        .process-hint {
-            position: relative;
-            border-bottom: 1px dotted rgba(74, 158, 255, 0.5);
-            cursor: help;
-            transition: all 0.2s ease;
-        }
-
-        .process-hint:hover {
-            color: #4a9eff;
-        }
-
-        .process-hint:hover::after {
-            content: attr(data-tooltip);
-            position: absolute;
-            bottom: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(20, 20, 20, 0.95);
-            color: #87ceeb;
-            padding: 0.5rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            white-space: nowrap;
-            z-index: 1000;
-            border: 1px solid rgba(74, 158, 255, 0.3);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-        }
-
-        .container {
-            position: relative;
-            z-index: 10;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            padding-top: 2rem;
-            padding-bottom: 3rem;
             flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Header */
-        .header-section {
+        header {
             text-align: center;
-            padding: 2rem 0 2rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 2rem;
+            padding: 2rem 2rem 0.5rem;
             position: relative;
-        }
-
-        .header-section::before {
-            content: "";
-            position: absolute;
-            inset: 0 0 -60px 0;
-            background: radial-gradient(1200px 220px at 50% 0%,
-                        rgba(74,158,255,0.12) 0%,
-                        rgba(74,158,255,0.06) 35%,
-                        rgba(10,10,10,0) 70%);
-            pointer-events: none;
-            z-index: -1;
         }
 
         .main-title {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            letter-spacing: 0.1em;
-            background: linear-gradient(135deg, #ffffff, #cccccc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            cursor: pointer;
-            transition: opacity 0.3s ease;
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 0.4em;
+            color: #6ab4ff;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            text-shadow: 0 0 20px rgba(106, 180, 255, 0.5);
         }
 
-        .main-title:hover {
-            opacity: 0.8;
-        }
-
-        .main-tagline {
-            font-size: 1.2rem;
-            color: #b8b8b8;
-            margin-bottom: 2rem;
+        .subtitle {
+            font-size: 0.95rem;
+            color: #a8a8a8;
             font-style: italic;
+            letter-spacing: 0.05em;
         }
 
+        /* Navigation - small horizontal tabs */
         nav {
-            position: relative;
-            background: transparent;
-            padding: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
             display: flex;
+            flex-direction: row;
             justify-content: center;
             align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 1rem;
+            flex-wrap: nowrap;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 1rem;
-            list-style: none;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .nav-links button {
-            background: none;
-            border: none;
-            color: #999999;
+        .nav-button {
+            padding: 0.35rem 0.7rem;
+            background: transparent;
+            border: 1px solid rgba(106, 180, 255, 0.4);
+            color: #a8d8ff;
             text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 400;
-            padding: 0.5rem 0.9rem;
-            border-radius: 4px;
+            border-radius: 3px;
             transition: all 0.3s ease;
             cursor: pointer;
-            font-family: inherit;
+            font-size: 0.75rem;
+            font-family: 'Georgia', serif;
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
-        .nav-links button:hover,
-        .nav-links button.active {
+        .nav-button:hover,
+        .nav-button.active {
+            background: rgba(106, 180, 255, 0.15);
+            border-color: #6ab4ff;
             color: #ffffff;
-            background: rgba(255, 255, 255, 0.1);
         }
 
-        .nav-links button.active {
-            background: rgba(74, 158, 255, 0.2);
-            border: 1px solid rgba(74, 158, 255, 0.3);
-        }
-
-        /* Hidden Academy Button */
-        .nav-links button[data-page="academy"] {
-            opacity: 0;
-            transform: scale(0.8);
-            pointer-events: none;
-            transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .nav-links button[data-page="academy"].emerged {
-            opacity: 1;
-            transform: scale(1);
-            pointer-events: auto;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(74, 158, 255, 0.15));
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            color: #ffd700;
-            animation: academyEmerge 2s ease-in-out;
-        }
-
-        @keyframes academyEmerge {
-            0% { opacity: 0; transform: scale(0.8) translateY(20px); }
-            50% { transform: scale(1.05); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
+        /* Back to Home button */
         .back-button {
-            display: inline-block;
-            color: #4a9eff;
-            text-decoration: none;
-            font-size: 0.9rem;
-            margin-bottom: 2rem;
-            padding: 0.5rem 1rem;
-            border: 1px solid rgba(74, 158, 255, 0.3);
-            border-radius: 6px;
-            transition: all 0.3s ease;
-            background: rgba(74, 158, 255, 0.1);
+            padding: 0.6rem 1.3rem;
+            background: rgba(30, 30, 30, 0.8);
+            border: 1px solid #6ab4ff;
+            color: #6ab4ff;
+            border-radius: 4px;
             cursor: pointer;
-            font-family: inherit;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            font-family: 'Georgia', serif;
         }
 
         .back-button:hover {
-            background: rgba(74, 158, 255, 0.2);
-            border-color: rgba(74, 158, 255, 0.5);
+            background: rgba(106, 180, 255, 0.2);
+            box-shadow: 0 0 15px rgba(106, 180, 255, 0.4);
         }
 
+        /* Page system */
         .page {
             display: none;
-            min-height: calc(100vh - 300px);
+            flex: 1;
+            padding: 2rem;
         }
 
         .page.active {
             display: block;
-            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        /* HOME PAGE - Trail of Discovery layout */
+        .hero-section {
+            text-align: center;
+            padding: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .cosmos-image {
+            position: absolute;
+            top: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 450px;
+            height: auto;
+            opacity: 0.35;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro-text {
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+            color: #d8d8d8;
+            font-size: 1rem;
+        }
+
+        .trail-section {
+            background: rgba(20, 30, 40, 0.5);
+            border: 1px solid rgba(106, 180, 255, 0.3);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-top: 2rem;
+        }
+
+        .trail-title {
+            color: #6ab4ff;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .discovery-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .discovery-card {
+            background: rgba(15, 25, 35, 0.7);
+            border: 1px solid rgba(106, 180, 255, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .discovery-card:hover {
+            border-color: #6ab4ff;
+            box-shadow: 0 0 20px rgba(106, 180, 255, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .card-icon {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-title {
+            color: #6ab4ff;
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-description {
+            color: #c8c8c8;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .card-quote {
+            font-style: italic;
+            color: #a8d8ff;
+            border-left: 3px solid #6ab4ff;
+            padding-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .card-link {
+            color: #ffd93d;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        .card-link:hover {
+            color: #ffed8d;
+        }
+
+        /* Subpage styling */
+        .subpage-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .subpage-header h1 {
+            font-size: 2.5rem;
+            color: #6ab4ff;
+            margin-bottom: 0.8rem;
+            font-weight: 300;
+        }
+
+        .subpage-content {
+            max-width: 900px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        .subpage-content h2 {
+            color: #6ab4ff;
+            margin: 2rem 0 1rem;
+            font-size: 1.7rem;
+            font-weight: 300;
+        }
+
+        .subpage-content h3 {
+            color: #8ac5ff;
+            margin: 1.5rem 0 0.8rem;
+            font-size: 1.3rem;
+            font-weight: 300;
+        }
+
+        .subpage-content p {
+            margin-bottom: 1.2rem;
+            color: #c8c8c8;
+        }
+
+        .subpage-content a {
+            color: #6ab4ff;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .subpage-content a:hover {
+            color: #8ac5ff;
+            text-decoration: underline;
+        }
+
+        .subpage-content ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+            color: #c8c8c8;
+        }
+
+        .subpage-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Language Paradox slides */
+        .lang-slide {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+
+        .lang-slide.active {
+            display: block;
         }
 
         @keyframes fadeIn {
@@ -394,518 +316,68 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .hero {
-            margin-bottom: 2.5rem;
-            position: relative;
-        }
-
-        .hero-content {
-            max-width: 700px;
-            margin: 0 auto 2rem auto;
-            text-align: center;
-        }
-
-        .hero-content p {
-            font-size: 1.1rem;
-            color: #d0d0d0;
-            line-height: 1.7;
-            margin-bottom: 1.5rem;
-            text-align: left;
-        }
-
-        .illustration-wrap {
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto 4rem auto;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .illustration {
-            width: 100%;
-            height: auto;
-            display: block;
-            opacity: 0.95;
-            mask-image: linear-gradient(to bottom, 
-                rgba(0,0,0,1) 0%, 
-                rgba(0,0,0,1) 50%, 
-                rgba(0,0,0,0.5) 80%, 
-                rgba(0,0,0,0) 100%);
-            -webkit-mask-image: linear-gradient(to bottom, 
-                rgba(0,0,0,1) 0%, 
-                rgba(0,0,0,1) 50%, 
-                rgba(0,0,0,0.5) 80%, 
-                rgba(0,0,0,0) 100%);
-        }
-
-        .illustration-placeholder {
-            width: 100%;
-            height: 300px;
-            background: linear-gradient(135deg, rgba(74,158,255,0.2), rgba(255,255,255,0.1));
-            border-radius: 12px;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            color: #888;
-            font-style: italic;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* Discovery Trail */
-        .discovery-trail {
-            margin: 4rem 0;
-            background: rgba(20, 20, 20, 0.6);
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            border: 1px solid rgba(74, 158, 255, 0.2);
-        }
-
-        .trail-container {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-        }
-
-        .trail-step {
-            background: rgba(30, 30, 30, 0.8);
-            border-radius: 15px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            border: 2px solid rgba(74, 158, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .trail-step::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(74, 158, 255, 0.1), transparent);
-            transition: left 0.6s ease;
-        }
-
-        .trail-step:hover::before {
-            left: 100%;
-        }
-
-        .trail-step:hover {
-            border-color: rgba(74, 158, 255, 0.6);
-            transform: translateY(-5px) scale(1.02);
-            box-shadow: 0 15px 35px rgba(74, 158, 255, 0.2);
-        }
-
-        .trail-step.academy-entry {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(74, 158, 255, 0.1));
-            border-color: rgba(255, 215, 0, 0.3);
-            opacity: 0.5;
-            transform: scale(0.95);
-            pointer-events: none;
-            transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .trail-step.academy-entry.revealed {
-            opacity: 1;
-            transform: scale(1);
-            pointer-events: auto;
-            border-color: rgba(255, 215, 0, 0.6);
-            animation: academyEntryReveal 2s ease-in-out;
-        }
-
-        @keyframes academyEntryReveal {
-            0% { opacity: 0.5; transform: scale(0.95) translateY(20px); }
-            50% { transform: scale(1.02); }
-            100% { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        .trail-step.academy-entry.revealed:hover {
-            border-color: rgba(255, 215, 0, 0.8);
-            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
-        }
-
-        .trail-number {
-            position: absolute;
-            top: -15px;
-            left: 20px;
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, #4a9eff, #6ba4ff);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            font-size: 1.2rem;
-            color: white;
-            border: 3px solid #0a0a0a;
-        }
-
-        .trail-content h3 {
-            color: #4a9eff;
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-            margin-top: 0.5rem;
-        }
-
-        .trail-content p {
-            color: #d0d0d0;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .trail-teaser {
-            background: rgba(74, 158, 255, 0.1);
-            border-left: 4px solid #4a9eff;
-            padding: 1rem;
-            margin: 1rem 0;
-            font-style: italic;
-            color: #87ceeb;
-            border-radius: 0 8px 8px 0;
-        }
-
-        .trail-cta {
-            color: #ffd700;
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin-top: 1rem;
-            text-align: right;
-            transition: all 0.3s ease;
-        }
-
-        .trail-step:hover .trail-cta {
-            transform: translateX(10px);
-        }
-
-        .trail-arrow {
-            text-align: center;
-            font-size: 2rem;
-            color: #4a9eff;
-            margin: 1rem 0;
-            animation: bounce 2s infinite;
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-
-        /* User Type Hooks */
-        .user-type-hooks {
-            margin-top: 4rem;
-        }
-
-        .hook-card {
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hook-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 215, 0, 0.1), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .hook-card:hover::before {
-            left: 100%;
-        }
-
-        .hook-card h3 {
-            color: #ffd700;
-            margin-bottom: 1rem;
-        }
-
-        .hook-preview {
-            background: rgba(255, 215, 0, 0.1);
-            border-radius: 8px;
-            padding: 0.8rem;
-            margin-top: 1rem;
-            font-style: italic;
-            color: #87ceeb;
-            border-left: 3px solid #ffd700;
-        }
-
-        .content-grid {
+        .slide-comparison {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            margin-bottom: 3rem;
+            gap: 2rem;
+            margin-bottom: 2rem;
         }
 
-        .card-base {
-            background: rgba(20, 20, 20, 0.7);
+        .comparison-box {
+            background: rgba(20, 30, 40, 0.7);
             padding: 2rem;
             border-radius: 12px;
             border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
         }
 
-        .card-base:hover {
-            border-color: rgba(74, 158, 255, 0.3);
-            transform: translateY(-5px);
+        .comparison-box.object {
+            border-left: 4px solid #ff6b6b;
         }
 
-        .content-section h2,
-        .card-base h2 {
-            font-size: 1.6rem;
-            margin-bottom: 1rem;
-            color: #ffffff;
+        .comparison-box.process {
+            border-left: 4px solid #6ab4ff;
         }
 
-        .content-section p,
-        .card-base p {
-            line-height: 1.7;
-            color: #d0d0d0;
-            margin-bottom: 1rem;
-            font-size: 1rem;
-        }
-
-        .subpage-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .subpage-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            background: linear-gradient(135deg, #4a9eff, #6ba4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .subpage-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .subpage-content h2 {
-            font-size: 1.8rem;
-            margin: 2rem 0 1rem 0;
-            color: #4a9eff;
-        }
-
-        .subpage-content h3 {
-            font-size: 1.3rem;
-            margin: 1.5rem 0 0.8rem 0;
-            color: #6ba4ff;
-        }
-
-        .subpage-content p {
-            line-height: 1.8;
-            color: #d0d0d0;
-            margin-bottom: 1.2rem;
-        }
-
-        .subpage-content a {
-            color: #4a9eff;
-            text-decoration: none;
-            transition: color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .subpage-content a:hover {
-            color: #6ba4ff;
-            text-decoration: underline;
-        }
-
-        /* Academy Styles */
-        .academy-hero {
-            text-align: center;
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(74, 158, 255, 0.1));
-            border-radius: 20px;
-            padding: 3rem 2rem;
-            margin-bottom: 3rem;
-            border: 1px solid rgba(255, 215, 0, 0.2);
-        }
-
-        .academy-hero h1 {
-            font-size: 3rem;
-            background: linear-gradient(135deg, #ffd700, #ff8c00);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .academy-hero p {
-            font-size: 1.3rem;
-            color: #e8e8e8;
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* Translator Styles */
-        .translator-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .translator-header {
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-
-        .translator-header h1 {
-            font-size: 2.5rem;
-            background: linear-gradient(135deg, #4a9eff, #6ba4ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            margin-bottom: 1rem;
-        }
-
-        .translator-header p {
+        .comparison-label {
             font-size: 1.1rem;
-            color: #b8b8b8;
-            max-width: 700px;
-            margin: 0 auto 2rem auto;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
-        .translator-explanation {
-            background: rgba(20, 20, 20, 0.7);
-            padding: 2rem;
+        .comparison-box.object .comparison-label {
+            color: #ff6b6b;
+        }
+
+        .comparison-box.process .comparison-label {
+            color: #6ab4ff;
+        }
+
+        .irony-box {
+            background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(106, 180, 255, 0.15));
+            padding: 1.5rem 2rem;
             border-radius: 12px;
-            border-left: 4px solid #4a9eff;
-            margin-bottom: 2.5rem;
-            line-height: 1.7;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .translator-explanation h3 {
-            color: #4a9eff;
-            font-size: 1.3rem;
-            margin-bottom: 1rem;
-        }
-
-        .translator-explanation p {
-            color: #d0d0d0;
-            margin-bottom: 1rem;
-        }
-
-        .translator-explanation ul {
-            margin-left: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .translator-explanation li {
+        .irony-label {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: #ffd93d;
             margin-bottom: 0.5rem;
-            color: #d0d0d0;
+            font-weight: bold;
         }
 
-        .translator-explanation strong {
-            color: #6ba4ff;
-        }
-
-        #inputText {
-            width: 100%;
-            padding: 1rem;
-            border-radius: 8px;
-            background: rgba(20, 20, 20, 0.7);
-            border: 1px solid rgba(74, 158, 255, 0.3);
-            color: #e8e8e8;
-            font-family: inherit;
-            font-size: 1rem;
-            line-height: 1.6;
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        #inputText:focus {
-            outline: none;
-            border-color: rgba(74, 158, 255, 0.6);
-            box-shadow: 0 0 12px rgba(74, 158, 255, 0.2);
-        }
-
-        #translateBtn {
-            padding: 0.75rem 2rem;
-            background: rgba(74, 158, 255, 0.2);
-            border: 1px solid rgba(74, 158, 255, 0.3);
-            color: #4a9eff;
-            border-radius: 6px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        #translateBtn:hover {
-            background: rgba(74, 158, 255, 0.3);
-            border-color: rgba(74, 158, 255, 0.5);
-            transform: translateY(-2px);
-        }
-
-        #outputSection {
-            margin-top: 2rem;
-        }
-
-        #outputSection h2 {
-            font-size: 1.5rem;
-            color: #4a9eff;
-            margin-bottom: 1rem;
-        }
-
-        #outputText {
-            background: rgba(20, 20, 20, 0.7);
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid rgba(74, 158, 255, 0.3);
-            white-space: pre-wrap;
-            line-height: 1.6;
-            min-height: 100px;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        /* Language Paradox Slides */
-        .lang-slide {
-            display: none;
-            opacity: 0;
-            transition: opacity 0.5s ease-in-out;
-        }
-
-        .lang-slide.active {
-            display: block;
-            opacity: 1;
-        }
-
-        .lang-text {
+        .irony-text {
             font-size: 1.05rem;
             line-height: 1.6;
-            color: #d0d0d0;
+            color: #ffffff;
+            font-style: italic;
         }
 
-        .slide-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-
-        .slide-dot.active {
-            background: #4a9eff;
-            transform: scale(1.3);
-        }
-
-        .slide-navigation {
+        .slide-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -914,345 +386,212 @@
             border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .slide-dots {
-            display: flex;
-            gap: 0.5rem;
-            justify-content: center;
-            margin-top: 1rem;
+        .slide-button {
+            padding: 0.6rem 1.5rem;
+            background: rgba(106, 180, 255, 0.2);
+            border: 1px solid #6ab4ff;
+            color: #6ab4ff;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Georgia', serif;
         }
 
-        /* Stats Counter */
-        .stats-container {
-            display: inline-block;
-            font-size: 0.75rem;
-            color: #666;
-            opacity: 0.7;
-            margin-bottom: 0.5rem;
+        .slide-button:hover:not(:disabled) {
+            background: rgba(106, 180, 255, 0.4);
+            box-shadow: 0 0 15px rgba(106, 180, 255, 0.4);
         }
 
-        .stats-container div {
-            display: inline;
-            margin-right: 1rem;
+        .slide-button:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
         }
 
-        /* Balanced Footer */
+        .slide-indicator {
+            color: #a8a8a8;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
         footer {
-            position: relative;
-            z-index: 10;
-            background: rgba(10, 10, 10, 0.95);
-            border-top: 1px solid rgba(74, 158, 255, 0.15);
-            padding: 1.5rem 2rem 1rem 2rem;
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(106, 180, 255, 0.2);
             margin-top: auto;
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            font-size: 0.85rem;
-            color: #888888;
+            color: #a8a8a8;
+            font-size: 0.9rem;
         }
 
-        .footer-top-row {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
+        .footer-tagline {
+            font-style: italic;
+            margin-bottom: 0.5rem;
         }
 
-        .footer-bottom-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-            padding-top: 1rem;
-        }
-
-        .footer-brand {
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 0;
-        }
-
-        .footer-logo {
+        .footer-org {
+            color: #6ab4ff;
             font-weight: bold;
-            color: #4a9eff;
-            font-size: 1.1rem;
-            letter-spacing: 0.1em;
         }
 
-        .footer-copyright {
-            font-size: 0.8rem;
-            text-align: right;
-            min-width: 200px;
-        }
-
-        .footer-stats {
-            text-align: left;
-            flex: 1;
-            max-width: 400px;
-            min-width: 200px;
-        }
-
-        .footer-contact {
-            text-align: center;
-        }
-
-        .footer-contact button {
-            padding: 0.5rem 1rem;
-            background: rgba(74, 158, 255, 0.15);
-            border: 1px solid rgba(74, 158, 255, 0.25);
-            color: #4a9eff;
-            border-radius: 4px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: inherit;
-        }
-
-        .footer-contact button:hover {
-            background: rgba(74, 158, 255, 0.25);
+        /* Responsive design */
+        @media (max-width: 1024px) {
+            nav {
+                gap: 0.4rem;
+            }
+            
+            .nav-button {
+                padding: 0.35rem 0.8rem;
+                font-size: 0.75rem;
+            }
         }
 
         @media (max-width: 768px) {
             .main-title {
                 font-size: 2.2rem;
+                letter-spacing: 0.2em;
             }
 
-            .main-tagline {
-                font-size: 1rem;
+            .nav-button {
+                font-size: 0.7rem;
+                padding: 0.3rem 0.6rem;
             }
 
-            .content-grid {
+            .cosmos-image {
+                width: 300px;
+                top: -50px;
+            }
+
+            .slide-comparison {
                 grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .footer-top-row,
-            .footer-bottom-row {
-                flex-direction: column;
-                text-align: center;
-                align-items: center;
-                gap: 1rem;
-            }
-
-            .footer-stats {
-                text-align: center;
-                max-width: 100%;
-                min-width: auto;
-            }
-
-            .footer-copyright {
-                text-align: center;
-                min-width: auto;
-            }
-
-            .nav-links {
-                gap: 0.5rem;
-            }
-
-            .nav-links button {
-                font-size: 0.8rem;
-                padding: 0.4rem 0.7rem;
-            }
-
-            .slide-navigation {
-                flex-direction: column;
-                gap: 1rem;
-            }
-
-            .emergence-symbol {
-                top: 20px;
-                right: 20px;
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="stars" id="stars"></div>
-    
-    <!-- Emergent Academy Symbol -->
-    <div class="emergence-symbol" id="emergenceSymbol" onclick="handleSymbolClick()"></div>
+    <!-- Animated starfield canvas -->
+    <canvas id="starfield"></canvas>
 
-    <main class="container">
-        <!-- Header with CROSSROADS -->
-        <div class="header-section">
-            <h1 class="main-title" onclick="showPage('home')">CROSSROADS</h1>
-            <p class="main-tagline">Where ideas meet and new paths begin</p>
-            
-            <nav>
-                <div class="nav-container">
-                    <ul class="nav-links">
-                        <li><button class="nav-btn active" data-page="home">Home</button></li>
-                        <li><button class="nav-btn" data-page="cosmic-divide">Cosmic Divide</button></li>
-                        <li><button class="nav-btn" data-page="language-paradox">Language Paradox</button></li>
-                        <li><button class="nav-btn" data-page="translator">Language Translator</button></li>
-                        <li><button class="nav-btn" data-page="academy">Continue Consciously</button></li>
-                        <li><button class="nav-btn" data-page="methods">Our Methods</button></li>
-                        <li><button class="nav-btn" data-page="field-theory">Field Theory</button></li>
-                        <li><button class="nav-btn" data-page="projects">Projects</button></li>
-                        <li><button class="nav-btn" data-page="ideas">Other Ideas</button></li>
-                        <li><button class="nav-btn" data-page="contact">Contact</button></li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
+    <div class="content-wrapper">
+        <header>
+            <h1 class="main-title">CROSSROADS</h1>
+            <p class="subtitle">Where ideas meet and new paths begin</p>
+        </header>
 
-        <!-- HOME PAGE -->
+        <nav>
+            <button class="nav-button active" onclick="showPage('home')" data-page="home">Home</button>
+            <button class="nav-button" onclick="showPage('cosmic-divide')" data-page="cosmic-divide">Cosmic Divide</button>
+            <button class="nav-button" onclick="showPage('language-paradox')" data-page="language-paradox">Language Paradox</button>
+            <button class="nav-button" onclick="showPage('language-translator')" data-page="language-translator">Language Translator</button>
+            <button class="nav-button" onclick="showPage('our-methods')" data-page="our-methods">Our Methods</button>
+            <button class="nav-button" onclick="showPage('field-theory')" data-page="field-theory">Field Theory</button>
+            <button class="nav-button" onclick="showPage('ideas')" data-page="ideas">Other Ideas</button>
+            <button class="nav-button" onclick="showPage('projects')" data-page="projects">Projects</button>
+            <button class="nav-button" onclick="showPage('contact')" data-page="contact">Contact</button>
+        </nav>
+
+        <!-- HOME PAGE - Trail of Discovery -->
         <div id="home" class="page active">
-            <div class="hero">
+            <div class="hero-section">
+                <img src="https://raw.githubusercontent.com/GrummanGuy/Crossroads/main/images/Contemplating%20the%20Cosmos.png" 
+                     alt="Contemplating the Cosmos" 
+                     class="cosmos-image"
+                     onerror="this.style.display='none'">
                 <div class="hero-content">
-                    <p>This site offers an open invitation to curiosity, exploration, and collaboration. Here, you'll find ideas that reach across physics, cosmology, biology, and beyond—consistently guided by our commitment to learning and sharing what we learn.</p>
-                    <p>Something fundamental about how we <span class="living-text" data-process="describing reveals as process-unfolding">describe</span> reality might be... backwards. Ready to explore?</p>
-                </div>
-                
-                <div class="illustration-wrap">
-                    <div class="illustration-placeholder">
-                        [Contemplating the Cosmos - Image loading...]
+                    <div class="intro-text">
+                        <p>This site offers an open invitation to curiosity, exploration, and collaboration. Here you'll find ideas that reach across physics, cosmology, biology, and beyond—consistently guided by our commitment to learning and sharing what we learn.</p>
+                        <p>Something fundamental about how we describe reality might be... backwards. Ready to explore?</p>
                     </div>
-                </div>
-            </div>
 
-            <!-- Discovery Trail -->
-            <div class="discovery-trail">
-                <h2 style="text-align: center; color: #4a9eff; margin-bottom: 3rem; font-size: 1.8rem;">
-                    🍪 Follow the Trail of Discovery
-                </h2>
-                
-                <div class="trail-container">
-                    <div class="trail-step" data-step="1" onclick="showPage('cosmic-divide')">
-                        <div class="trail-number">1</div>
-                        <div class="trail-content">
-                            <h3>🌌 The Cosmic Puzzle</h3>
-                            <p>Why do quantum mechanics and relativity refuse to play nicely together? There's something strange about how we <em>describe</em> reality...</p>
-                            <div class="trail-teaser">"The mystery might not be in the physics—it might be in our language."</div>
-                            <div class="trail-cta">Explore the Cosmic Divide →</div>
+                    <div class="trail-section">
+                        <h2 class="trail-title">🧭 Follow the Trail of Discovery</h2>
+                        
+                        <div class="discovery-cards">
+                            <div class="discovery-card" onclick="showPage('cosmic-divide')">
+                                <div class="card-icon">🔭</div>
+                                <h3 class="card-title">The Cosmic Puzzle</h3>
+                                <p class="card-description">Why do quantum mechanics and relativity refuse to play nicely together? There's something strange about how we describe reality...</p>
+                                <div class="card-quote">"The mystery might not be in the physics—it might be in our language."</div>
+                                <a href="#" class="card-link" onclick="showPage('cosmic-divide'); return false;">Explore the Cosmic Divide →</a>
+                            </div>
+
+                            <div class="discovery-card" onclick="showPage('language-paradox')">
+                                <div class="card-icon">💭</div>
+                                <h3 class="card-title">The Language Revelation</h3>
+                                <p class="card-description">What if "wave-particle duality" isn't a property of light, but a confusion in how we talk about light? Six mind-bending examples of how language creates "paradoxes."</p>
+                                <div class="card-quote">"We spent 100 years debating what light really is because of grammar."</div>
+                                <a href="#" class="card-link" onclick="showPage('language-paradox'); return false;">Discover the Language Paradox →</a>
+                            </div>
                         </div>
-                    </div>
-
-                    <div class="trail-arrow">↓</div>
-
-                    <div class="trail-step" data-step="2" onclick="showPage('language-paradox')">
-                        <div class="trail-number">2</div>
-                        <div class="trail-content">
-                            <h3>🔍 The Language Revelation</h3>
-                            <p>What if "wave-particle duality" isn't a property of light, but a confusion in how we talk about light? Six mind-bending examples of how language creates "mysteries."</p>
-                            <div class="trail-teaser">"We spent 100 years debating what light 'really is' because of grammar."</div>
-                            <div class="trail-cta">Uncover the Language Paradox →</div>
-                        </div>
-                    </div>
-
-                    <div class="trail-arrow">↓</div>
-
-                    <div class="trail-step" data-step="3" onclick="showPage('translator')">
-                        <div class="trail-content">
-                            <h3>⚡ Try It Yourself</h3>
-                            <p>Experience the transformation firsthand. Watch how changing a few words completely shifts your thinking about any topic.</p>
-                            <div class="trail-teaser">"Our purpose is to learn" → "Our purposing emerges as learning" 🤯</div>
-                            <div class="trail-cta">Experience the Translator →</div>
-                        </div>
-                    </div>
-
-                    <div class="trail-arrow">↓</div>
-
-                    <div class="trail-step academy-entry" data-step="4" onclick="handleAcademyClick()">
-                        <div class="trail-content">
-                            <h3>🎓 Continue Consciously</h3>
-                            <p>You've begun thinking in new ways. The shift has started. Ready to continue consciously along this path of understanding?</p>
-                            <div class="trail-teaser">You've changed. Continue with intention.</div>
-                            <div class="trail-cta">✨ Continue the Journey →</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- User Type Hooks -->
-            <div class="user-type-hooks">
-                <h2 style="text-align: center; color: #6ba4ff; margin: 4rem 0 2rem 0;">Or Jump In Based on Your Interest</h2>
-                
-                <div class="content-grid">
-                    <div class="card-base hook-card" onclick="showPage('cosmic-divide')">
-                        <h3>🔬 "I'm a physicist/scientist"</h3>
-                        <p>Tired of quantum "weirdness" and measurement "problems"? Discover how process language dissolves paradoxes that have puzzled physics for decades.</p>
-                        <div class="hook-preview">"Spooky action at a distance" → "Correlated detection events"</div>
-                    </div>
-
-                    <div class="card-base hook-card" onclick="showPage('language-paradox')">
-                        <h3>🧠 "I love mind-bending ideas"</h3>
-                        <p>Ready for concepts that will literally rewire how you perceive reality? Start with examples that will make you question everything you thought you knew.</p>
-                        <div class="hook-preview">What if time isn't a dimension you can travel through?</div>
-                    </div>
-
-                    <div class="card-base hook-card" onclick="showPage('translator')">
-                        <h3>💼 "Show me something useful"</h3>
-                        <p>Transform how you communicate at work, solve problems, and lead teams. Process language = clearer thinking = better results.</p>
-                        <div class="hook-preview">Turn "the project is failing" into "the project encounters navigational challenges"</div>
-                    </div>
-
-                    <div class="card-base hook-card" onclick="handleDiscoveryClick()">
-                        <h3>🤔 "I'm just curious"</h3>
-                        <p>Perfect! Curiosity is the best starting point. Begin your exploration and discover where your interest leads.</p>
-                        <div class="hook-preview">Every journey starts with a single step...</div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- ACADEMY PAGE -->
-        <div id="academy" class="page">
-            <div class="academy-hero">
-                <h1>🌟 You've Begun</h1>
-                <p>The transformation you're experiencing isn't something you choose—it's something you recognize. You're thinking differently. Here, we continue consciously.</p>
+        <!-- OUR METHODS PAGE -->
+        <div id="our-methods" class="page">
+            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+            <div class="subpage-header">
+                <h1>Our Methods</h1>
+                <p style="font-style: italic; color: #a8a8a8;">How we practice what we teach</p>
             </div>
-
             <div class="subpage-content">
-                <h2>Recognition, Not Recruitment</h2>
-                <p>You didn't arrive here by accident. Every interaction with the Language Paradox, every moment using the Translator, every insight about the Cosmic Divide has been reshaping how you think. You're not joining something new—you're acknowledging what's emerging.</p>
+                <h2>Process-Language Commitment</h2>
+                <p>We avoid absolutes and dichotomies. We bound claims by evidence and conditions. Our descriptions emphasize interactions, tendencies, and transformations rather than static properties. When we encounter habituated object-language patterns in our own communication, we work to transform them into process-oriented alternatives.</p>
 
-                <h2>The Path Currently Traveled</h2>
-                <p>Look back at your journey here. You began curious about physics puzzles. You discovered that <span class="process-hint" data-tooltip="Language participates in shaping rather than simply describing">language shapes reality perception</span>. You experienced firsthand how word choices transform thinking. You've been learning the art of process description.</p>
-
-                <h2>Conscious Continuation</h2>
-                <div class="content-grid" style="margin-top: 2rem;">
-                    <div class="card-base">
-                        <h3>⚡ Deepen What's Started</h3>
-                        <p>Your mind has begun this shift. Now we develop the skill consciously, with intention and method.</p>
-                    </div>
-
-                    <div class="card-base">
-                        <h3>🔬 Apply Your Understanding</h3>
-                        <p>You've seen how process language dissolves physics mysteries. Discover what else becomes clear through this lens.</p>
-                    </div>
-
-                    <div class="card-base">
-                        <h3>💡 Integrate the Insight</h3>
-                        <p>Transform how you communicate, solve problems, and see the world. Make this new way of thinking your natural mode.</p>
-                    </div>
-
-                    <div class="card-base">
-                        <h3>🎓 Master What You've Glimpsed</h3>
-                        <p>You've experienced the power of processual thinking. Now develop fluency in this reality-revealing language.</p>
-                    </div>
-                </div>
-
-                <h2>The Work Continues</h2>
-                <p>Return to the <a onclick="showPage('translator')">Language Translator</a> with new awareness. Revisit <a onclick="showPage('language-paradox')">The Language Paradox</a> and notice what you see differently now. Explore <a onclick="showPage('cosmic-divide')">The Cosmic Divide</a> with your transformed perception.</p>
-
-                <h2>You're Currently Here</h2>
-                <p>This isn't a program you complete. It's a way of seeing you've begun. The Academy isn't a destination—it's recognition of where you find yourself: thinking in new ways, perceiving reality differently, speaking the language of process.</p>
+                <h2>Methodological Principles</h2>
                 
-                <p style="margin-top: 2rem; font-style: italic; text-align: center; color: #87ceeb;">
-                    "Learning and Sharing What We Learn"—you're doing both.
-                </p>
+                <h3>Process Verbs Over Static Identity</h3>
+                <p>Instead of "light is a wave," we describe "quantum fields produce wave-like interference patterns under specific measurement conditions."</p>
+
+                <h3>Named Agents Over Passive Voice</h3>
+                <p>Rather than "decisions are made," we specify "researchers decide based on experimental evidence gathered between 2023-2025."</p>
+
+                <h3>Bounded Claims Over Absolutes</h3>
+                <p>We replace "words consistently" with "produces similar outcomes in our observed trials under laboratory conditions."</p>
+
+                <h3>Continua Over Binary Thinking</h3>
+                <p>Instead of "quantum or classical," we describe "scale-dependent field dynamics exhibiting different coupling strengths at different measurement scales."</p>
+            </div>
+        </div>
+
+        <!-- FIELD THEORY PAGE -->
+        <div id="field-theory" class="page">
+            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
+            <div class="subpage-header">
+                <h1>Field Theory</h1>
+                <p style="font-style: italic; color: #a8a8a8;">Scale-dependent coupling and emergent complexity</p>
+            </div>
+            <div class="subpage-content">
+                <h2>Theoretical Framework</h2>
+                <p>This research explores extensions to established quantum field theory through scale-dependent coupling mechanisms. The mathematical framework utilizes tensor calculus and differential geometry to describe field interactions across multiple scales, from quantum to cosmological regimes.</p>
+
+                <p>Two auxiliary fields provide the foundation:</p>
+                <p><strong>Ξ (Xi)</strong> - Organizational field coupling to system complexity and information processing with Z₂ symmetry</p>
+                <p><strong>Ψμ (Psi-mu)</strong> - Coherence field with U(1) gauge symmetry mediating quantum correlations and consciousness emergence</p>
+
+                <h2>Scale-Dependent Coupling</h2>
+                <p>Field equations incorporate scale-dependent coupling functions that smoothly interpolate between quantum and classical regimes. This approach addresses the quantum measurement problem, cosmological structure formation, and biological quantum coherence through unified mathematical mechanisms.</p>
+
+                <p>The framework generates specific, testable predictions including:</p>
+                <ul>
+                    <li>Modified gravitational wave signatures from auxiliary field interactions</li>
+                    <li>Enhanced structure formation in early universe (JWST observations)</li>
+                    <li>Quantum coherence patterns in biological systems</li>
+                    <li>Vacuum energy density corrections across scales</li>
+                </ul>
+
+                <h2>Mathematical Foundations</h2>
+                <p>The total action integrates Einstein-Hilbert gravity with auxiliary field dynamics and scale-dependent couplings. Multi-loop renormalization group calculations demonstrate consistent evolution across energy scales while maintaining unitarity and causality.</p>
+
+                <h2>Current Research</h2>
+                <p>Active investigations include topological defect formation in auxiliary field configurations, holographic correspondences for consciousness emergence, and experimental protocols for laboratory verification of quantum enhancement predictions.</p>
+
+                <h2>Publications</h2>
+                <p>Technical papers and preprints available through <a href="https://figshare.com/authors/Roy_Roberts/19338289" target="_blank">Figshare</a> and <a href="https://orcid.org/0009-0002-5048-9724" target="_blank">ORCID</a>.</p>
             </div>
         </div>
 
@@ -1261,853 +600,375 @@
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="subpage-header">
                 <h1>Bridging the Cosmic Divide</h1>
-                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Scale-Dependent Field Theory</p>
+                <p style="font-style: italic; color: #a8a8a8;">Reconciling quantum mechanics and general relativity</p>
             </div>
             <div class="subpage-content">
-                <h2>The Nature of the Problem</h2>
-                <p>General relativity describes gravity as spacetime curvature—a smooth, continuous geometric description. Quantum mechanics reveals discrete energy levels, fundamental uncertainties, and field fluctuations. The tension manifests in concrete mathematical difficulties when physicists attempt to combine these frameworks.</p>
+                <h2>The Challenge</h2>
+                <p>For over a century, quantum mechanics and general relativity have described reality in fundamentally incompatible ways. Quantum theory treats space and time as fixed backgrounds, while relativity reveals them as dynamic and curved. Attempts to unify these frameworks have encountered deep mathematical and conceptual obstacles.</p>
 
-                <p>But what if the "divide" exists primarily in our language rather than in nature itself?</p>
+                <h2>A Process Perspective</h2>
+                <p>What if the "divide" exists primarily in our language rather than in nature? When we describe quantum and classical phenomena as separate types of objects that must be unified, we create an artificial problem. Process language reveals continuous field dynamics across scales—no unification needed because separation never existed.</p>
 
-                <h2>Linguistic Obstacles</h2>
-                <p>Object-language forces us to treat quantum mechanics and general relativity as separate "things" that need to be "unified." This creates an artificial problem: how can two different kinds of reality be reconciled?</p>
+                <p>Scale-dependent field theory with auxiliary fields Ξ and Ψμ describes how field behavior appears different when investigated at different scales through different methodologies. The mathematics provides smooth transitions without invoking separate "quantum" and "classical" realms.</p>
 
-                <p>Process language reveals a different picture: <span class="process-hint" data-tooltip="We describe ongoing relationships rather than fixed properties">field dynamics exhibit scale-dependent properties</span>. What appears "quantum" at one scale <span class="process-hint" data-tooltip="Emergence as process rather than sudden appearance">emerges as</span> "classical" at another through continuous transformation processes.</p>
+                <h2>Three Pillars</h2>
+                <p><strong>Mathematical Rigor:</strong> Scale-dependent coupling functions, renormalization group flow, and topological structure provide testable predictions across laboratory, biological, and cosmological observations.</p>
 
-                <h2>Scale-Dependent Dynamics</h2>
-                <p>Rather than asking "how do we unify quantum and classical?", we describe how <span class="process-hint" data-tooltip="Measurable parameters that change with observation scale">field coupling strengths vary with measurement scale</span>. The renormalization group provides mathematical tools for understanding these scale transformations.</p>
+                <p><strong>Process Language:</strong> Describing reality as continuous transformation rather than static objects with properties dissolves paradoxes including wave-particle duality, measurement collapse, and the arrow of time.</p>
 
-                <p>What we call "quantum weirdness" <span class="process-hint" data-tooltip="Arises from conditions rather than being inherent">emerges from</span> describing scale-dependent field processes using scale-independent object language. The "weirdness" disappears when our descriptions match the processual nature of what's actually happening.</p>
+                <p><strong>Infinity as Process:</strong> Recognizing the universe as ongoing transformation rather than a collection of objects in space enables understanding emergence, complexity, and consciousness as natural features of field dynamics.</p>
 
-                <h2>Implications for Physics</h2>
-                <p>This approach suggests that many foundational problems in physics stem from linguistic habits rather than physical mysteries. The measurement problem, the hard problem of consciousness, and the quantum-classical divide may dissolve when described using process language appropriate to their scale-dependent nature.</p>
+                <h2>Implications</h2>
+                <p>This framework suggests that many foundational puzzles in physics arise from linguistic habits rather than physical reality. When phenomena resist explanation in object language, we often blame nature rather than examining our conceptual tools. Process-oriented description reveals patterns obscured by object-oriented thinking.</p>
             </div>
         </div>
 
-        <!-- LANGUAGE PARADOX PAGE -->
+        <!-- LANGUAGE PARADOX PAGE with 6 slides -->
         <div id="language-paradox" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="subpage-header">
                 <h1>The Language Paradox</h1>
-                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">How the structure of language shapes—and limits—our understanding of reality</p>
+                <p style="font-style: italic; color: #a8a8a8;">How the structure of language shapes—and limits—our understanding of reality</p>
             </div>
 
-            <!-- Swiper container for Language Paradox -->
-<div id="language-paradox-swiper" class="swiper" style="max-width: 1000px; margin: 0 auto;">
-  <div class="swiper-wrapper">
-  </div> <!-- End of swiper-wrapper -->
-
-  <!-- Swiper navigation + pagination -->
-  <div class="swiper-pagination"></div>
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
-</div> <!-- End of language-paradox-swiper -->
-
+            <div style="max-width: 1000px; margin: 0 auto;">
                 <!-- Slide 1: Wave-Particle Duality -->
                 <div class="lang-slide active" data-slide="1">
-                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">Wave-Particle Duality</h2>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #ff6b6b;">
-                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b6b;">Object Language</div>
-                            <div class="lang-text">Light is both a wave and a particle. Sometimes it behaves like a wave, sometimes like a particle. The electron is a particle that also has wave properties.</div>
+                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #6ab4ff;">Wave-Particle Duality</h2>
+
+                    <div class="slide-comparison">
+                        <div class="comparison-box object">
+                            <div class="comparison-label">Object Language</div>
+                            <div>Light is both a wave and a particle. Sometimes it behaves like a wave, sometimes like a particle. The electron is a particle that also has wave properties.</div>
                         </div>
-                        
-                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #4a9eff;">
-                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a9eff;">Process Language</div>
-                            <div class="lang-text process-text">Quantum fields produce localized excitations. Under certain measurement conditions, these excitations exhibit interference patterns. Under other conditions, they register as discrete detection events.</div>
+
+                        <div class="comparison-box process">
+                            <div class="comparison-label">Process Language</div>
+                            <div>Quantum fields produce localized excitations. Under certain measurement conditions, these excitations exhibit interference patterns. Under other conditions, they register as discrete detection events.</div>
                         </div>
                     </div>
 
-                    <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(74, 158, 255, 0.15)); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
-                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; color: #ffd93d; margin-bottom: 0.5rem; font-weight: bold;">The Irony</div>
-                        <div style="font-size: 1.05rem; line-height: 1.6; color: #ffffff; font-style: italic;">
-                            We spent a century debating "what light really is" because we insisted on treating dynamic field excitations as static objects with essential properties.
+                    <div class="irony-box">
+                        <div class="irony-label">The Irony</div>
+                        <div class="irony-text">
+                            We spent a century debating "what light really is" because we insisted on treating dynamic field excitations as static objects with essential properties. The "duality" vanishes when we describe what actually happens: fields interact with measurement apparatus in ways that depend on experimental configuration.
                         </div>
                     </div>
                 </div>
 
-                <!-- Continue with remaining slides... -->
+                <!-- Slide 2: Wave Function Collapse -->
                 <div class="lang-slide" data-slide="2">
-                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #4a9eff;">Wave Function Collapse</h2>
-                    
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 2rem;">
-                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #ff6b6b;">
-                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #ff6b6b;">Object Language</div>
-                            <div class="lang-text">The wave function is a real physical thing that collapses when measured. Before measurement, the particle exists in multiple states simultaneously.</div>
+                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #6ab4ff;">Wave Function Collapse</h2>
+
+                    <div class="slide-comparison">
+                        <div class="comparison-box object">
+                            <div class="comparison-label">Object Language</div>
+                            <div>Before measurement, the particle exists in multiple states simultaneously. Measurement causes the collapse.</div>
                         </div>
-                        
-                        <div style="background: rgba(20, 20, 20, 0.7); padding: 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.1); border-left: 4px solid #4a9eff;">
-                            <div style="font-size: 1.1rem; font-weight: bold; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4a9eff;">Process Language</div>
-                            <div class="lang-text process-text">The wave function describes our information about measurement outcomes. Measurement apparatus interacts with quantum systems, producing definite results. The mathematical description updates to reflect new information.</div>
+
+                        <div class="comparison-box process">
+                            <div class="comparison-label">Process Language</div>
+                            <div>The wave function describes our information about measurement outcomes. Measurement apparatus interacts with quantum systems, producing definite results. The mathematical description updates to reflect new information gained through interaction.</div>
                         </div>
                     </div>
 
-                    <div style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.15), rgba(74, 158, 255, 0.15)); padding: 1.5rem 2rem; border-radius: 12px; border: 1px solid rgba(255, 255, 255, 0.2);">
-                        <div style="font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.15em; color: #ffd93d; margin-bottom: 0.5rem; font-weight: bold;">The Irony</div>
-                        <div style="font-size: 1.05rem; line-height: 1.6; color: #ffffff; font-style: italic;">
-                            By treating our mathematical tool as a physical object, we created the "measurement problem." The mystery dissolves when we recognize that updating descriptions isn't collapse—it's learning.
+                    <div class="irony-box">
+                        <div class="irony-label">The Irony</div>
+                        <div class="irony-text">
+                            By treating our mathematical tool (the wave function) as a physical object, we created the "measurement problem." The mystery dissolves when we recognize that updating mathematical descriptions after gaining information isn't a physical collapse—it's simply learning what happened.
                         </div>
                     </div>
                 </div>
 
-                <!-- Navigation -->
-                <div class="slide-navigation">
-                    <button class="back-button" onclick="prevSlide()" id="prevSlideBtn">← Previous</button>
-                    <span style="color: #999999; font-size: 1rem;" id="slideCounter">1 / 6</span>
-                    <button class="back-button" onclick="nextSlide()" id="nextSlideBtn">Next →</button>
+                <!-- Slide 3: The Observer Problem -->
+                <div class="lang-slide" data-slide="3">
+                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #6ab4ff;">The Observer Problem</h2>
+
+                    <div class="slide-comparison">
+                        <div class="comparison-box object">
+                            <div class="comparison-label">Object Language</div>
+                            <div>The observer is fundamentally different from the observed system. Consciousness plays a special role in quantum mechanics. The observer collapses the wave function.</div>
+                        </div>
+
+                        <div class="comparison-box process">
+                            <div class="comparison-label">Process Language</div>
+                            <div>Physical systems interact. Some interactions leave lasting records—we call these measurements. Brains process measurement records, generating conscious experience. The recording process follows quantum dynamics without requiring consciousness.</div>
+                        </div>
+                    </div>
+
+                    <div class="irony-box">
+                        <div class="irony-label">The Irony</div>
+                        <div class="irony-text">
+                            We granted consciousness a privileged role in physics by confusing epistemology with ontology. Measurement records emerge from physical interactions—consciousness interprets records but doesn't create them. The "observer" distinction comes from our language, not from nature.
+                        </div>
+                    </div>
                 </div>
 
-                <div class="slide-dots">
-                    <div class="slide-dot active" onclick="goToLangSlide(1)"></div>
-                    <div class="slide-dot" onclick="goToLangSlide(2)"></div>
-                    <div class="slide-dot" onclick="goToLangSlide(3)"></div>
-                    <div class="slide-dot" onclick="goToLangSlide(4)"></div>
-                    <div class="slide-dot" onclick="goToLangSlide(5)"></div>
-                    <div class="slide-dot" onclick="goToLangSlide(6)"></div>
+                <!-- Slide 4: Time's Arrow -->
+                <div class="lang-slide" data-slide="4">
+                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #6ab4ff;">The Arrow of Time</h2>
+
+                    <div class="slide-comparison">
+                        <div class="comparison-box object">
+                            <div class="comparison-label">Object Language</div>
+                            <div>Time is a dimension we move through. The past exists as fixed moments. The future exists as potential states. Time flows forward because entropy increases.</div>
+                        </div>
+
+                        <div class="comparison-box process">
+                            <div class="comparison-label">Process Language</div>
+                            <div>Time parameterizes how processes unfold. Systems evolve from lower to higher entropy configurations because vastly more high-entropy states exist than low-entropy states. Complexity emerges through irreversible dissipative processes.</div>
+                        </div>
+                    </div>
+
+                    <div class="irony-box">
+                        <div class="irony-label">The Irony</div>
+                        <div class="irony-text">
+                            We asked "why can't we travel to the past?" as if past moments still exist somewhere. This confusion arises from spatial metaphors for time. Processes transform irreversibly. Past states don't persist—they become different states. The "arrow" is just asymmetric evolution toward statistical probability.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 5: Quantum-Classical Boundary -->
+                <div class="lang-slide" data-slide="5">
+                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #6ab4ff;">The Quantum-Classical Divide</h2>
+
+                    <div class="slide-comparison">
+                        <div class="comparison-box object">
+                            <div class="comparison-label">Object Language</div>
+                            <div>Quantum mechanics is the physics of small things. Classical physics is the physics of large things. We need to find the boundary between quantum and classical realms.</div>
+                        </div>
+
+                        <div class="comparison-box process">
+                            <div class="comparison-label">Process Language</div>
+                            <div>All systems follow quantum field dynamics. Classical behavior emerges when quantum coherence decays through environmental interaction. Decoherence timescales depend on system size, temperature, and coupling strength—no sharp boundary exists.</div>
+                        </div>
+                    </div>
+
+                    <div class="irony-box">
+                        <div class="irony-label">The Irony</div>
+                        <div class="irony-text">
+                            We searched for a fundamental divide because we categorized phenomena as different types of objects. When described as processes at different scales with different decoherence rates, the boundary dissolves. What we call "classical" just means "quantum with extremely rapid decoherence."
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 6: Unification Challenge -->
+                <div class="lang-slide" data-slide="6">
+                    <h2 style="text-align: center; font-size: 1.8rem; margin-bottom: 2rem; color: #6ab4ff;">The Unification Challenge</h2>
+
+                    <div class="slide-comparison">
+                        <div class="comparison-box object">
+                            <div class="comparison-label">Object Language</div>
+                            <div>Quantum mechanics and general relativity are two separate theories. They describe different aspects of reality. We must unify them into a single theory of everything.</div>
+                        </div>
+
+                        <div class="comparison-box process">
+                            <div class="comparison-label">Process Language</div>
+                            <div>Field dynamics exhibit scale-dependent couplings. Auxiliary fields Ξ and Ψμ mediate interactions across scales. Quantum and relativistic descriptions capture different aspects of continuous process dynamics—no separate "theories" require unification.</div>
+                        </div>
+                    </div>
+
+                    <div class="irony-box">
+                        <div class="irony-label">The Irony</div>
+                        <div class="irony-text">
+                            The "problem" of unification arose from linguistic separation. Object language made us think quantum and relativistic phenomena were different types of things needing to be merged. Process description reveals them as different perspectives on scale-dependent field dynamics. The divide exists in our grammar, not in nature.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide Navigation -->
+                <div class="slide-nav">
+                    <button class="slide-button" id="prevSlide" onclick="changeSlide(-1)">← Previous</button>
+                    <span class="slide-indicator" id="slideIndicator">1 / 6</span>
+                    <button class="slide-button" id="nextSlide" onclick="changeSlide(1)">Next →</button>
                 </div>
             </div>
         </div>
 
-        <!-- TRANSLATOR PAGE -->
-        <div id="translator" class="page">
-            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
-            <div class="translator-container">
-                <div class="translator-header">
-                    <h1>Process Language Translator</h1>
-                    <p>Transform static statements into dynamic, process-oriented language that reflects flow, interaction, and emergence.</p>
-                </div>
-
-                <div class="translator-explanation">
-                    <h3>Enhanced Process Language Translation</h3>
-                    <p>We unconsciously objectify dynamic processes through grammatical choices. "To be" verbs (<strong>is, are, was, were</strong>) and definite articles (<strong>the</strong>) freeze flowing processes into static objects with essential properties.</p>
-                    
-                    <p><strong>Enhancement: Infinitive → Gerund Transformation</strong></p>
-                    <p>This translator converts infinitives like "to learn" into gerunds like "learning" to better capture ongoing processes:</p>
-                    <ul>
-                        <li><strong>"Our purpose is to learn"</strong> → <strong>"Our purposing emerges as learning"</strong></li>
-                        <li><strong>"The goal is to understand"</strong> → <strong>"Goal-seeking emerges as understanding"</strong></li>
-                    </ul>
-                </div>
-
-                <textarea id="inputText" rows="6" placeholder="Type or paste your text here..."></textarea>
-                
-                <div style="text-align: center; margin-top: 1.5rem;">
-                    <button id="translateBtn">Translate</button>
-                </div>
-
-                <div id="outputSection" class="hidden">
-                    <h2>Process-Based Version</h2>
-                    <div id="outputText"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- OUR METHODS PAGE -->
-        <div id="methods" class="page">
+        <!-- LANGUAGE TRANSLATOR PAGE (placeholder) -->
+        <div id="language-translator" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="subpage-header">
-                <h1>Our Methods</h1>
-                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">How we practice what we teach</p>
+                <h1>Process Language Translator</h1>
+                <p style="font-style: italic; color: #a8a8a8;">Transform object-oriented statements into process-oriented descriptions</p>
             </div>
             <div class="subpage-content">
-                <div style="background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(74, 158, 255, 0.1)); border-radius: 16px; padding: 2.5rem; margin-bottom: 3rem; border: 1px solid rgba(255, 215, 0, 0.2);">
-                    <h2 style="color: #ffd700; margin-bottom: 1.5rem; text-align: center;">Process-Language Commitment</h2>
-                    <p style="font-size: 1.1rem; line-height: 1.7; margin-bottom: 1.5rem;">We avoid absolutes and dichotomies; we bound claims by evidence and conditions. Our descriptions emphasize interactions, tendencies, and transformations rather than static properties. When we encounter habituated object-language patterns in our own communication, we work to transform them into process-oriented alternatives.</p>
-                    <div style="text-align: center; margin-top: 2rem;">
-                        <a onclick="showPage('translator')" style="color: #4a9eff; text-decoration: none; font-weight: 600; cursor: pointer; padding: 0.75rem 1.5rem; border: 1px solid rgba(74, 158, 255, 0.4); border-radius: 8px; background: rgba(74, 158, 255, 0.1); transition: all 0.3s ease;">Experience our analytical approach →</a>
-                    </div>
-                </div>
-
-                <h2>Methodological Principles</h2>
-                <div class="content-grid" style="margin-top: 2rem;">
-                    <div class="card-base">
-                        <h3>🔄 Process Verbs Over Static Identity</h3>
-                        <p>Instead of "light is a wave," we describe "quantum fields produce wave-like interference patterns under specific measurement conditions."</p>
-                    </div>
-
-                    <div class="card-base">
-                        <h3>🎯 Named Agents Over Passive Voice</h3>
-                        <p>Rather than "decisions are made," we specify "researchers decide based on experimental evidence gathered between 2022-2025."</p>
-                    </div>
-
-                    <div class="card-base">
-                        <h3>📊 Bounded Claims Over Absolutes</h3>
-                        <p>We replace "works consistently" with "produces desired outcomes in our observed trials under laboratory conditions."</p>
-                    </div>
-
-                    <div class="card-base">
-                        <h3>🌈 Continua Over Binary Thinking</h3>
-                        <p>Instead of "quantum or classical," we describe "scale-dependent field dynamics exhibiting different coupling strengths at different measurement scales."</p>
-                    </div>
-                </div>
+                <p style="text-align: center; font-size: 1.2rem; color: #6ab4ff; margin: 3rem 0;">Coming Soon</p>
+                <p style="text-align: center;">Interactive translation tool for converting between object and process language frameworks.</p>
             </div>
         </div>
 
-        <!-- REMAINING PAGES -->
-        <div id="field-theory" class="page">
-            <button class="back-button" onclick="showPage('home')">← Back to Home</button>
-            <div class="subpage-header">
-                <h1>Field Theory</h1>
-                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Exploring extensions of quantum field theory</p>
-            </div>
-            <div class="subpage-content">
-                <h2>Theoretical Framework</h2>
-                <p>Field theory approaches build upon established quantum field theory while exploring extensions that might address consciousness and information processing.</p>
-            </div>
-        </div>
-
+        <!-- OTHER IDEAS PAGE -->
         <div id="ideas" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="subpage-header">
                 <h1>Other Ideas</h1>
-                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Interdisciplinary explorations</p>
+                <p style="font-style: italic; color: #a8a8a8;">Interdisciplinary explorations</p>
             </div>
             <div class="subpage-content">
                 <h2>Consciousness Studies</h2>
-                <p>Explorations encompass broader questions about the nature of consciousness and the relationship between subjective experience and physical processes.</p>
+                <p>Explorations encompass broader questions about the nature of consciousness, including the hard problem of consciousness and the relationship between subjective experience and physical processes. The auxiliary field Ψμ provides a mathematical framework for investigating how coherent information processing might emerge from quantum field dynamics.</p>
+
+                <h2>Language and Reality</h2>
+                <p>The relationship between how we describe reality and what we can discover about it merits careful attention. Process language reveals patterns and possibilities that object language obscures. Linguistic structures shape thought patterns, sometimes creating conceptual barriers where none exist in nature.</p>
+
+                <h2>Educational Innovation</h2>
+                <p>Teaching science through process-oriented frameworks opens pathways for understanding complex systems. When students learn to describe phenomena as ongoing transformations rather than static objects, they develop intuition for emergence, self-organization, and scale-dependent behavior.</p>
             </div>
         </div>
 
+        <!-- PROJECTS PAGE -->
         <div id="projects" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="subpage-header">
                 <h1>Projects</h1>
-                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Current work and collaborative opportunities</p>
+                <p style="font-style: italic; color: #a8a8a8;">Current work and collaborative opportunities</p>
             </div>
             <div class="subpage-content">
-                <h2>Current Work</h2>
-                <p>Active projects investigate different aspects of field theory applications to consciousness studies.</p>
+                <h2>Current Research</h2>
+                <p>Active projects investigate different aspects of field theory applications to consciousness studies, combining theoretical development with experimental validation protocols. Work includes multi-loop renormalization group calculations, topological defect analysis, and predictions for JWST observations and gravitational wave astronomy.</p>
+
+                <h2>Educational Materials</h2>
+                <p>Development of narrative educational content exploring theoretical physics concepts through character-driven stories. The four-book series <em>THE LANGUAGE OF BELONGING</em> features researchers Maya Patel, Chen Wei, and semanticist Jamie Reeves as they examine how language frameworks shape scientific understanding. These materials maintain scientific rigor while making complex theoretical concepts accessible to broader audiences through compelling narrative that explores process language, scale-dependent field theory, and the dissolution of fundamental paradoxes in physics.</p>
+
+                <h2>Collaborative Opportunities</h2>
+                <p>Open to connecting with researchers from all disciplines who share curiosity about consciousness, field theory applications, and fundamental questions about reality. Particularly interested in collaborations involving experimental verification, mathematical development, and educational innovation.</p>
+
+                <h2>Grant Writing and Institutional Partnerships</h2>
+                <p>Extensive experience with SBIR grant writing and institutional collaborations. Previous successful partnerships with Carnegie Mellon Robotics Laboratory, Purdue Robot Vision Lab, Penn State, and University of Idaho. Available for consultation on grant development and research program design.</p>
             </div>
         </div>
 
+        <!-- CONTACT PAGE -->
         <div id="contact" class="page">
             <button class="back-button" onclick="showPage('home')">← Back to Home</button>
             <div class="subpage-header">
                 <h1>Contact</h1>
-                <p style="font-style: italic; color: #b8b8b8; margin-top: 1rem;">Connect with fellow explorers and researchers</p>
+                <p style="font-style: italic; color: #a8a8a8;">Connect with fellow explorers and researchers</p>
             </div>
             <div class="subpage-content">
                 <h3>Roy Roberts, PhD</h3>
                 <p><strong>Email:</strong> <a href="mailto:roy@fldtheory.org">roy@fldtheory.org</a></p>
                 <p><strong>ORCID:</strong> <a href="https://orcid.org/0009-0002-5048-9724" target="_blank">0009-0002-5048-9724</a></p>
                 <p><strong>Publications:</strong> <a href="https://figshare.com/authors/Roy_Roberts/19338289" target="_blank">Figshare</a></p>
-                <p><strong>Organization:</strong> HOW2LLC</p>
-            </div>
-        </div>
-    </main>
+                <p><strong>Organization:</strong> HOW2LLC / CROSSROADS</p>
 
-    <footer>
-        <div class="footer-content">
-            <div class="footer-top-row">
-                <div class="footer-brand">
-                    <span style="color: #d0d0d0;">Driven by Curiosity</span>
-                    <span style="color: #666; margin: 0 1rem;">•</span>
-                    <span class="footer-logo">HOW2LLC</span>
-                    <span style="color: #666; margin: 0 1rem;">•</span>
-                    <span style="font-style: italic; color: #b8b8b8;">"Learning and Sharing What We Learn"</span>
-                </div>
-            </div>
-            
-            <div class="footer-bottom-row">
-                <div class="footer-stats">
-                    <div class="stats-container">
-                        <div id="totalViews">Total: 0</div>
-                        <div id="uniqueVisitors">Unique: 0</div>
-                        <div id="currentPage">Page: Home</div>
-                    </div>
-                    
-                    <div class="transformation-traces" id="transformationTraces">
-                        <div class="trace" id="trace1">Observation dissolves boundaries.</div>
-                        <div class="trace" id="trace2">Perception rewrites description.</div>
-                        <div class="trace" id="trace3">Language transforms the thinker.</div>
-                    </div>
-                </div>
-                
-                <div class="footer-contact">
-                    <button onclick="showPage('contact')">Contact</button>
-                </div>
-                
-                <div class="footer-copyright">
-                    <span style="color: #888;">© 2025 HOW2LLC • CROSSROADS™</span>
-                </div>
+                <h2 style="margin-top: 2rem;">Connect</h2>
+                <p>Open to connecting with researchers from all disciplines who share curiosity about consciousness, field theory applications, and fundamental questions about reality. Whether you're an independent thinker, academic researcher, or part of larger organizations, collaboration possibilities abound.</p>
+
+                <h2>Research Interests</h2>
+                <p>Primary focus areas include scale-dependent field theory, process language development, consciousness studies, and educational innovation. Always interested in interdisciplinary approaches that bridge theoretical rigor with practical applications.</p>
+
+                <h2>Collaboration Philosophy</h2>
+                <p>Driven by the principle that our greatest purpose is to learn and to share what we learn. Collaborative work thrives when diverse perspectives combine with shared commitment to curiosity and intellectual honesty.</p>
             </div>
         </div>
-    </footer>
+
+        <footer>
+            <div class="footer-content">
+                <p class="footer-tagline">Driven by Curiosity</p>
+                <p class="footer-org">HOW2LLC • CROSSROADS</p>
+                <p style="margin-top: 0.5rem; font-size: 0.85rem;">"Learning and sharing what we learn"</p>
+            </div>
+        </footer>
+    </div>
 
     <script>
-        // Transformation System
-        let transformationStage = 0;
-        let visitedPages = new Set();
-        let interactionCount = 0;
-        const transformationTraces = ['trace1', 'trace2', 'trace3'];
+        // Animated starfield
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
 
-        // ====================== Process Translator v2.1 ======================
-(function () {
-  function keepCase(src, repl) {
-    if (!src) return repl;
-    if (src.toUpperCase() == src) return repl.toUpperCase();
-    if (src[0] == src[0].toUpperCase()) return repl[0].toUpperCase() + repl.slice(1);
-    return repl;
-  }
-  function toGerund(verb) {
-    const v = verb.toLowerCase();
-    if (v.endsWith("ie")) return v.slice(0, -2) + "ying";
-    if (v.endsWith("ee")) return v + "ing";
-    if (v.endsWith("e") && !v.endsWith("ee")) return v.slice(0, -1) + "ing";
-    if (/^[a-z]*[aeiou][bcdfghjklmnpqrstvwxyz]$/i.test(v) && v.length >= 3) return v + v.slice(-1) + "ing";
-    return v + "ing";
-  }
-  const abstractGerunds = {
-    "purpose": "purposing",
-    "goal": "goal-seeking",
-    "truth": "truth-making",
-    "decision": "decision-making",
-    "project": "projecting",
-    "learning": "learning",
-    "understanding": "understanding"
-  };
-  const copulaMap = { "is": "emerges as", "are": "manifest as", "was": "arose as", "were": "interacted as" };
-
-  function stage1_infinitivesToGerunds(text) {
-    return text.replace(/\bto\s+([A-Za-z]+)\b/g, (m, v) => keepCase(v, toGerund(v)));
-  }
-
-  function stage2_definiteAbstracts(text) {
-    return text.replace(/\b(the)\s+(purpose|goal|truth|decision|project)\b/gi, (m, the_, noun) => keepCase(noun, abstractGerunds[noun.toLowerCase()] || noun));
-  }
-
-  function stage3_copulaToProcess(text) {
-    return text.replace(/\b(is|are|was|were)\b/gi, (m, cop) => keepCase(cop, copulaMap[cop.toLowerCase()] || cop));
-  }
-
-  // New: light-verb 'do/does/did' handling + idiom normalization
-  function stage3b_lightDo(text) {
-    // Idiom: "<pronoun> (always|often|sometimes)? does the best (he|she|they) can"
-    text = text.replace(/\b(he|she|they)\s+(always|often|sometimes)?\s*does\s+the\s+best\s+(he|she|they)\s+can\b/gi,
-      (m, p1, freq) => {
-        const head = keepCase(p1, p1);
-        const adv = freq ? keepCase(freq, freq) + " " : "";
-        return `${head} ${adv}sustains best-effort`;
-      });
-    // Generic: "<subject> does <N>tion|ment" -> "<subject> engages in <N>tion|ment"
-    text = text.replace(/\b([A-Z][a-z]+|I|we|We|you|You|he|He|she|She|they|They)\s+do(?:es)?\s+([A-Za-z]+(?:tion|ment))\b/g,
-      (m, subj, noun) => `${subj} engages in ${noun.toLowerCase()}`);
-    return text;
-  }
-
-  // New: nominal compound "X of Y" -> "Y-X" (limited list)
-  function stage4_nominalCompounds(text) {
-    const heads = ["creation","analysis","development","exploration","observation"];
-    return text.replace(new RegExp("\\b(" + heads.join("|") + ") of ([A-Za-z-]+)\\b", "gi"),
-      (m, head, tail) => `${tail.toLowerCase()}-${head.toLowerCase()}`);
-  }
-
-  function stage5_lightPassiveToProcess(text) {
-    return text
-      .replace(/\b(decision|decisions)\s+(is|are|was|were)\s+made\b/gi, (m, n, cop) => {
-        const occurs = /was|were/i.test(cop) ? "occurred" : "occurs";
-        const head = keepCase(n, "decision-making");
-        return `${head} ${occurs}`;
-      })
-      .replace(/\b([A-Za-z-]+)\s+(is|are|was|were)\s+([A-Za-z]+)ed\b/gi, (m, subj, cop, v) => {
-        const plural = subj.toLowerCase().endsWith("s") && !subj.toLowerCase().endsWith("ss");
-        const aux = /was|were/i.test(cop) ? "underwent" : (plural ? "undergo" : "undergoes");
-        const ger = toGerund(v);
-        return `${keepCase(subj, subj)} ${aux} ${ger}`;
-      });
-  }
-
-  function stage6_cleanupSpacing(text) {
-    return text.replace(/\s{2,}/g, " ").replace(/\s+([,.;:!?])/g, "$1").replace(/\(\s+/g, "(").replace(/\s+\)/g, ")");
-  }
-
-  function processTranslate(input) {
-    let t = input;
-    t = stage1_infinitivesToGerunds(t);
-    t = stage2_definiteAbstracts(t);
-    t = stage3_copulaToProcess(t);
-    t = stage3b_lightDo(t);
-    t = stage4_nominalCompounds(t);
-    t = stage5_lightPassiveToProcess(t);
-    t = stage6_cleanupSpacing(t);
-    return t;
-  }
-
-  function translateText() {
-    const inputElement = document.getElementById('inputText');
-    const outputElement = document.getElementById('outputText');
-    const outputSection = document.getElementById('outputSection');
-    if (!inputElement || !outputElement || !outputSection) return;
-    const raw = inputElement.value || "";
-    if (!raw.trim()) { alert('Please enter some text to translate.'); return; }
-    try {
-      if (typeof advanceTransformation === "function") advanceTransformation();
-      const out = processTranslate(raw);
-      outputElement.textContent = out;
-      outputSection.classList.remove('hidden');
-    } catch (e) {
-      console.error(e);
-      outputElement.textContent = 'Error processing text. Please try again.';
-      outputSection.classList.remove('hidden');
-    }
-  }
-
-  document.addEventListener('DOMContentLoaded', function () {
-    const btn = document.getElementById('translateBtn');
-    const input = document.getElementById('inputText');
-    if (btn) btn.addEventListener('click', translateText);
-    if (input) input.addEventListener('keydown', function (e) { if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') translateText(); });
-    
-    // Robust nav wiring: make buttons switch pages
-    const navButtons = document.querySelectorAll('.nav-btn');
-    navButtons.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const target = btn.getAttribute('data-page');
-        if (target) {
-          if (typeof showPage === 'function') {
-            showPage(target);
-          } else {
-            // Fallback: reveal the section by id
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            const targetPage = document.getElementById(target);
-            if (targetPage) targetPage.classList.add('active');
-          }
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
-      });
-    });
-window.translateText = translateText;
-  });
-})();
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
 
-</script>
-<script>
-// === Robust nav wiring (event delegation) ===
-document.addEventListener('DOMContentLoaded', function() {
-  // Clicks anywhere in the doc that bubble up from a .nav-btn
-  document.addEventListener('click', function(e) {
-    const btn = e.target.closest && e.target.closest('.nav-btn');
-    if (!btn) return;
-    const target = btn.getAttribute('data-page');
-    if (!target) return;
+        const stars = [];
+        const starCount = 250;
 
-    // Prefer site's showPage if defined
-    if (typeof window.showPage === 'function') {
-      e.preventDefault();
-      window.showPage(target);
-      return;
-    }
-
-    // Fallback: toggle .page containers
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(p => p.classList.remove('active'));
-    const page = document.getElementById(target);
-    if (page) page.classList.add('active');
-
-    // Reflect active state in nav
-    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    // Scroll to top for consistency
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, true);
-});
-</script>
-
-
-<script>
-/* === Site Safety Harness v2.2 === */
-(function () {
-  function byId(id){ return document.getElementById(id); }
-  var currentLangSlide = window.currentLangSlide || 1;
-  var totalLangSlides = window.totalLangSlides || (function(){
-    var slides = document.querySelectorAll('.lang-slide');
-    return slides.length || 6;
-  })();
-  function updateLangSlideSafe() {
-    var slides = document.querySelectorAll('.lang-slide');
-    slides.forEach && slides.forEach(function(s){ s.classList.remove('active'); });
-    var target = document.querySelector('.lang-slide[data-slide="'+currentLangSlide+'"]') || slides[currentLangSlide-1];
-    if (target) target.classList.add('active');
-    var dots = document.querySelectorAll('.slide-dot');
-    dots.forEach && dots.forEach(function(d,i){ d.classList.toggle('active', i+1===currentLangSlide); });
-    var counter = byId('slideCounter');
-    if (counter) counter.textContent = currentLangSlide + ' / ' + totalLangSlides;
-    var prevBtn = byId('prevSlideBtn');
-    var nextBtn = byId('nextSlideBtn');
-    if (prevBtn){ prevBtn.disabled = currentLangSlide===1; prevBtn.style.opacity = prevBtn.disabled ? '0.5':'1'; }
-    if (nextBtn){ nextBtn.disabled = currentLangSlide===totalLangSlides; nextBtn.style.opacity = nextBtn.disabled ? '0.5':'1'; }
-  }
-  window.nextSlide = function(){ if (currentLangSlide < totalLangSlides){ currentLangSlide++; updateLangSlideSafe(); } };
-  window.prevSlide = function(){ if (currentLangSlide > 1){ currentLangSlide--; updateLangSlideSafe(); } };
-  window.goToLangSlide = function(n){ n = Math.max(1, Math.min(totalLangSlides, Number(n)||1)); currentLangSlide = n; updateLangSlideSafe(); };
-
-  window.showPage = function(pageId){
-    try {
-      var pages = document.querySelectorAll('.page');
-      pages.forEach && pages.forEach(function(p){ p.classList.remove('active'); });
-      var target = byId(pageId);
-      if (target) target.classList.add('active');
-      var btns = document.querySelectorAll('.nav-btn');
-      btns.forEach && btns.forEach(function(b){ b.classList.remove('active'); });
-      var activeBtn = document.querySelector('.nav-btn[data-page="'+pageId+'"]');
-      if (activeBtn) activeBtn.classList.add('active');
-      var currentPage = byId('currentPage');
-      if (currentPage) currentPage.textContent = 'Page: ' + (pageId.charAt(0).toUpperCase()+pageId.slice(1).replace('-', ' '));
-      if (pageId === 'language-paradox'){ currentLangSlide = 1; updateLangSlideSafe(); }
-      window.scrollTo && window.scrollTo({top:0, behavior:'smooth'});
-    } catch (e) { console.error('showPage error:', e); }
-  };
-
-  function keepCase(src, repl){ if (!src) return repl; if (src.toUpperCase()===src) return repl.toUpperCase(); if (src[0]===src[0].toUpperCase()) return repl[0].toUpperCase()+repl.slice(1); return repl; }
-  function toGerund(v){
-    v = (v||'').toLowerCase();
-    if (v==='be') return 'being';
-    if (v.endsWith('ie')) return v.slice(0,-2)+'ying';
-    if (v.endsWith('ee')) return v+'ing';
-    if (v.endsWith('e') && !v.endsWith('ee')) return v.slice(0,-1)+'ing';
-    if (/^[a-z]*[aeiou][bcdfghjklmnpqrstvwxyz]$/i.test(v) && v.length>=3) return v+v.slice(-1)+'ing';
-    return v+'ing';
-  }
-  var abstractGerunds = {'purpose':'purposing','goal':'goal-seeking','truth':'truth-making','decision':'decision-making','project':'projecting','learning':'learning','understanding':'understanding'};
-  var copulaMap = {'is':'emerges as','are':'manifest as','was':'arose as','were':'interacted as'};
-  function stage1(t){ return t.replace(/\bto\s+([A-Za-z]+)\b/g,function(m,v){return keepCase(v,toGerund(v));}); }
-  function stage2(t){ return t.replace(/\bthe\s+(purpose|goal|truth|decision|project)\b/gi,function(m,n){return keepCase(n,abstractGerunds[n.toLowerCase()]||n);}); }
-  function stage3(t){ return t.replace(/\b(is|are|was|were)\b/gi,function(m,c){return keepCase(c,copulaMap[c.toLowerCase()]||c);}); }
-  function stage3b(t){
-    t = t.replace(/\b(he|she|they)\s+(always|often|sometimes)?\s*does\s+the\s+best\s+(he|she|they)\s+can\b/gi,
-      function(m,p1,f){ return (keepCase(p1,p1)+' '+(f?keepCase(f,f)+' ':'')+'sustains best-effort').trim(); });
-    t = t.replace(/\b([A-Z][a-z]+|I|We|You|He|She|They)\s+do(?:es)?\s+([A-Za-z]+(?:tion|ment))\b/g,
-      function(m,subj,n){ return subj + ' engages in ' + n.toLowerCase(); });
-    return t;
-  }
-  function stage4(t){
-    var heads = ['creation','analysis','development','exploration','observation'];
-    var rx = new RegExp('\b(' + heads.join('|') + ') of ([A-Za-z-]+)\b','gi');
-    return t.replace(rx,function(m,head,tail){ return tail.toLowerCase() + '-' + head.toLowerCase(); });
-  }
-  function stage5(t){
-    return t
-     .replace(/\b(decision|decisions)\s+(is|are|was|were)\s+made\b/gi,function(m,n,c){ return keepCase(n,'decision-making') + ' ' + (/was|were/i.test(c)?'occurred':'occurs'); })
-     .replace(/\b([A-Za-z-]+)\s+(is|are|was|were)\s+([A-Za-z]+)ed\b/gi,function(m,subj,c,v){
-        var plural = subj.toLowerCase().endsWith('s') && !subj.toLowerCase().endsWith('ss');
-        var aux = /was|were/i.test(c) ? 'underwent' : (plural ? 'undergo' : 'undergoes');
-        return keepCase(subj,subj) + ' ' + aux + ' ' + toGerund(v);
-     });
-  }
-  function tidy(t){ return t.replace(/\s{2,}/g,' ').replace(/\s+([,.;:!?])/g,'$1').replace(/\(\s+/g,'(').replace(/\s+\)/g,')'); }
-  function processTranslate(input){ var t = String(input||''); t = stage1(t); t = stage2(t); t = stage3(t); t = stage3b(t); t = stage4(t); t = stage5(t); t = tidy(t); return t; }
-  window.translateText = function(){
-    var input = byId('inputText'), output = byId('outputText'), sec = byId('outputSection');
-    if (!input || !output || !sec) return;
-    var raw = input.value || '';
-    if (!raw.trim()){ alert('Please enter some text to translate.'); return; }
-    if (typeof window.advanceTransformation === 'function') try{ window.advanceTransformation(); }catch(e){}
-    var out = processTranslate(raw);
-    output.textContent = out;
-    sec.classList && sec.classList.remove('hidden');
-  };
-
-  document.addEventListener('click', function(e){
-    var btn = e.target.closest && e.target.closest('.nav-btn');
-    if (btn){ var target = btn.getAttribute('data-page'); if (target){ e.preventDefault(); window.showPage(target);} return; }
-    var dot = e.target.closest && e.target.closest('.slide-dot');
-    if (dot){ var dots = Array.prototype.slice.call(document.querySelectorAll('.slide-dot')); var idx = dots.indexOf(dot); if (idx>=0){ window.goToLangSlide(idx+1);} return; }
-    var backBtn = e.target.closest && e.target.closest('.back-button');
-    if (backBtn && backBtn.textContent && backBtn.textContent.toLowerCase().includes('back to home')){ e.preventDefault(); window.showPage('home'); }
-    var footerContact = e.target.closest && e.target.closest('button');
-    if (footerContact && footerContact.textContent && footerContact.textContent.trim().toLowerCase()==='contact'){ e.preventDefault(); window.showPage('contact'); }
-  }, true);
-
-  document.addEventListener('DOMContentLoaded', function(){ updateLangSlideSafe(); });
-})();
-</script>
-
-<script>
-/* === Crossroads Patch v2.3 ===
-   - Slide dots/buttons robust: handles [data-slide], [data-goto], .slide-dot, .dot
-   - Question-aware copula transform to avoid "Emerges as ..." at sentence start
-*/
-(function(){
-  // --- Robust slide click handling (works for buttons 1–6) ---
-  document.addEventListener('click', function(e){
-    var t = e.target;
-    var dot = t.closest && (t.closest('[data-slide]') || t.closest('[data-goto]') || t.closest('.slide-dot') || t.closest('.dot'));
-    if (dot){
-      var n = dot.getAttribute('data-slide') || dot.getAttribute('data-goto') || dot.getAttribute('data-index') || dot.textContent;
-      n = parseInt(String(n).trim(), 10);
-      if (!isNaN(n)){ e.preventDefault(); if (typeof window.goToLangSlide === 'function') window.goToLangSlide(n); }
-    }
-  }, true);
-
-  // --- Wrap/override translator to handle leading-copula questions gracefully ---
-  (function(){
-    if (typeof window.translateText !== 'function') return;
-
-    // Lightweight copy of the copula map used in the main translator
-    var copulaMap = {"is":"emerges as","are":"manifest as","was":"arose as","were":"interacted as"};
-
-    function fixLeadingCopulaQuestions(text){
-      // Example: "Is she actually the best at superior efforts?"
-      // -> "She emerges as actually the best at superior efforts?"
-      // Handles Is/Are/Was/Were + Subject + Rest ?
-      return text.replace(/^[\s]*\b(Is|Are|Was|Were)\b\s+([^?]+?)\s*\?\s*$/gmi, function(m, cop, body){
-        var repl = copulaMap[cop.toLowerCase()] || cop;
-        // If body already begins with a pronoun/noun, just move copula phrase behind subject
-        return body.trim() + " " + repl + "?";
-      });
-    }
-
-    var originalTranslate = window.translateText;
-    window.translateText = function(){
-      // Run original translator
-      originalTranslate();
-      // Then post-process the output to fix leading-copula questions
-      try{
-        var output = document.getElementById('outputText');
-        if (output && output.textContent){
-          var fixed = fixLeadingCopulaQuestions(output.textContent);
-          // avoid double spaces
-          fixed = fixed.replace(/\s{2,}/g, ' ').trim();
-          output.textContent = fixed;
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.8 + 0.2,
+                speed: Math.random() * 0.4 + 0.15,
+                opacity: Math.random() * 0.7 + 0.3,
+                twinkleSpeed: Math.random() * 0.02 + 0.01
+            });
         }
-      }catch(e){ console.warn('post-fix failed', e); }
-    };
-  })();
-})();
-</script>
 
-<script>
-/* === Crossroads Patch v2.4 ===
-   - Auto-generate dots for Language Paradox slides based on .lang-slide count
-   - More robust translator: contractions + "thinks ... she is/they are" -> "conceives herself/themselves as ..."
-*/
-(function(){
-  // ------------------ Slides: auto-dot builder ------------------
-  document.addEventListener('DOMContentLoaded', function(){
-    try {
-      var slides = Array.prototype.slice.call(document.querySelectorAll('.lang-slide'));
-      var n = slides.length;
-      if (!n) return;
+        let twinkleOffset = 0;
 
-      // Find a dot container
-      var dotsContainer = document.getElementById('slideDots') ||
-                          document.querySelector('.slide-dots') ||
-                          document.querySelector('#dots') ||
-                          null;
-      if (dotsContainer && !dotsContainer.dataset.autobuilt) {
-        // If fewer dots than slides, rebuild
-        var existingDots = dotsContainer.querySelectorAll('.slide-dot, .dot, [data-slide], [data-goto]');
-        if (existingDots.length < n) {
-          dotsContainer.innerHTML = '';
-          for (var i=1; i<=n; i++){
-            var b = document.createElement('button');
-            b.className = 'slide-dot';
-            b.setAttribute('data-index', String(i));
-            b.setAttribute('aria-label', 'Go to slide ' + i);
-            b.textContent = i;
-            dotsContainer.appendChild(b);
-          }
-          dotsContainer.dataset.autobuilt = '1';
+        function animateStars() {
+            ctx.fillStyle = '#0a0f1a';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            twinkleOffset += 0.01;
+
+            stars.forEach((star, index) => {
+                star.y += star.speed;
+                if (star.y > canvas.height) {
+                    star.y = 0;
+                    star.x = Math.random() * canvas.width;
+                }
+
+                const twinkle = Math.sin(twinkleOffset + index * 0.5) * 0.3 + 0.7;
+
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(180, 210, 255, ${star.opacity * twinkle})`;
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animateStars);
         }
-      }
-    } catch (e) { console.warn('Auto-dot builder error', e); }
-  });
+        animateStars();
 
-  // Robust click handler for dots (works for .slide-dot/.dot and data-* attributes)
-  document.addEventListener('click', function(e){
-    var dot = e.target.closest && (e.target.closest('[data-slide]') ||
-                                   e.target.closest('[data-goto]') ||
-                                   e.target.closest('[data-index]') ||
-                                   e.target.closest('.slide-dot') ||
-                                   e.target.closest('.dot'));
-    if (dot){
-      var n = dot.getAttribute('data-slide') || dot.getAttribute('data-goto') ||
-              dot.getAttribute('data-index') || dot.textContent;
-      var k = parseInt(String(n).trim(), 10);
-      if (!isNaN(k) && typeof window.goToLangSlide === 'function'){ e.preventDefault(); window.goToLangSlide(k); }
-    }
-  }, true);
+        // Page navigation
+        function showPage(pageId) {
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
 
-  // ------------------ Translator: smarter pre-pass ------------------
-  (function(){
-    if (typeof window.translateText !== 'function') return;
+            document.getElementById(pageId).classList.add('active');
 
-    function expandContractions(t){
-      // Simple common contractions (case-insensitive)
-      return t
-        .replace(/\bI'm\b/gi, 'I am')
-        .replace(/\byou're\b/gi, 'you are')
-        .replace(/\bhe's\b/gi, 'he is')
-        .replace(/\bshe's\b/gi, 'she is')
-        .replace(/\bit's\b/gi, 'it is')
-        .replace(/\bwe're\b/gi, 'we are')
-        .replace(/\bthey're\b/gi, 'they are')
-        .replace(/\bcan't\b/gi, 'cannot')
-        .replace(/\bwon't\b/gi, 'will not')
-        .replace(/\bdoesn't\b/gi, 'does not')
-        .replace(/\bdon't\b/gi, 'do not')
-        .replace(/\bdidn't\b/gi, 'did not')
-        .replace(/\baren't\b/gi, 'are not')
-        .replace(/\bisn't\b/gi, 'is not')
-        .replace(/\bwasn't\b/gi, 'was not')
-        .replace(/\bweren't\b/gi, 'were not');
-    }
+            document.querySelectorAll('.nav-button').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.page === pageId) {
+                    btn.classList.add('active');
+                }
+            });
 
-    function reflexive(pron){
-      var p = pron.toLowerCase();
-      if (p === 'he') return 'himself';
-      if (p === 'she') return 'herself';
-      if (p === 'they') return 'themselves';
-      if (p === 'we') return 'ourselves';
-      if (p === 'you') return 'yourself';
-      if (p === 'i') return 'myself';
-      if (p === 'it') return 'itself';
-      return pron + 'self';
-    }
+            window.scrollTo(0, 0);
+        }
 
-    function thinkCopulaToConceive(text){
-      // "<subject> thinks (that)? <pron> is/are <X>" -> "<subject> conceives <reflexive(pron)> as <X>"
-      // Handles: "She always thinks she is the best ...", "They think they are ..."
-      return text.replace(/\b(thinks|think|believes|believe)\s+(that\s+)?\b(he|she|they|we|you|i|it)\s+(is|are|was|were)\b/gi,
-        function(m, verb, _that, pron, cop){
-          var refl = reflexive(pron);
-          return verb + ' ' + refl + ' as';
+        // Language Paradox slide navigation
+        let currentSlide = 1;
+        const totalSlides = 6;
+
+        function changeSlide(direction) {
+            currentSlide += direction;
+
+            if (currentSlide < 1) currentSlide = 1;
+            if (currentSlide > totalSlides) currentSlide = totalSlides;
+
+            document.querySelectorAll('.lang-slide').forEach(slide => {
+                slide.classList.remove('active');
+            });
+
+            document.querySelector(`.lang-slide[data-slide="${currentSlide}"]`).classList.add('active');
+            document.getElementById('slideIndicator').textContent = `${currentSlide} / ${totalSlides}`;
+
+            document.getElementById('prevSlide').disabled = currentSlide === 1;
+            document.getElementById('nextSlide').disabled = currentSlide === totalSlides;
+        }
+
+        // Initialize on load
+        document.addEventListener('DOMContentLoaded', function() {
+            changeSlide(0);
         });
-    }
-
-    var originalTranslate = window.translateText;
-    window.translateText = function(){
-      var input = document.getElementById('inputText');
-      if (input && input.value){
-        input.value = thinkCopulaToConceive(expandContractions(input.value));
-      }
-      originalTranslate();
-    };
-  })();
-})();
-</script>
-
-<script>
-/* === Crossroads Consolidated Fix v2.5 === */
-(function(){
-  // -------- Slides: compute from DOM, build dots to match exactly --------
-  function getSlides(){ return Array.prototype.slice.call(document.querySelectorAll('.lang-slide')); }
-  function rebuildDots(){
-    var slides = getSlides();
-    var n = slides.length;
-    var dotsContainer = document.getElementById('slideDots') ||
-                        document.querySelector('.slide-dots') ||
-                        document.querySelector('#dots');
-    if (!dotsContainer) return n;
-    // Rebuild to exactly n
-    dotsContainer.innerHTML = '';
-    for (var i=1;i<=n;i++){
-      var b = document.createElement('button');
-      b.className = 'slide-dot';
-      b.setAttribute('data-index', String(i));
-      b.setAttribute('aria-label','Go to slide '+i);
-      b.textContent = i;
-      dotsContainer.appendChild(b);
-    }
-    return n;
-  }
-
-  var totalLangSlides = 0;
-  var currentLangSlide = 1;
-
-  function updateLangSlideSafe() {
-    var slides = getSlides();
-    totalLangSlides = slides.length;
-    if (totalLangSlides === 0) return;
-    if (currentLangSlide > totalLangSlides) currentLangSlide = totalLangSlides;
-    slides.forEach(function(s){ s.classList.remove('active'); });
-    var target = document.querySelector('.lang-slide[data-slide="'+currentLangSlide+'"]') || slides[currentLangSlide-1];
-    if (target) target.classList.add('active');
-
-    var dots = Array.prototype.slice.call(document.querySelectorAll('.slide-dot'));
-    dots.forEach(function(d,i){ d.classList.toggle('active', i+1===currentLangSlide); });
-
-    var counter = document.getElementById('slideCounter');
-    if (counter) counter.textContent = currentLangSlide + ' / ' + totalLangSlides;
-
-    var prevBtn = document.getElementById('prevSlideBtn');
-    var nextBtn = document.getElementById('nextSlideBtn');
-    if (prevBtn){ prevBtn.disabled = currentLangSlide===1; prevBtn.style.opacity = prevBtn.disabled?'0.5':'1'; }
-    if (nextBtn){ nextBtn.disabled = currentLangSlide===totalLangSlides; nextBtn.style.opacity = nextBtn.disabled?'0.5':'1'; }
-  }
-
-  window.goToLangSlide = function(n){
-    var slides = getSlides();
-    totalLangSlides = slides.length;
-    if (!totalLangSlides) return;
-    n = Math.max(1, Math.min(totalLangSlides, Number(n)||1));
-    currentLangSlide = n;
-    updateLangSlideSafe();
-  };
-  window.nextSlide = function(){ window.goToLangSlide(currentLangSlide+1); };
-  window.prevSlide = function(){ window.goToLangSlide(currentLangSlide-1); };
-
-  document.addEventListener('DOMContentLoaded', function(){
-    // Build dots fresh based on actual slides
-    rebuildDots();
-    updateLangSlideSafe();
-  });
-
-  document.addEventListener('click', function(e){
-    var dot = e.target.closest && (e.target.closest('[data-slide]') ||
-                                   e.target.closest('[data-goto]') ||
-                                   e.target.closest('[data-index]') ||
-                                   e.target.closest('.slide-dot') ||
-                                   e.target.closest('.dot'));
-    if (dot){
-      var n = dot.getAttribute('data-slide') || dot.getAttribute('data-goto') ||
-              dot.getAttribute('data-index') || dot.textContent;
-      var k = parseInt(String(n).trim(),10);
-      if (!isNaN(k)){ e.preventDefault(); window.goToLangSlide(k); }
-    }
-  }, true);
-
-  // -------- Translator improvements: skip copula->process when followed by gerund --------
-  (function(){
-    if (typeof window.translateText !== 'function') return;
-
-    function expandContractions(t){
-      return t.replace(/\b(she|he|it|that|there|here)'s\b/gi, '$1 is')               .replace(/\bI'M\b/gi, 'I am').replace(/\bI'm\b/g, 'I am')               .replace(/\byou're\b/gi, 'you are')               .replace(/\bwe're\b/gi, 'we are')               .replace(/\bthey're\b/gi, 'they are');
-    }
-
-    var copulaMap = {"is":"emerges as","are":"manifest as","was":"arose as","were":"interacted as"};
-
-    function skipCopulaNearGerund(text){
-      // Protect "is/are/was/were (adv)? <verb>ing" patterns by temporarily marking them
-      // e.g., "is wanting", "is always wanting"
-      return text.replace(/\b(is|are|was|were)(\s+\w+)?\s+(\w+ing)\b/gi, function(m,cop,adv,ing){
-        return '[[COP-GERUND ' + (cop + (adv||'') + ' ' + ing) + ']]';
-      });
-    }
-
-    function restoreCopulaNearGerund(text){
-      return text.replace(/\[\[COP-GERUND ([^\]]+)\]\]/g, '$1');
-    }
-
-    var originalTranslate = window.translateText;
-    window.translateText = function(){
-      var input = document.getElementById('inputText');
-      if (input && input.value){
-        input.value = expandContractions(input.value);
-        input.value = input.value.replace(/\bto\s+be\b/gi, 'being'); // ensure be->being for "to be"
-        input.value = skipCopulaNearGerund(input.value);
-      }
-      originalTranslate();
-      // After the main translator runs, restore the protected copula+gerund sequences
-      var out = document.getElementById('outputText');
-      if (out && out.textContent){
-        out.textContent = restoreCopulaNearGerund(out.textContent).replace(/\s{2,}/g,' ').trim();
-      }
-    };
-  })();
-})();
-</script>
+    </script>
 </body>
 </html>
-
