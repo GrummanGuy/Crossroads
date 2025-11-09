@@ -73,7 +73,7 @@
             align-items: center;
             gap: 0.5rem;
             padding: 1rem 1rem;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
         }
 
         .nav-button {
@@ -437,6 +437,23 @@
             font-weight: bold;
         }
 
+        .visitor-stats {
+            margin-top: 1rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(106, 180, 255, 0.2);
+            font-size: 0.75rem;
+            color: #888;
+            font-family: monospace;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: nowrap;
+        }
+
+        .visitor-stats > div {
+            white-space: nowrap;
+        }
+
         /* Responsive design */
         @media (max-width: 1024px) {
             nav {
@@ -467,6 +484,11 @@
 
             .slide-comparison {
                 grid-template-columns: 1fr;
+            }
+
+            .visitor-stats {
+                gap: 1rem;
+                font-size: 0.7rem;
             }
         }
     </style>
@@ -869,6 +891,13 @@
                 <p class="footer-tagline">Driven by Curiosity</p>
                 <p class="footer-org">HOW2LLC • CROSSROADS</p>
                 <p style="margin-top: 0.5rem; font-size: 0.85rem;">"Learning and sharing what we learn"</p>
+                
+                <!-- Visitor statistics -->
+                <div class="visitor-stats">
+                    <div id="totalViews">Total: 0</div>
+                    <div id="uniqueVisitors">Unique: 0</div>
+                    <div id="currentPage">Page: Home</div>
+                </div>
             </div>
         </footer>
     </div>
@@ -926,6 +955,35 @@
         }
         animateStars();
 
+        // Visitor counter
+        function initViewCounter() {
+            let totalViews = localStorage.getItem('totalViews') || 0;
+            totalViews = parseInt(totalViews) + 1;
+            localStorage.setItem('totalViews', totalViews);
+            document.getElementById('totalViews').textContent = `Total: ${totalViews.toLocaleString()}`;
+            
+            let visitorId = sessionStorage.getItem('visitorId');
+            if (!visitorId) {
+                visitorId = 'visitor_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+                sessionStorage.setItem('visitorId', visitorId);
+                
+                let uniqueVisitors = localStorage.getItem('uniqueVisitors') || 0;
+                uniqueVisitors = parseInt(uniqueVisitors) + 1;
+                localStorage.setItem('uniqueVisitors', uniqueVisitors);
+            }
+            
+            let uniqueVisitors = localStorage.getItem('uniqueVisitors') || 0;
+            document.getElementById('uniqueVisitors').textContent = `Unique: ${parseInt(uniqueVisitors).toLocaleString()}`;
+        }
+        
+        function updatePageDisplay(pageName) {
+            const pageElement = document.getElementById('currentPage');
+            if (pageElement) {
+                const displayName = pageName.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                pageElement.textContent = `Page: ${displayName}`;
+            }
+        }
+
         // Page navigation
         function showPage(pageId) {
             document.querySelectorAll('.page').forEach(page => {
@@ -941,6 +999,7 @@
                 }
             });
 
+            updatePageDisplay(pageId);
             window.scrollTo(0, 0);
         }
 
@@ -967,6 +1026,7 @@
 
         // Initialize on load
         document.addEventListener('DOMContentLoaded', function() {
+            initViewCounter();
             changeSlide(0);
         });
     </script>
