@@ -1659,15 +1659,7 @@ function showPage(pageId) {
         window.addEventListener('resize', resizeCanvas);
 
         // Animated starfield
-        const canvas = document.getElementById('starfield');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
+        
 
         const stars = [];
         const starCount = 400; // More stars for richer field
@@ -1751,6 +1743,7 @@ function showPage(pageId) {
     </script>
 </body>
 </html>
+
 
 
 
