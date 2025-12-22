@@ -1658,45 +1658,20 @@ function showPage(pageId) {
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
+        // Animated starfield
+        const canvas = document.getElementById('starfield');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
         const stars = [];
-        const starCount = 250;
-
-        for (let i = 0; i < starCount; i++) {
-            stars.push({
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                radius: Math.random() * 1.8 + 0.2,
-                speed: Math.random() * 0.4 + 0.15,
-                opacity: Math.random() * 0.7 + 0.3,
-                twinkleSpeed: Math.random() * 0.02 + 0.01
-            });
-        }
-
-        let twinkleOffset = 0;
-
-        function animateStars() {
-            ctx.fillStyle = '#0a0f1a';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            twinkleOffset += 0.01;
-
-            stars.forEach((star, index) => {
-                star.y += star.speed;
-                if (star.y > canvas.height) {
-                    star.y = 0;
-                    star.x = Math.random() * canvas.width;
-                }
-
-                const twinkle = Math.sin(twinkleOffset + index * 0.5) * 0.3 + 0.7;
-
-                ctx.beginPath();
-                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(180, 210, 255, ${star.opacity * twinkle})`;
-                ctx.fill();
-            });
-
-            requestAnimationFrame(animateStars);
-        }
+        const starCount = 400; // More stars for richer field
+        // ... [all the new code you just pasted] ...
         animateStars();
 
         // Visitor counter
@@ -1776,6 +1751,7 @@ function showPage(pageId) {
     </script>
 </body>
 </html>
+
 
 
 
