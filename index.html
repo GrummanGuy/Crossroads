@@ -1658,12 +1658,73 @@ function showPage(pageId) {
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        // Animated starfield
-        
 
         const stars = [];
-        const starCount = 400; // More stars for richer field
-        // ... [all the new code you just pasted] ...
+        const starCount = 400; //
+        
+        for (let i = 0; i < starCount; i++) {
+            stars.push({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                radius: Math.random() * 1.5 + 0.3,
+                baseOpacity: Math.random() * 0.6 + 0.4,
+                twinkleSpeed: Math.random() * 0.015 + 0.005,
+                twinklePhase: Math.random() * Math.PI * 2,
+                color: Math.random() > 0.85 ? 'blue' : Math.random() > 0.7 ? 'yellow' : 'white'
+            });
+        }
+
+        let twinkleOffset = 0;
+
+        function animateStars() {
+            ctx.fillStyle = '#0a0f1a';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            twinkleOffset += 0.008;
+
+            stars.forEach((star, index) => {
+                const twinkle = Math.sin(twinkleOffset * star.twinkleSpeed + star.twinklePhase) * 0.25 + 0.75;
+                const currentOpacity = star.baseOpacity * twinkle;
+
+                if (star.radius > 1.2) {
+                    const gradient = ctx.createRadialGradient(
+                        star.x, star.y, 0,
+                        star.x, star.y, star.radius * 3
+                    );
+                    
+                    if (star.color === 'blue') {
+                        gradient.addColorStop(0, `rgba(150, 200, 255, ${currentOpacity})`);
+                        gradient.addColorStop(1, `rgba(150, 200, 255, 0)`);
+                    } else if (star.color === 'yellow') {
+                        gradient.addColorStop(0, `rgba(255, 240, 200, ${currentOpacity})`);
+                        gradient.addColorStop(1, `rgba(255, 240, 200, 0)`);
+                    } else {
+                        gradient.addColorStop(0, `rgba(220, 230, 255, ${currentOpacity})`);
+                        gradient.addColorStop(1, `rgba(220, 230, 255, 0)`);
+                    }
+                    
+                    ctx.fillStyle = gradient;
+                    ctx.beginPath();
+                    ctx.arc(star.x, star.y, star.radius * 3, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                ctx.beginPath();
+                ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+                
+                if (star.color === 'blue') {
+                    ctx.fillStyle = `rgba(180, 210, 255, ${currentOpacity})`;
+                } else if (star.color === 'yellow') {
+                    ctx.fillStyle = `rgba(255, 245, 210, ${currentOpacity})`;
+                } else {
+                    ctx.fillStyle = `rgba(240, 245, 255, ${currentOpacity})`;
+                }
+                
+                ctx.fill();
+            });
+
+            requestAnimationFrame(animateStars);
+        }
         animateStars();
 
         // Visitor counter
@@ -1743,6 +1804,7 @@ function showPage(pageId) {
     </script>
 </body>
 </html>
+
 
 
 
